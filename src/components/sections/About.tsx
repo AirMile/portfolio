@@ -13,17 +13,19 @@ export function About() {
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-lg text-neutral-300">
-              Schrijf hier een korte maar persoonlijke bio. Vertel wie je bent,
-              wat je drijft, en wat je zoekt in een stage of baan.
+              Ik ben Miles, tweedejaars CMGT-student aan Hogeschool Rotterdam.
+              Wat mij drijft is de creatieve vrijheid die development biedt —
+              een idee bedenken en het zelf tot leven brengen.
             </p>
             <p className="mt-4 text-neutral-400">
-              Voeg hier meer context toe over je achtergrond, je studie (CMGT),
-              en wat je onderscheidt van andere kandidaten. Toon persoonlijkheid
-              - recruiters willen weten wie je bent beyond je CV.
+              Naast mijn studie ben ik constant bezig met side projects: van
+              games in Godot tot full-stack webapplicaties. Ik leer het liefst
+              door te bouwen.
             </p>
             <p className="mt-4 text-neutral-400">
-              Sluit af met wat je zoekt: een stage bij een game studio, creative
-              agency, of tech bedrijf.
+              Ik zoek een stage bij een web of digital agency waar ik kan
+              groeien als creative developer en mee kan werken aan impactvolle
+              projecten.
             </p>
           </div>
         </div>

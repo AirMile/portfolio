@@ -14,47 +14,43 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'project-1',
-    title: 'Project Titel 1',
+    slug: 'getcooked',
+    title: 'GetCooked',
     description:
-      'Korte beschrijving van het project die op de card verschijnt.',
-    thumbnail: '/images/project-1.jpg',
-    tags: ['React', 'TypeScript', 'Tailwind'],
-    liveUrl: 'https://example.com',
-    githubUrl: 'https://github.com/username/project-1',
+      'Een recepten platform waar gebruikers recepten kunnen bekijken, toevoegen en zoeken. Gebouwd met Laravel.',
+    thumbnail: '/images/getcooked.jpg',
+    tags: ['Laravel', 'PHP', 'Full Stack'],
+    githubUrl: 'https://github.com/AirMile/getcooked',
     context:
-      'Beschrijf hier de context en het probleem dat je oploste. Wat was de aanleiding? Voor wie was dit project?',
-    role: 'Beschrijf hier jouw specifieke rol en verantwoordelijkheden in dit project.',
+      'Solo schoolopdracht waarbij ik een complete recepten website moest bouwen. Gebruikers kunnen recepten bekijken, toevoegen, zoeken en filteren, met een volledig account systeem.',
+    role: 'Volledige ontwikkeling van concept tot werkend product. Dit was mijn eerste grote Laravel project.',
     process: [
-      'Eerste stap in het proces',
-      'Tweede stap met key decisions',
-      'Derde stap en hoe je uitdagingen oploste',
+      'Laravel framework leren en project opzetten',
+      'Database design voor recepten, ingrediënten en gebruikers',
+      'Authentication systeem implementeren',
+      'Zoek- en filterfunctionaliteit bouwen',
     ],
     result:
-      'Beschrijf het eindresultaat en eventuele metrics of feedback die je hebt ontvangen.',
+      'Een volledig werkende recepten applicatie. Door dit project heb ik Laravel onder de knie gekregen en ervaring opgedaan met MVC architectuur.',
   },
   {
-    slug: 'project-2',
-    title: 'Project Titel 2',
-    description: 'Korte beschrijving van het tweede project.',
-    thumbnail: '/images/project-2.jpg',
-    tags: ['Unity', 'C#', 'Game Dev'],
-    githubUrl: 'https://github.com/username/project-2',
-    context: 'Context voor project 2.',
-    role: 'Jouw rol in project 2.',
-    process: ['Stap 1', 'Stap 2', 'Stap 3'],
-    result: 'Resultaat van project 2.',
-  },
-  {
-    slug: 'project-3',
-    title: 'Project Titel 3',
-    description: 'Korte beschrijving van het derde project.',
-    thumbnail: '/images/project-3.jpg',
-    tags: ['Figma', 'UI/UX', 'Prototyping'],
-    liveUrl: 'https://example.com/project-3',
-    context: 'Context voor project 3.',
-    role: 'Jouw rol in project 3.',
-    process: ['Stap 1', 'Stap 2', 'Stap 3'],
-    result: 'Resultaat van project 3.',
+    slug: 'natuurmoment',
+    title: 'NatuurMoment',
+    description:
+      'Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.',
+    thumbnail: '/images/natuurmoment.jpg',
+    tags: ['Laravel', 'Livewire', 'Tailwind CSS', 'Team Project'],
+    githubUrl: 'https://github.com/HenkHR/NatuurMoment',
+    context:
+      "Groepsproject voor een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
+    role: 'Full-stack development met focus op backend. Daarnaast verantwoordelijk voor de styleguide, groot deel van de wireframes en uitwerking van het concept.',
+    process: [
+      'Concept en idee uitwerking met het team',
+      'Styleguide en wireframes ontwerpen in Figma',
+      'Backend features implementeren in Laravel',
+      'Real-time functionaliteit met Livewire',
+    ],
+    result:
+      'Een volledig werkende game die live heeft gedraaid. Het team heeft succesvol samengewerkt met een moderne Laravel/Livewire stack.',
   },
 ]

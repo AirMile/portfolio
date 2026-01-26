@@ -10,24 +10,18 @@ export function Contact() {
           contact op.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button href="mailto:jouw@email.com">Email</Button>
-          <Button
-            href="https://linkedin.com/in/jouwprofiel"
-            variant="secondary"
-          >
-            LinkedIn
-          </Button>
-          <Button href="https://github.com/jouwnaam" variant="secondary">
+          <Button href="mailto:zeilstramiles@gmail.com">Email</Button>
+          <Button href="https://github.com/AirMile" variant="secondary">
             GitHub
           </Button>
         </div>
         <p className="mt-12 text-sm text-neutral-500">
           Of stuur een email naar:{' '}
           <a
-            href="mailto:jouw@email.com"
+            href="mailto:zeilstramiles@gmail.com"
             className="text-white underline hover:no-underline"
           >
-            jouw@email.com
+            zeilstramiles@gmail.com
           </a>
         </p>
       </div>

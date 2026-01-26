@@ -1,15 +1,15 @@
 const skillCategories = [
   {
     title: 'Languages',
-    skills: ['TypeScript', 'JavaScript', 'C#', 'HTML', 'CSS'],
+    skills: ['JavaScript', 'TypeScript', 'GDScript', 'PHP', 'HTML', 'CSS'],
   },
   {
     title: 'Frameworks',
-    skills: ['React', 'Unity', 'Vite', 'Tailwind CSS'],
+    skills: ['React', 'Laravel', 'Godot', 'Node.js', 'Express', 'Tailwind CSS'],
   },
   {
     title: 'Tools',
-    skills: ['Git', 'Figma', 'VS Code', 'Adobe Creative Suite'],
+    skills: ['Git', 'VS Code', 'Figma'],
   },
 ]
 
