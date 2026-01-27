@@ -68,7 +68,7 @@ export function Hero() {
           ref={buttonsRef}
           className="mt-8 flex flex-wrap justify-center gap-4"
         >
-          <Button to="/#projects">Bekijk mijn werk</Button>
+          <Button href="#projects">Bekijk mijn werk</Button>
           <Button href="#contact" variant="secondary">
             Neem contact op
           </Button>
