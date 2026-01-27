@@ -1,3 +1,5 @@
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animation'
+
 const skillCategories = [
   {
     title: 'Languages',
@@ -17,10 +19,16 @@ export function Skills() {
   return (
     <section id="skills" className="px-6 py-24">
       <div className="mx-auto max-w-4xl">
-        <h2 className="text-3xl font-bold text-white md:text-4xl">Skills</h2>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <FadeIn>
+          <h2 className="text-3xl font-bold text-white md:text-4xl">Skills</h2>
+        </FadeIn>
+        <StaggerContainer
+          className="mt-12 grid gap-8 md:grid-cols-3"
+          staggerDelay={0.1}
+          delayChildren={0.15}
+        >
           {skillCategories.map((category) => (
-            <div key={category.title}>
+            <StaggerItem key={category.title}>
               <h3 className="text-lg font-semibold text-white">
                 {category.title}
               </h3>
@@ -31,9 +39,9 @@ export function Skills() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   )

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -7,6 +8,12 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary'
   className?: string
   onClick?: () => void
+}
+
+const motionProps = {
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 0.98 },
+  transition: { type: 'spring', stiffness: 400, damping: 17 },
 }
 
 export function Button({
@@ -29,28 +36,25 @@ export function Button({
 
   if (href) {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles}
-      >
+      <motion.a href={href} className={styles} {...motionProps}>
         {children}
-      </a>
+      </motion.a>
     )
   }
 
   if (to) {
     return (
-      <Link to={to} className={styles}>
-        {children}
-      </Link>
+      <motion.span {...motionProps} className="inline-block">
+        <Link to={to} className={styles}>
+          {children}
+        </Link>
+      </motion.span>
     )
   }
 
   return (
-    <button onClick={onClick} className={styles}>
+    <motion.button onClick={onClick} className={styles} {...motionProps}>
       {children}
-    </button>
+    </motion.button>
   )
 }
