@@ -20,7 +20,7 @@ export function Starfield({
   const scrollYRef = useRef(0)
   const dimensionsRef = useRef({ width: 0, height: 0 })
 
-  const lenis = useLenis()
+  const { lenis } = useLenis()
 
   // Initialize stars
   const initStars = useCallback(() => {

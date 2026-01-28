@@ -8,7 +8,7 @@ interface ScrollVelocityState {
 }
 
 export function useScrollVelocity(): ScrollVelocityState {
-  const lenis = useLenis()
+  const { lenis } = useLenis()
   const [state, setState] = useState<ScrollVelocityState>({
     velocity: 0,
     scrollY: 0,

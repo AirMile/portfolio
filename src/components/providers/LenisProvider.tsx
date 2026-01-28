@@ -3,9 +3,15 @@ import { useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import Snap from 'lenis/snap'
 
-type LenisContextType = Lenis | null
+type LenisContextType = {
+  lenis: Lenis | null
+  scrollToTop: () => void
+}
 
-const LenisContext = createContext<LenisContextType>(null)
+const LenisContext = createContext<LenisContextType>({
+  lenis: null,
+  scrollToTop: () => {},
+})
 
 export function useLenis() {
   return useContext(LenisContext)
@@ -119,8 +125,39 @@ export function LenisProvider({ children }: LenisProviderProps) {
     requestAnimationFrame(updateSnapPoints)
   }, [location.pathname])
 
+  // Scroll to top function that bypasses snap
+  const scrollToTop = () => {
+    const lenis = lenisRef.current
+    if (lenis) {
+      // Clear snap points temporarily to prevent interference
+      snapRemoversRef.current.forEach((remove) => remove())
+      snapRemoversRef.current = []
+
+      // Track if snap points have been restored
+      let restored = false
+      const restoreSnapPoints = () => {
+        if (restored) return
+        restored = true
+        requestAnimationFrame(updateSnapPoints)
+      }
+
+      // Stop current animation and scroll smoothly
+      lenis.stop()
+      lenis.start()
+      lenis.scrollTo(0, {
+        duration: 1.2,
+        onComplete: restoreSnapPoints,
+      })
+
+      // Backup: restore snap points after duration + buffer
+      setTimeout(restoreSnapPoints, 1500)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
-    <LenisContext.Provider value={lenisRef.current}>
+    <LenisContext.Provider value={{ lenis: lenisRef.current, scrollToTop }}>
       {children}
     </LenisContext.Provider>
   )
