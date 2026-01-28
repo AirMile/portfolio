@@ -1,6 +1,8 @@
 import { useRef } from 'react'
-import { gsap, useGSAP } from '@/lib/gsap'
+import { gsap, useGSAP, ScrollTrigger } from '@/lib/gsap'
 import { Button } from '@/components/ui/Button'
+
+const TITLE = 'Miles Zeilstra'
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -11,27 +13,59 @@ export function Hero() {
 
   useGSAP(
     () => {
+      const letters = titleRef.current?.querySelectorAll('.hero-letter')
       const rest = [
         descriptionRef.current,
         ...(buttonsRef.current?.children ?? []),
       ]
 
-      gsap.set(titleRef.current, { opacity: 0, y: 40 })
+      // Kill any existing ScrollTriggers on these elements
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.vars.trigger === containerRef.current) {
+          st.kill()
+        }
+      })
+
+      gsap.set(letters, { opacity: 0, y: 40, x: 0 })
       gsap.set(subtitleRef.current, { opacity: 0, y: 30 })
       gsap.set(rest, { opacity: 0, y: 30 })
 
+      // Intro animatie (delay voor page transition)
       const tl = gsap.timeline({
+        delay: 0.4,
         defaults: {
           ease: 'power3.out',
           duration: 0.8,
         },
+        onComplete: () => {
+          // Scroll lift-off animatie - alleen activeren NA intro animatie
+          gsap.fromTo(
+            letters,
+            { y: 0, opacity: 1 },
+            {
+              y: -150,
+              opacity: 0,
+              ease: 'power2.in',
+              stagger: 0.02,
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top top',
+                end: '40% top',
+                scrub: 1,
+              },
+            }
+          )
+        },
       })
 
-      tl.to(titleRef.current, {
+      tl.to(letters, {
         opacity: 1,
         y: 0,
+        x: 0,
         duration: 1,
         ease: 'power4.out',
+        stagger: 0.03,
       })
         .to(subtitleRef.current, { opacity: 1, y: 0 }, '-=0.5')
         .to(rest, { opacity: 1, y: 0 }, '-=0.4')
@@ -50,7 +84,15 @@ export function Hero() {
           ref={titleRef}
           className="text-5xl font-bold tracking-tight text-white md:text-7xl"
         >
-          Miles Zeilstra
+          {TITLE.split('').map((char, i) => (
+            <span
+              key={i}
+              className="hero-letter inline-block"
+              style={{ whiteSpace: char === ' ' ? 'pre' : undefined }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          ))}
         </h1>
         <p
           ref={subtitleRef}

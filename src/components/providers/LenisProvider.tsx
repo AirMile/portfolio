@@ -112,6 +112,12 @@ export function LenisProvider({ children }: LenisProviderProps) {
     if (skillsEl) {
       snapRemoversRef.current.push(snap.add(skillsEl.offsetTop))
     }
+
+    // Skills → Contact
+    const contactEl = document.getElementById('contact')
+    if (contactEl) {
+      snapRemoversRef.current.push(snap.add(contactEl.offsetTop))
+    }
   }
 
   // Initialize snap points on first load
