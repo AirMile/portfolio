@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
+import { SPRING_DEFAULT } from '@/lib/animation'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -15,7 +16,7 @@ interface ButtonProps {
 const motionProps = {
   whileHover: { scale: 1.02 },
   whileTap: { scale: 0.98 },
-  transition: { type: 'spring', stiffness: 400, damping: 20 },
+  transition: SPRING_DEFAULT,
 }
 
 export function Button({

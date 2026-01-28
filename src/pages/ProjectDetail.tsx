@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { useParams } from 'react-router-dom'
 import { projects } from '@/data/projects'
 import { Button } from '@/components/ui/Button'
+import { Tag } from '@/components/ui/Tag'
+import { BackLink } from '@/components/ui/BackLink'
 import { FadeIn } from '@/components/animation/FadeIn'
 import { StaggerContainer } from '@/components/animation/StaggerContainer'
 import { StaggerItem } from '@/components/animation/StaggerItem'
@@ -37,15 +38,7 @@ export function ProjectDetail() {
     <article className="px-6 py-24">
       <div className="mx-auto max-w-4xl">
         <FadeIn direction="none">
-          <Link
-            to="/#projects"
-            className="group inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-white"
-          >
-            <span className="transition-transform group-hover:-translate-x-1">
-              ←
-            </span>
-            Terug naar projecten
-          </Link>
+          <BackLink to="/#projects">Terug naar projecten</BackLink>
         </FadeIn>
 
         <FadeIn delay={0.1}>
@@ -55,15 +48,9 @@ export function ProjectDetail() {
             </h1>
             <div className="mt-4 flex flex-wrap gap-2">
               {project.tags.map((tag, index) => (
-                <motion.span
-                  key={tag}
-                  className="rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 + index * 0.05 }}
-                >
+                <Tag key={tag} animated animationDelay={0.3 + index * 0.05}>
                   {tag}
-                </motion.span>
+                </Tag>
               ))}
             </div>
           </header>
@@ -150,15 +137,9 @@ export function ProjectDetail() {
               )}
             </div>
 
-            <Link
-              to="/#projects"
-              className="group mt-8 inline-flex items-center gap-2 text-neutral-400 transition-colors hover:text-white"
-            >
-              <span className="transition-transform group-hover:-translate-x-1">
-                ←
-              </span>
-              Terug naar projecten
-            </Link>
+            <div className="mt-8">
+              <BackLink to="/#projects">Terug naar projecten</BackLink>
+            </div>
           </StaggerItem>
         </StaggerContainer>
       </div>

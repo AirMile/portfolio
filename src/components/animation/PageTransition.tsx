@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { ReactNode } from 'react'
+import { DURATION_FAST, EASE_DEFAULT } from '@/lib/animation'
 
 interface PageTransitionProps {
   children: ReactNode
@@ -24,8 +25,8 @@ const pageVariants = {
 
 const pageTransition = {
   type: 'tween',
-  ease: [0.25, 0.1, 0.25, 1],
-  duration: 0.4,
+  ease: EASE_DEFAULT,
+  duration: DURATION_FAST,
 }
 
 export function PageTransition({

@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Button } from './Button'
+import { FormInput } from './FormInput'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
@@ -76,45 +77,22 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="name" className="sr-only">
-          Naam
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Naam"
-          required
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 transition-colors outline-none focus:border-white/30 focus:bg-white/10"
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className="sr-only">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          required
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 transition-colors outline-none focus:border-white/30 focus:bg-white/10"
-        />
-      </div>
-      <div>
-        <label htmlFor="message" className="sr-only">
-          Bericht
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Je bericht..."
-          rows={4}
-          required
-          className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 transition-colors outline-none focus:border-white/30 focus:bg-white/10"
-        />
-      </div>
+      <FormInput id="name" name="name" placeholder="Naam" required />
+      <FormInput
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+      <FormInput
+        as="textarea"
+        id="message"
+        name="message"
+        placeholder="Je bericht..."
+        rows={4}
+        required
+      />
 
       {status === 'error' && (
         <p className="text-sm text-red-400">{errorMessage}</p>

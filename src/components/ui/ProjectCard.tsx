@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import type { Project } from '@/data/projects'
+import { DURATION_FAST, EASE_DEFAULT, SPRING_SOFT } from '@/lib/animation'
+import { Tag } from './Tag'
 
 interface ProjectCardProps {
   project: Project
@@ -11,7 +13,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <motion.div
       className="h-full"
       whileHover={{ y: -8 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={SPRING_SOFT}
     >
       <Link
         to={`/projects/${project.slug}`}
@@ -23,7 +25,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             alt={project.title}
             className="h-full w-full object-cover"
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: DURATION_FAST, ease: EASE_DEFAULT }}
           />
         </div>
         <div className="flex flex-1 flex-col p-6">
@@ -31,12 +33,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <p className="mt-2 flex-1 text-neutral-400">{project.description}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-neutral-800 px-3 py-1 text-sm text-neutral-300"
-              >
-                {tag}
-              </span>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
         </div>

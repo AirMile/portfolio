@@ -14,6 +14,8 @@ export function Hero() {
   useGSAP(
     () => {
       const letters = titleRef.current?.querySelectorAll('.hero-letter')
+      if (!letters) return
+
       const rest = [
         descriptionRef.current,
         ...(buttonsRef.current?.children ?? []),

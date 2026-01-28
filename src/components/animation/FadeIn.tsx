@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'motion/react'
 import { type ReactNode } from 'react'
+import { EASE_DEFAULT } from '@/lib/animation'
 
 interface FadeInProps {
   children: ReactNode
@@ -38,7 +39,7 @@ export function FadeIn({
       transition: {
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: EASE_DEFAULT,
       },
     },
   }

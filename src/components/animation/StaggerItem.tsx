@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'motion/react'
 import { type ReactNode } from 'react'
+import { DURATION_NORMAL, EASE_DEFAULT } from '@/lib/animation'
 
 interface StaggerItemProps {
   children: ReactNode
@@ -15,8 +16,8 @@ const itemVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
+      duration: DURATION_NORMAL,
+      ease: EASE_DEFAULT,
     },
   },
 }

@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
 import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
-import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { Starfield, triggerWarp } from '@/components/background'
@@ -81,7 +80,6 @@ function App() {
       <LenisProvider>
         <div className="min-h-screen bg-neutral-950 text-white">
           <Starfield />
-          <Header />
           <main className="relative z-10 overflow-x-hidden pt-16">
             <AnimatedRoutes />
           </main>
