@@ -15,7 +15,7 @@ export function About() {
               <img
                 src="/images/profile.jpg"
                 alt="Profielfoto"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover brightness-[0.85]"
               />
             </div>
           </FadeIn>

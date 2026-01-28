@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <motion.img
             src={project.thumbnail}
             alt={project.title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover brightness-[0.85]"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: DURATION_FAST, ease: EASE_DEFAULT }}
           />

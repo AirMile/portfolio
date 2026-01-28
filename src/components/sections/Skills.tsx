@@ -3,15 +3,19 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animation'
 const skillCategories = [
   {
     title: 'Languages',
-    skills: ['JavaScript', 'TypeScript', 'GDScript', 'PHP', 'HTML', 'CSS'],
+    skills: ['TypeScript', 'JavaScript', 'PHP', 'GDScript'],
   },
   {
-    title: 'Frameworks',
-    skills: ['React', 'Laravel', 'Godot', 'Node.js', 'Express', 'Tailwind CSS'],
+    title: 'Frontend',
+    skills: ['React', 'Tailwind CSS', 'GSAP', 'Motion'],
+  },
+  {
+    title: 'Backend',
+    skills: ['Laravel', 'Node.js', 'Express', 'MySQL'],
   },
   {
     title: 'Tools',
-    skills: ['Git', 'VS Code', 'Figma'],
+    skills: ['Git', 'VS Code', 'Figma', 'Godot'],
   },
 ]
 

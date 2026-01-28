@@ -1,7 +1,6 @@
 import { motion, type Variants } from 'motion/react'
 import { type ReactNode } from 'react'
 import { EASE_DEFAULT } from '@/lib/animation'
-import { useTransition } from '@/components/providers/TransitionProvider'
 
 interface FadeInProps {
   children: ReactNode
@@ -28,8 +27,6 @@ export function FadeIn({
   duration = 0.6,
   once = true,
 }: FadeInProps) {
-  const { isReturningHome } = useTransition()
-
   const variants: Variants = {
     hidden: {
       opacity: 0,
@@ -45,11 +42,6 @@ export function FadeIn({
         ease: EASE_DEFAULT,
       },
     },
-  }
-
-  // Skip animation when returning from project page - let PageTransition handle it
-  if (isReturningHome) {
-    return <div className={className}>{children}</div>
   }
 
   return (

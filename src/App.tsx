@@ -4,7 +4,6 @@ import { AnimatePresence } from 'motion/react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
-import { TransitionProvider } from '@/components/providers/TransitionProvider'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { Starfield, triggerWarp } from '@/components/background'
@@ -81,18 +80,16 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <TransitionProvider>
-        <LenisProvider>
-          <div className="min-h-screen bg-neutral-950 text-white">
-            <Starfield />
-            <main className="relative z-10 overflow-x-hidden pt-16">
-              <AnimatedRoutes />
-            </main>
-            <Footer />
-            <ScrollToTop />
-          </div>
-        </LenisProvider>
-      </TransitionProvider>
+      <LenisProvider>
+        <div className="min-h-screen bg-neutral-950 text-white">
+          <Starfield />
+          <main className="relative z-10 overflow-x-hidden pt-16">
+            <AnimatedRoutes />
+          </main>
+          <Footer />
+          <ScrollToTop />
+        </div>
+      </LenisProvider>
       <Analytics />
       <SpeedInsights />
     </BrowserRouter>
