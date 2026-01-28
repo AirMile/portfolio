@@ -26,6 +26,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
   const snapRef = useRef<Snap | null>(null)
   const snapRemoversRef = useRef<(() => void)[]>([])
   const location = useLocation()
+  const prevPathRef = useRef(location.pathname)
 
   // Initialize Lenis and Snap once
   useEffect(() => {
@@ -113,17 +114,58 @@ export function LenisProvider({ children }: LenisProviderProps) {
     }
   }
 
-  // Handle route changes: scroll to top and update snap points
+  // Initialize snap points on first load
+  useEffect(() => {
+    // Delay to ensure DOM is ready after initial render
+    const timer = setTimeout(updateSnapPoints, 100)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Handle route changes: scroll to anchor or top, and update snap points
   useEffect(() => {
     const lenis = lenisRef.current
     if (!lenis) return
 
-    // Scroll to top immediately on route change
-    lenis.scrollTo(0, { immediate: true })
+    // Check for hash anchor on route change
+    const hash = location.hash
+    const pathChanged = prevPathRef.current !== location.pathname
+    prevPathRef.current = location.pathname
 
-    // Update snap points after DOM is ready
-    requestAnimationFrame(updateSnapPoints)
-  }, [location.pathname])
+    if (hash && pathChanged) {
+      // Clear snap points to prevent interference with hash scroll
+      snapRemoversRef.current.forEach((remove) => remove())
+      snapRemoversRef.current = []
+
+      // Stop Lenis temporarily
+      lenis.stop()
+
+      const scrollToHash = (attempts = 0) => {
+        const element = document.querySelector(hash) as HTMLElement | null
+        if (element) {
+          // Use native scrollIntoView for reliability
+          element.scrollIntoView({ behavior: 'instant' })
+          // Restart Lenis and restore snap points
+          lenis.start()
+          requestAnimationFrame(updateSnapPoints)
+        } else if (attempts < 20) {
+          // Retry if element not found yet
+          setTimeout(() => scrollToHash(attempts + 1), 50)
+        } else {
+          // Give up, restart Lenis
+          lenis.start()
+          requestAnimationFrame(updateSnapPoints)
+        }
+      }
+
+      // Wait for React to render the new page
+      setTimeout(scrollToHash, 50)
+    } else if (pathChanged) {
+      // Scroll to top immediately on route change without hash
+      lenis.scrollTo(0, { immediate: true })
+      // Update snap points after DOM is ready
+      requestAnimationFrame(updateSnapPoints)
+    }
+  }, [location.pathname, location.hash])
 
   // Scroll to top function that bypasses snap
   const scrollToTop = () => {
