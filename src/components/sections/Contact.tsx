@@ -18,6 +18,12 @@ export function Contact() {
             <Button href="https://github.com/AirMile" variant="secondary">
               GitHub
             </Button>
+            <Button
+              href="https://linkedin.com/in/miles-zeilstra"
+              variant="secondary"
+            >
+              LinkedIn
+            </Button>
           </div>
         </FadeIn>
       </div>

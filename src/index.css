@@ -1,2 +1,6 @@
 @import 'lenis/dist/lenis.css';
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Sora', ui-sans-serif, system-ui, sans-serif;
+}
