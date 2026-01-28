@@ -21,6 +21,12 @@ export class Star {
     this.currentOpacity = config.baseOpacity
   }
 
+  // Only update twinkle effect, keep position fixed
+  updateTwinkle(time: number): void {
+    const twinkle = Math.sin(time * this.twinkleSpeed + this.twinklePhase)
+    this.currentOpacity = this.baseOpacity * (0.3 + 0.7 * ((twinkle + 1) / 2))
+  }
+
   update(
     time: number,
     scrollY: number,
@@ -28,9 +34,7 @@ export class Star {
     viewportHeight: number
   ): void {
     // Twinkle effect using sine wave
-    const twinkle = Math.sin(time * this.twinkleSpeed + this.twinklePhase)
-    // Map from [-1, 1] to [0.3, 1] of baseOpacity
-    this.currentOpacity = this.baseOpacity * (0.3 + 0.7 * ((twinkle + 1) / 2))
+    this.updateTwinkle(time)
 
     // Parallax effect - stars move slower than scroll
     const parallaxOffset = scrollY * parallaxIntensity
@@ -51,6 +55,12 @@ export class Star {
     ctx.arc(Math.floor(this.x), Math.floor(this.y), this.radius, 0, Math.PI * 2)
     ctx.fillStyle = `rgba(255, 255, 255, ${this.currentOpacity})`
     ctx.fill()
+  }
+
+  // Adjust baseY to compensate for scroll jumps (keeps visual position stable)
+  adjustBaseY(delta: number): void {
+    this.baseY += delta
+    this.y += delta
   }
 
   static createRandom(

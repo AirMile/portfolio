@@ -160,10 +160,9 @@ export function LenisProvider({ children }: LenisProviderProps) {
       // Wait for React to render the new page
       setTimeout(scrollToHash, 50)
     } else if (pathChanged) {
-      // Scroll to top immediately on route change without hash
-      lenis.scrollTo(0, { immediate: true })
+      // Don't scroll here - let AnimatePresence handle scroll timing
       // Update snap points after DOM is ready
-      requestAnimationFrame(updateSnapPoints)
+      setTimeout(updateSnapPoints, 500)
     }
   }, [location.pathname, location.hash])
 

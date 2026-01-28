@@ -34,12 +34,7 @@ export function ProjectDetail() {
   }
 
   return (
-    <motion.article
-      className="px-6 py-24"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <article className="px-6 py-24">
       <div className="mx-auto max-w-4xl">
         <FadeIn direction="none">
           <Link
@@ -167,6 +162,6 @@ export function ProjectDetail() {
           </StaggerItem>
         </StaggerContainer>
       </div>
-    </motion.article>
+    </article>
   )
 }
