@@ -96,4 +96,53 @@ export class Star {
       twinklePhase: Math.random() * Math.PI * 2,
     })
   }
+
+  // Create stars with jittered grid distribution to prevent clustering
+  static createDistributed(
+    count: number,
+    viewportWidth: number,
+    viewportHeight: number,
+    minRadius: number,
+    maxRadius: number,
+    minOpacity: number,
+    maxOpacity: number,
+    minTwinkleSpeed: number,
+    maxTwinkleSpeed: number
+  ): Star[] {
+    const stars: Star[] = []
+
+    // Calculate grid dimensions for roughly even distribution
+    const aspectRatio = viewportWidth / viewportHeight
+    const cols = Math.ceil(Math.sqrt(count * aspectRatio))
+    const rows = Math.ceil(count / cols)
+    const cellWidth = viewportWidth / cols
+    const cellHeight = viewportHeight / rows
+
+    let created = 0
+    for (let row = 0; row < rows && created < count; row++) {
+      for (let col = 0; col < cols && created < count; col++) {
+        // Random position within cell with 80% jitter
+        const jitterX = (Math.random() - 0.5) * cellWidth * 0.8
+        const jitterY = (Math.random() - 0.5) * cellHeight * 0.8
+        const x = (col + 0.5) * cellWidth + jitterX
+        const y = (row + 0.5) * cellHeight + jitterY
+
+        stars.push(
+          new Star({
+            x: Math.max(0, Math.min(viewportWidth, x)),
+            y: Math.max(0, Math.min(viewportHeight, y)),
+            radius: minRadius + Math.random() * (maxRadius - minRadius),
+            baseOpacity: minOpacity + Math.random() * (maxOpacity - minOpacity),
+            twinkleSpeed:
+              minTwinkleSpeed +
+              Math.random() * (maxTwinkleSpeed - minTwinkleSpeed),
+            twinklePhase: Math.random() * Math.PI * 2,
+          })
+        )
+        created++
+      }
+    }
+
+    return stars
+  }
 }

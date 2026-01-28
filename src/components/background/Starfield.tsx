@@ -68,31 +68,17 @@ export function Starfield({
 
       lastDimensions = { width, height }
 
-      if (stars.length === 0) {
-        stars = Array.from({ length: starCount }, () =>
-          Star.createRandom(
-            width,
-            height,
-            DEFAULT_CONFIG.minRadius,
-            DEFAULT_CONFIG.maxRadius,
-            DEFAULT_CONFIG.minOpacity,
-            DEFAULT_CONFIG.maxOpacity,
-            DEFAULT_CONFIG.minTwinkleSpeed,
-            DEFAULT_CONFIG.maxTwinkleSpeed
-          )
-        )
-      } else if (shouldReinitStars) {
-        stars = Array.from({ length: starCount }, () =>
-          Star.createRandom(
-            width,
-            height,
-            DEFAULT_CONFIG.minRadius,
-            DEFAULT_CONFIG.maxRadius,
-            DEFAULT_CONFIG.minOpacity,
-            DEFAULT_CONFIG.maxOpacity,
-            DEFAULT_CONFIG.minTwinkleSpeed,
-            DEFAULT_CONFIG.maxTwinkleSpeed
-          )
+      if (stars.length === 0 || shouldReinitStars) {
+        stars = Star.createDistributed(
+          starCount,
+          width,
+          height,
+          DEFAULT_CONFIG.minRadius,
+          DEFAULT_CONFIG.maxRadius,
+          DEFAULT_CONFIG.minOpacity,
+          DEFAULT_CONFIG.maxOpacity,
+          DEFAULT_CONFIG.minTwinkleSpeed,
+          DEFAULT_CONFIG.maxTwinkleSpeed
         )
       }
 
