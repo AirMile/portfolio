@@ -2,6 +2,7 @@ export interface Project {
   slug: string
   title: string
   description: string
+  metaDescription: string
   thumbnail: string
   tags: string[]
   liveUrl?: string
@@ -18,6 +19,8 @@ export const projects: Project[] = [
     title: 'GetCooked',
     description:
       'Een recepten platform waar gebruikers recepten kunnen bekijken, toevoegen en zoeken. Gebouwd met Laravel.',
+    metaDescription:
+      'GetCooked - Een Laravel recepten platform met zoeken, filteren en gebruikersaccounts. Gebouwd door Miles Zeilstra.',
     thumbnail: '/images/getcooked.jpg',
     tags: ['Laravel', 'PHP', 'Full Stack'],
     githubUrl: 'https://github.com/AirMile/getcooked',
@@ -38,6 +41,8 @@ export const projects: Project[] = [
     title: 'NatuurMoment',
     description:
       'Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.',
+    metaDescription:
+      'NatuurMoment - Een interactieve natuurgame met foto-bingo en quizvragen. Laravel/Livewire teamproject door Miles Zeilstra.',
     thumbnail: '/images/natuurmoment.jpg',
     tags: ['Laravel', 'Livewire', 'Tailwind CSS', 'Team Project'],
     githubUrl: 'https://github.com/HenkHR/NatuurMoment',

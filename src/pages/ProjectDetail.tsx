@@ -7,12 +7,52 @@ import { BackLink } from '@/components/ui/BackLink'
 import { FadeIn } from '@/components/animation/FadeIn'
 import { StaggerContainer } from '@/components/animation/StaggerContainer'
 import { StaggerItem } from '@/components/animation/StaggerItem'
+import { useSEO } from '@/hooks/useSEO'
+import { useStructuredData } from '@/hooks/useStructuredData'
+
+const BASE_URL = 'https://portfolio-sooty-xi-pbtugrdf2f.vercel.app'
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
   const project = projects.find((p) => p.slug === slug)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageError, setImageError] = useState(false)
+
+  useSEO(
+    project
+      ? {
+          title: `${project.title} | Miles Zeilstra`,
+          description: project.metaDescription,
+          url: `${BASE_URL}/projects/${project.slug}`,
+          image: `${BASE_URL}${project.thumbnail}`,
+          type: 'article',
+        }
+      : {
+          title: 'Project niet gevonden | Miles Zeilstra',
+          description: 'Dit project bestaat niet of is verwijderd.',
+        }
+  )
+
+  useStructuredData(
+    project
+      ? {
+          '@type': 'CreativeWork',
+          name: project.title,
+          description: project.metaDescription,
+          url: `${BASE_URL}/projects/${project.slug}`,
+          image: `${BASE_URL}${project.thumbnail}`,
+          keywords: project.tags,
+          author: {
+            '@type': 'Person',
+            name: 'Miles Zeilstra',
+          },
+        }
+      : {
+          '@type': 'WebSite',
+          name: 'Miles Zeilstra Portfolio',
+          url: BASE_URL,
+        }
+  )
 
   if (!project) {
     return (
