@@ -10,6 +10,12 @@ export class Star {
   private twinklePhase: number
   private currentOpacity: number
 
+  // Realistic twinkling state
+  private nextTwinkleTime: number
+  private twinkleIntensity: number // How much this star twinkles (0-1)
+  private isTwinkling: boolean
+  private twinkleEndTime: number
+
   constructor(config: StarConfig) {
     this.x = config.x
     this.y = config.y
@@ -19,12 +25,42 @@ export class Star {
     this.twinkleSpeed = config.twinkleSpeed
     this.twinklePhase = config.twinklePhase
     this.currentOpacity = config.baseOpacity
+
+    // Initialize realistic twinkling
+    // Smaller stars twinkle more (atmospheric scintillation)
+    this.twinkleIntensity = 0.25 + (1 - config.radius / 2) * 0.2
+    this.nextTwinkleTime = Math.random() * 5
+    this.isTwinkling = false
+    this.twinkleEndTime = 0
   }
 
-  // Only update twinkle effect, keep position fixed
+  // Realistic twinkle: mostly stable, occasional brief flicker
   updateTwinkle(time: number): void {
-    const twinkle = Math.sin(time * this.twinkleSpeed + this.twinklePhase)
-    this.currentOpacity = this.baseOpacity * (0.3 + 0.7 * ((twinkle + 1) / 2))
+    if (this.isTwinkling) {
+      // During twinkle: quick brightness variation
+      if (time > this.twinkleEndTime) {
+        this.isTwinkling = false
+        this.currentOpacity = this.baseOpacity
+        // Schedule next twinkle (3-8 seconds)
+        this.nextTwinkleTime = time + 3 + Math.random() * 5
+      } else {
+        // Brief brightness flash (star gets brighter, not dimmer)
+        const twinkleDuration = 0.3
+        const progress =
+          (time - (this.twinkleEndTime - twinkleDuration)) / twinkleDuration
+        // Smooth pulse up and down using sine
+        const flash = Math.sin(progress * Math.PI) * this.twinkleIntensity
+        // Increase brightness, capped at 0.85 to stay subtle
+        this.currentOpacity = Math.min(0.85, this.baseOpacity + flash)
+      }
+    } else {
+      // Stable state - check if should start twinkling
+      if (time > this.nextTwinkleTime) {
+        this.isTwinkling = true
+        this.twinkleEndTime = time + 0.25 + Math.random() * 0.15 // 250-400ms twinkle
+      }
+      this.currentOpacity = this.baseOpacity
+    }
   }
 
   update(
