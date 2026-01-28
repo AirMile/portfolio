@@ -21,7 +21,7 @@ export const projects: Project[] = [
       'Een recepten platform waar gebruikers recepten kunnen bekijken, toevoegen en zoeken. Gebouwd met Laravel.',
     metaDescription:
       'GetCooked - Een Laravel recepten platform met zoeken, filteren en gebruikersaccounts. Gebouwd door Miles Zeilstra.',
-    thumbnail: '/images/getcooked.jpg',
+    thumbnail: '/images/getcooked.png',
     tags: ['Laravel', 'PHP', 'Full Stack'],
     githubUrl: 'https://github.com/AirMile/getcooked',
     context:
@@ -43,7 +43,7 @@ export const projects: Project[] = [
       'Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.',
     metaDescription:
       'NatuurMoment - Een interactieve natuurgame met foto-bingo en quizvragen. Laravel/Livewire teamproject door Miles Zeilstra.',
-    thumbnail: '/images/natuurmoment.jpg',
+    thumbnail: '/images/natuurmoment.png',
     tags: ['Laravel', 'Livewire', 'Tailwind CSS', 'Team Project'],
     githubUrl: 'https://github.com/HenkHR/NatuurMoment',
     context:

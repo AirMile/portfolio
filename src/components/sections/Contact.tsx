@@ -31,7 +31,7 @@ export function Contact() {
                 </svg>
               </SocialIconButton>
               <SocialIconButton
-                href="https://linkedin.com/in/miles-zeilstra"
+                href="https://www.linkedin.com/in/miles-zeilstra-1a60ba248/"
                 label="LinkedIn"
               >
                 <svg

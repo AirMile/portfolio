@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
 import { TransitionProvider } from '@/components/providers/TransitionProvider'
 import { Footer } from '@/components/layout/Footer'
@@ -91,6 +93,8 @@ function App() {
           </div>
         </LenisProvider>
       </TransitionProvider>
+      <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   )
 }
