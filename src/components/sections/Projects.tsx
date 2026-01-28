@@ -21,10 +21,16 @@ export function Projects() {
           delayChildren={0.2}
         >
           {projects.map((project) => (
-            <StaggerItem key={project.slug}>
+            <StaggerItem key={project.slug} className="h-full">
               <ProjectCard project={project} />
             </StaggerItem>
           ))}
+          <StaggerItem className="h-full">
+            <div className="flex h-full flex-col items-center justify-center rounded-xl border border-dashed border-white/10 bg-neutral-900/30 p-8 text-center">
+              <span className="text-4xl text-neutral-600">+</span>
+              <p className="mt-4 text-neutral-500">Meer projecten volgen</p>
+            </div>
+          </StaggerItem>
         </StaggerContainer>
       </div>
     </section>
