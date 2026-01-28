@@ -1,1 +1,1 @@
-export { Starfield } from './Starfield'
+export { Starfield, triggerWarp } from './Starfield'

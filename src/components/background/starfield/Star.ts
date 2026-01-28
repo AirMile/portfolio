@@ -57,6 +57,19 @@ export class Star {
     ctx.fill()
   }
 
+  // Getters for warp effect
+  getPosition(): { x: number; y: number } {
+    return { x: this.x, y: this.y }
+  }
+
+  getOpacity(): number {
+    return this.currentOpacity
+  }
+
+  getRadius(): number {
+    return this.radius
+  }
+
   // Adjust baseY to compensate for scroll jumps (keeps visual position stable)
   adjustBaseY(delta: number): void {
     this.baseY += delta

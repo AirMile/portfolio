@@ -5,7 +5,7 @@ import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
-import { Starfield } from '@/components/background'
+import { Starfield, triggerWarp } from '@/components/background'
 import { PageTransition } from '@/components/animation/PageTransition'
 import { Home } from '@/pages/Home'
 import { ProjectDetail } from '@/pages/ProjectDetail'
@@ -22,7 +22,10 @@ function AnimatedRoutes() {
     prevPathRef.current !== location.pathname
   ) {
     // Going to home = back (-1), going deeper = forward (1)
-    directionRef.current = location.pathname === '/' ? -1 : 1
+    const newDirection = location.pathname === '/' ? -1 : 1
+    directionRef.current = newDirection
+    // Trigger warp effect for page transition in slide direction
+    triggerWarp(newDirection)
   }
 
   // Update previous path after direction is calculated

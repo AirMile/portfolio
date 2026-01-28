@@ -9,6 +9,26 @@ let stars: Star[] = []
 let shootingStars: ShootingStar[] = []
 let lastDimensions = { width: 0, height: 0 }
 
+// Warp state
+let isWarping = false
+let warpProgress = 0 // 0 to 1
+let warpStartTime = 0
+let warpDirection = 1 // 1 = forward (left), -1 = back (right)
+const WARP_DURATION = 400 // ms, matches page transition
+
+// Parallax state
+let lastScrollY = 0
+const PARALLAX_INTENSITY = 0.15
+
+// Trigger warp effect (called from outside)
+// direction: 1 = forward (stars streak left), -1 = back (stars streak right)
+export function triggerWarp(direction: number = 1) {
+  isWarping = true
+  warpProgress = 0
+  warpStartTime = Date.now()
+  warpDirection = direction
+}
+
 interface StarfieldProps {
   starCount?: number
 }
@@ -29,15 +49,12 @@ export function Starfield({
       const width = window.innerWidth
       const height = window.innerHeight
 
-      // Check if this is an actual resize
       const sizeChanged =
         Math.abs(lastDimensions.width - width) > 50 ||
         Math.abs(lastDimensions.height - height) > 50
 
-      // Only reinitialize stars on significant resize, not on initial setup
       const shouldReinitStars = isResize && sizeChanged && stars.length > 0
 
-      // Always update canvas size
       canvas.width = width * dpr
       canvas.height = height * dpr
       canvas.style.width = `${width}px`
@@ -45,14 +62,12 @@ export function Starfield({
 
       const ctx = canvas.getContext('2d')
       if (ctx) {
-        // Reset transform before scaling to prevent accumulation
         ctx.setTransform(1, 0, 0, 1, 0, 0)
         ctx.scale(dpr, dpr)
       }
 
       lastDimensions = { width, height }
 
-      // Only create stars if they don't exist
       if (stars.length === 0) {
         stars = Array.from({ length: starCount }, () =>
           Star.createRandom(
@@ -67,7 +82,6 @@ export function Starfield({
           )
         )
       } else if (shouldReinitStars) {
-        // Only reinit on actual window resize
         stars = Array.from({ length: starCount }, () =>
           Star.createRandom(
             width,
@@ -90,17 +104,15 @@ export function Starfield({
       }
     }
 
-    // Initial setup (not a resize)
     setupCanvas(false)
 
-    // Resize handler
     const handleResize = () => setupCanvas(true)
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
   }, [starCount])
 
-  // GSAP ticker for render loop - only setup once
+  // GSAP ticker for render loop
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -117,34 +129,109 @@ export function Starfield({
 
       const now = Date.now()
 
-      // Clear canvas (use canvas dimensions, not logical dimensions)
+      // Update warp progress
+      if (isWarping) {
+        warpProgress = Math.min(1, (now - warpStartTime) / WARP_DURATION)
+        if (warpProgress >= 1) {
+          isWarping = false
+          warpProgress = 0
+        }
+      }
+
+      // Clear canvas
       ctx.save()
       ctx.setTransform(1, 0, 0, 1, 0, 0)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.restore()
 
-      // Update and draw stars (fixed positions, only twinkle)
+      // Parallax effect based on scroll
+      const scrollY = window.scrollY
+      const scrollDelta = scrollY - lastScrollY
+
+      // Detect scroll jumps (e.g., page transition resets scroll to 0)
+      // If jump is large, compensate stars' baseY to maintain visual position
+      if (Math.abs(scrollDelta) > 100) {
+        const compensation = scrollDelta * PARALLAX_INTENSITY
+        for (const star of stars) {
+          star.adjustBaseY(compensation)
+        }
+      }
+      lastScrollY = scrollY
+
+      // Update and draw stars
       const timeInSeconds = time / 1000
       for (const star of stars) {
-        star.updateTwinkle(timeInSeconds)
-        star.draw(ctx)
-      }
+        star.update(timeInSeconds, scrollY, PARALLAX_INTENSITY, height)
+        const pos = star.getPosition()
 
-      // Periodic shooting star spawn
-      if (now - lastPeriodicSpawnTime > nextPeriodicInterval) {
-        const availableStar = shootingStars.find((s) => !s.isActive)
-        if (availableStar) {
-          availableStar.spawn(width, height)
+        if (isWarping && warpProgress > 0) {
+          // Warp effect: draw star streaks in slide direction
+          // Use easeInExpo for acceleration feel
+          const eased = warpProgress * warpProgress * warpProgress
+
+          // Streak length increases with warp progress
+          // warpDirection: 1 = forward (streak left/negative x), -1 = back (streak right/positive x)
+          const streakLength = width * eased * 0.3
+
+          // Calculate streak start and end points (horizontal streaks)
+          const startX = pos.x
+          const startY = pos.y
+          // Forward = content slides left, so stars streak left (negative direction)
+          // Back = content slides right, so stars streak right (positive direction)
+          const endX = pos.x - warpDirection * streakLength
+          const endY = pos.y
+
+          // Draw streak with gradient (subtle blue tint)
+          const gradient = ctx.createLinearGradient(startX, startY, endX, endY)
+          const baseOpacity = star.getOpacity()
+          gradient.addColorStop(0, `rgba(180, 200, 255, ${baseOpacity * 0.9})`)
+          gradient.addColorStop(
+            0.5,
+            `rgba(140, 170, 230, ${baseOpacity * 0.6})`
+          )
+          gradient.addColorStop(1, `rgba(100, 140, 200, 0)`)
+
+          ctx.beginPath()
+          ctx.moveTo(startX, startY)
+          ctx.lineTo(endX, endY)
+          ctx.strokeStyle = gradient
+          ctx.lineWidth = star.getRadius() * (1 + eased)
+          ctx.lineCap = 'round'
+          ctx.stroke()
+
+          // Also draw a point at the star position
+          ctx.beginPath()
+          ctx.arc(
+            startX,
+            startY,
+            star.getRadius() * (1 + eased * 0.5),
+            0,
+            Math.PI * 2
+          )
+          ctx.fillStyle = `rgba(200, 215, 255, ${Math.min(0.9, baseOpacity * (1 + eased * 0.5))})`
+          ctx.fill()
+        } else {
+          // Normal star drawing
+          star.draw(ctx)
         }
-        lastPeriodicSpawnTime = now
-        nextPeriodicInterval = 8000 + Math.random() * 7000
       }
 
-      // Update and draw shooting stars
-      for (const shootingStar of shootingStars) {
-        if (shootingStar.isActive) {
-          shootingStar.update()
-          shootingStar.draw(ctx)
+      // Shooting stars (skip during warp)
+      if (!isWarping) {
+        if (now - lastPeriodicSpawnTime > nextPeriodicInterval) {
+          const availableStar = shootingStars.find((s) => !s.isActive)
+          if (availableStar) {
+            availableStar.spawn(width, height)
+          }
+          lastPeriodicSpawnTime = now
+          nextPeriodicInterval = 8000 + Math.random() * 7000
+        }
+
+        for (const shootingStar of shootingStars) {
+          if (shootingStar.isActive) {
+            shootingStar.update()
+            shootingStar.draw(ctx)
+          }
         }
       }
     }
