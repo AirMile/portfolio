@@ -6,8 +6,6 @@ export class Star {
   private baseY: number
   private radius: number
   private baseOpacity: number
-  private twinkleSpeed: number
-  private twinklePhase: number
   private currentOpacity: number
 
   // Realistic twinkling state
@@ -22,8 +20,6 @@ export class Star {
     this.baseY = config.y
     this.radius = config.radius
     this.baseOpacity = config.baseOpacity
-    this.twinkleSpeed = config.twinkleSpeed
-    this.twinklePhase = config.twinklePhase
     this.currentOpacity = config.baseOpacity
 
     // Initialize realistic twinkling

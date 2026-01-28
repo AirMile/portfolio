@@ -19,6 +19,7 @@ export function ContactForm() {
       name: formData.get('name') as string,
       email: formData.get('email') as string,
       message: formData.get('message') as string,
+      company_fax: formData.get('company_fax') as string, // honeypot
     }
 
     try {
@@ -77,6 +78,15 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Honeypot field - hidden from users, bots will fill this */}
+      <input
+        type="text"
+        name="company_fax"
+        tabIndex={-1}
+        autoComplete="nope"
+        className="absolute -left-[9999px] opacity-0"
+        aria-hidden="true"
+      />
       <FormInput id="name" name="name" placeholder="Naam" required />
       <FormInput
         type="email"

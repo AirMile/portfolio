@@ -3,12 +3,49 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// Simple in-memory rate limiting (resets on cold start, acceptable for portfolio)
+const rateLimitMap = new Map<string, { count: number; timestamp: number }>()
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
+const RATE_LIMIT_MAX = 5 // max 5 submissions per hour per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const record = rateLimitMap.get(ip)
+
+  if (!record || now - record.timestamp > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { count: 1, timestamp: now })
+    return false
+  }
+
+  if (record.count >= RATE_LIMIT_MAX) {
+    return true
+  }
+
+  record.count++
+  return false
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, message } = req.body
+  const { name, email, message, company_fax } = req.body
+
+  // Honeypot check - if filled, it's a bot
+  if (company_fax) {
+    // Return success to not alert bots, but don't send email
+    return res.status(200).json({ success: true })
+  }
+
+  // Rate limiting
+  const ip =
+    (req.headers['x-forwarded-for'] as string)?.split(',')[0] || 'unknown'
+  if (isRateLimited(ip)) {
+    return res
+      .status(429)
+      .json({ error: 'Te veel verzoeken. Probeer het later opnieuw.' })
+  }
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Alle velden zijn verplicht' })

@@ -6,6 +6,7 @@ interface PageTransitionProps {
   children: ReactNode
   className?: string
   direction?: number // 1 = forward (slide left), -1 = back (slide right)
+  skipInitial?: boolean // Skip initial animation on fresh page load
 }
 
 const pageVariants = {
@@ -33,13 +34,14 @@ export function PageTransition({
   children,
   className,
   direction = 1,
+  skipInitial = false,
 }: PageTransitionProps) {
   return (
     <motion.div
       className={className}
       custom={direction}
       variants={pageVariants}
-      initial="initial"
+      initial={skipInitial ? false : 'initial'}
       animate="animate"
       exit="exit"
       transition={pageTransition}

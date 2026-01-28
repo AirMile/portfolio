@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
 import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
+import { TransitionProvider } from '@/components/providers/TransitionProvider'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { Starfield, triggerWarp } from '@/components/background'
@@ -14,6 +15,7 @@ function AnimatedRoutes() {
   const { lenis } = useLenis()
   const prevPathRef = useRef<string | null>(null)
   const directionRef = useRef(1)
+  const isInitialLoad = prevPathRef.current === null
 
   // Calculate direction before render, update ref after
   if (
@@ -56,7 +58,7 @@ function AnimatedRoutes() {
         <Route
           path="/"
           element={
-            <PageTransition direction={direction}>
+            <PageTransition direction={direction} skipInitial={isInitialLoad}>
               <Home />
             </PageTransition>
           }
@@ -64,7 +66,7 @@ function AnimatedRoutes() {
         <Route
           path="/projects/:slug"
           element={
-            <PageTransition direction={direction}>
+            <PageTransition direction={direction} skipInitial={isInitialLoad}>
               <ProjectDetail />
             </PageTransition>
           }
@@ -77,16 +79,18 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <LenisProvider>
-        <div className="min-h-screen bg-neutral-950 text-white">
-          <Starfield />
-          <main className="relative z-10 overflow-x-hidden pt-16">
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <ScrollToTop />
-        </div>
-      </LenisProvider>
+      <TransitionProvider>
+        <LenisProvider>
+          <div className="min-h-screen bg-neutral-950 text-white">
+            <Starfield />
+            <main className="relative z-10 overflow-x-hidden pt-16">
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+            <ScrollToTop />
+          </div>
+        </LenisProvider>
+      </TransitionProvider>
     </BrowserRouter>
   )
 }
