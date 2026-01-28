@@ -41,6 +41,7 @@ export function Hero() {
 
   return (
     <section
+      id="hero"
       ref={containerRef}
       className="flex min-h-screen items-center justify-center px-6"
     >
