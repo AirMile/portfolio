@@ -8,6 +8,8 @@ interface ButtonProps {
   variant?: 'primary' | 'secondary'
   className?: string
   onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
 }
 
 const motionProps = {
@@ -23,6 +25,8 @@ export function Button({
   variant = 'primary',
   className = '',
   onClick,
+  type = 'button',
+  disabled = false,
 }: ButtonProps) {
   const baseStyles =
     'inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg transition-colors'
@@ -31,8 +35,9 @@ export function Button({
     secondary:
       'bg-transparent border border-neutral-700 text-white hover:border-neutral-500',
   }
+  const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
 
-  const styles = `${baseStyles} ${variants[variant]} ${className}`
+  const styles = `${baseStyles} ${variants[variant]} ${disabledStyles} ${className}`
 
   if (href) {
     return (
@@ -53,7 +58,13 @@ export function Button({
   }
 
   return (
-    <motion.button onClick={onClick} className={styles} {...motionProps}>
+    <motion.button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={styles}
+      {...motionProps}
+    >
       {children}
     </motion.button>
   )

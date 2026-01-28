@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/Button'
+import { ContactForm } from '@/components/ui/ContactForm'
 import { FadeIn } from '@/components/animation'
 
 export function Contact() {
@@ -6,22 +6,17 @@ export function Contact() {
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-xl">
         <FadeIn>
-          <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-8 text-center backdrop-blur-sm md:p-12">
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
-              Laten we samenwerken
-            </h2>
-            <p className="mt-3 text-neutral-400">
-              Heb je een project in gedachten? Ik hoor graag van je.
-            </p>
-            <div className="mt-8">
-              <Button
-                href="mailto:zeilstramiles@gmail.com"
-                className="w-full sm:w-auto"
-              >
-                Stuur een email
-              </Button>
+          <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-12">
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl font-bold text-white md:text-3xl">
+                Laten we samenwerken
+              </h2>
+              <p className="mt-3 text-neutral-400">
+                Heb je een project in gedachten? Ik hoor graag van je.
+              </p>
             </div>
-            <div className="mt-8 flex justify-center gap-4">
+            <ContactForm />
+            <div className="mt-8 flex justify-center gap-4 border-t border-white/10 pt-8">
               <a
                 href="https://github.com/AirMile"
                 target="_blank"
