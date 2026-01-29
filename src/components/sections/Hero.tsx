@@ -1,7 +1,5 @@
 import { useRef } from 'react'
 import { gsap, useGSAP, ScrollTrigger } from '@/lib/gsap'
-import { Button } from '@/components/ui/Button'
-
 const TITLE = 'Miles Zeilstra'
 
 export function Hero() {
@@ -9,17 +7,14 @@ export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const descriptionRef = useRef<HTMLParagraphElement>(null)
-  const buttonsRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
       const letters = titleRef.current?.querySelectorAll('.hero-letter')
       if (!letters) return
 
-      const rest = [
-        descriptionRef.current,
-        ...(buttonsRef.current?.children ?? []),
-      ]
+      const rest = [descriptionRef.current, scrollRef.current]
 
       // Kill any existing ScrollTriggers on these elements
       ScrollTrigger.getAll().forEach((st) => {
@@ -58,6 +53,18 @@ export function Hero() {
               },
             }
           )
+
+          gsap.to(scrollRef.current, {
+            opacity: 0,
+            y: -150,
+            ease: 'power2.in',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top top',
+              end: '35% top',
+              scrub: 1,
+            },
+          })
         },
       })
 
@@ -79,8 +86,9 @@ export function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="flex min-h-screen items-center justify-center px-6"
+      className="flex h-screen flex-col items-center px-6 pb-36"
     >
+      <div className="flex-1" />
       <div className="max-w-3xl text-center">
         <h1
           ref={titleRef}
@@ -106,17 +114,24 @@ export function Hero() {
           ref={descriptionRef}
           className="mx-auto mt-6 max-w-xl text-neutral-500"
         >
-          Van idee tot werkend product. Web, games, en alles daartussenin.
+          Bringing ideas to life.
         </p>
-        <div
-          ref={buttonsRef}
-          className="mt-8 flex flex-wrap justify-center gap-4"
+      </div>
+      <div ref={scrollRef} className="flex flex-1 items-end">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          className="size-6 animate-bounce text-neutral-500"
         >
-          <Button href="#projects">Bekijk mijn werk</Button>
-          <Button href="#contact" variant="secondary">
-            Neem contact op
-          </Button>
-        </div>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+          />
+        </svg>
       </div>
     </section>
   )
