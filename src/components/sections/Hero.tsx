@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { gsap, useGSAP, ScrollTrigger } from '@/lib/gsap'
 import { Button } from '@/components/ui/Button'
+import { Constellation } from '@/components/constellation/Constellation'
 
 const TITLE = 'Miles Zeilstra'
 
@@ -79,43 +80,45 @@ export function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="flex min-h-screen items-center justify-center px-6"
+      className="flex min-h-screen items-center px-6"
     >
-      <div className="max-w-3xl text-center">
-        <h1
-          ref={titleRef}
-          className="text-5xl font-bold tracking-tight text-white md:text-7xl"
-        >
-          {TITLE.split('').map((char, i) => (
-            <span
-              key={i}
-              className="hero-letter inline-block"
-              style={{ whiteSpace: char === ' ' ? 'pre' : undefined }}
+      <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[3fr_2fr] lg:gap-16">
+        <div className="flex items-center">
+          <div className="w-full text-left">
+            <h1
+              ref={titleRef}
+              className="text-5xl font-bold tracking-tight text-white md:text-7xl"
             >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
-        </h1>
-        <p
-          ref={subtitleRef}
-          className="mt-4 text-xl text-neutral-400 md:text-2xl"
-        >
-          Fullstack Developer
-        </p>
-        <p
-          ref={descriptionRef}
-          className="mx-auto mt-6 max-w-xl text-neutral-500"
-        >
-          Van idee tot werkend product. Web, games, en alles daartussenin.
-        </p>
-        <div
-          ref={buttonsRef}
-          className="mt-8 flex flex-wrap justify-center gap-4"
-        >
-          <Button href="#projects">Bekijk mijn werk</Button>
-          <Button href="#contact" variant="secondary">
-            Neem contact op
-          </Button>
+              {TITLE.split('').map((char, i) => (
+                <span
+                  key={i}
+                  className="hero-letter inline-block"
+                  style={{ whiteSpace: char === ' ' ? 'pre' : undefined }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              ))}
+            </h1>
+            <p
+              ref={subtitleRef}
+              className="mt-4 text-xl text-neutral-400 md:text-2xl"
+            >
+              Fullstack Developer
+            </p>
+            <p ref={descriptionRef} className="mt-6 max-w-xl text-neutral-500">
+              Van idee tot werkend product. Web, games, en alles daartussenin.
+            </p>
+            <div ref={buttonsRef} className="mt-8 flex flex-wrap gap-4">
+              <Button href="#projects">Bekijk mijn werk</Button>
+              <Button href="#contact" variant="secondary">
+                Neem contact op
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative hidden lg:flex lg:items-center">
+          <Constellation />
         </div>
       </div>
     </section>
