@@ -27,9 +27,8 @@ export function About() {
                 een idee bedenken en het zelf tot leven brengen.
               </p>
               <p className="mt-4 text-neutral-400">
-                Van fullstack webapplicaties tot games in Godot: ik ben buiten
-                de lessen net zo vaak aan het bouwen als ervoor. Ik leer het
-                liefst door te maken.
+                Van webapplicaties tot games in Godot: ook buiten school ben ik
+                aan het bouwen. Ik leer het liefst door te maken.
               </p>
               <p className="mt-4 text-neutral-400">
                 Ik zoek een stage waar ik kan groeien tussen gedreven developers
