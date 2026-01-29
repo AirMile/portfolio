@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { gsap, useGSAP, ScrollTrigger } from '@/lib/gsap'
+
 const TITLE = 'Miles Zeilstra'
 
 export function Hero() {
@@ -7,14 +8,13 @@ export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const descriptionRef = useRef<HTMLParagraphElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
       const letters = titleRef.current?.querySelectorAll('.hero-letter')
       if (!letters) return
 
-      const rest = [descriptionRef.current, scrollRef.current]
+      const rest = [descriptionRef.current]
 
       // Kill any existing ScrollTriggers on these elements
       ScrollTrigger.getAll().forEach((st) => {
@@ -23,7 +23,12 @@ export function Hero() {
         }
       })
 
-      gsap.set(letters, { opacity: 0, y: 40, x: 0 })
+      gsap.set(letters, {
+        opacity: 0,
+        y: 40,
+        x: 0,
+        willChange: 'transform, opacity',
+      })
       gsap.set(subtitleRef.current, { opacity: 0, y: 30 })
       gsap.set(rest, { opacity: 0, y: 30 })
 
@@ -35,6 +40,9 @@ export function Hero() {
           duration: 0.8,
         },
         onComplete: () => {
+          // Clear transforms to prevent sub-pixel jitter
+          gsap.set(letters, { clearProps: 'transform,willChange' })
+
           // Scroll lift-off animatie - alleen activeren NA intro animatie
           gsap.fromTo(
             letters,
@@ -54,17 +62,39 @@ export function Hero() {
             }
           )
 
-          gsap.to(scrollRef.current, {
-            opacity: 0,
-            y: -150,
-            ease: 'power2.in',
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top top',
-              end: '35% top',
-              scrub: 1,
-            },
-          })
+          gsap.fromTo(
+            subtitleRef.current,
+            { y: 0, opacity: 1 },
+            {
+              y: -100,
+              opacity: 0,
+              ease: 'power2.in',
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top top',
+                end: '35% top',
+                scrub: 1,
+              },
+            }
+          )
+
+          gsap.fromTo(
+            descriptionRef.current,
+            { y: 0, opacity: 1 },
+            {
+              y: -100,
+              opacity: 0,
+              ease: 'power2.in',
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top top',
+                end: '35% top',
+                scrub: 1,
+              },
+            }
+          )
         },
       })
 
@@ -86,13 +116,18 @@ export function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="flex h-screen flex-col items-center px-6 pb-36"
+      className="flex h-screen items-center justify-center px-6"
     >
-      <div className="flex-1" />
-      <div className="max-w-3xl text-center">
+      <div className="-mt-16 max-w-3xl text-center">
+        <p
+          ref={subtitleRef}
+          className="mb-6 text-sm font-medium tracking-widest text-neutral-500 uppercase md:text-base"
+        >
+          Fullstack Developer
+        </p>
         <h1
           ref={titleRef}
-          className="text-5xl font-bold tracking-tight text-white md:text-7xl"
+          className="mt-4 text-5xl font-bold tracking-tight text-white md:text-7xl"
         >
           {TITLE.split('').map((char, i) => (
             <span
@@ -105,33 +140,11 @@ export function Hero() {
           ))}
         </h1>
         <p
-          ref={subtitleRef}
-          className="mt-4 text-xl text-neutral-400 md:text-2xl"
-        >
-          Fullstack Developer
-        </p>
-        <p
           ref={descriptionRef}
-          className="mx-auto mt-6 max-w-xl text-neutral-500"
+          className="mt-10 text-xl text-neutral-400 italic md:text-2xl"
         >
           Bringing ideas to life.
         </p>
-      </div>
-      <div ref={scrollRef} className="flex flex-1 items-end">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          className="size-6 animate-bounce text-neutral-500"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-          />
-        </svg>
       </div>
     </section>
   )

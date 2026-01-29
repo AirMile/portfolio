@@ -13,7 +13,8 @@ let lastDimensions = { width: 0, height: 0 }
 let isWarping = false
 let warpProgress = 0 // 0 to 1
 let warpStartTime = 0
-let warpDirection = 1 // 1 = forward (left), -1 = back (right)
+let warpDirection = 1 // 1 = forward (left/up), -1 = back (right/down)
+let warpAxis: 'x' | 'y' = 'x' // x = horizontal, y = vertical
 const WARP_DURATION = 400 // ms, matches page transition
 
 // Parallax state
@@ -21,12 +22,14 @@ let lastScrollY = 0
 const PARALLAX_INTENSITY = 0.15
 
 // Trigger warp effect (called from outside)
-// direction: 1 = forward (stars streak left), -1 = back (stars streak right)
-export function triggerWarp(direction: number = 1) {
+// direction: 1 = forward, -1 = back
+// axis: 'x' = horizontal streaks, 'y' = vertical streaks
+export function triggerWarp(direction: number = 1, axis: 'x' | 'y' = 'x') {
   isWarping = true
   warpProgress = 0
   warpStartTime = Date.now()
   warpDirection = direction
+  warpAxis = axis
 }
 
 interface StarfieldProps {
@@ -156,16 +159,16 @@ export function Starfield({
           const eased = warpProgress * warpProgress * warpProgress
 
           // Streak length increases with warp progress
-          // warpDirection: 1 = forward (streak left/negative x), -1 = back (streak right/positive x)
-          const streakLength = width * eased * 0.3
+          const dimension = warpAxis === 'x' ? width : height
+          const streakLength = dimension * eased * 0.3
 
-          // Calculate streak start and end points (horizontal streaks)
+          // Calculate streak start and end points
           const startX = pos.x
           const startY = pos.y
-          // Forward = content slides left, so stars streak left (negative direction)
-          // Back = content slides right, so stars streak right (positive direction)
-          const endX = pos.x - warpDirection * streakLength
-          const endY = pos.y
+          const endX =
+            warpAxis === 'x' ? pos.x - warpDirection * streakLength : pos.x
+          const endY =
+            warpAxis === 'y' ? pos.y - warpDirection * streakLength : pos.y
 
           // Draw streak with gradient (subtle blue tint)
           const gradient = ctx.createLinearGradient(startX, startY, endX, endY)

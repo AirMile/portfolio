@@ -94,6 +94,9 @@ export function LenisProvider({ children }: LenisProviderProps) {
     snapRemoversRef.current.forEach((remove) => remove())
     snapRemoversRef.current = []
 
+    // No snap on mobile
+    if (window.innerWidth < 768) return
+
     // Only add snap points on homepage
     const aboutEl = document.getElementById('about')
     if (!aboutEl) return

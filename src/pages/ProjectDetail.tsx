@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'motion/react'
 import { projects } from '@/data/projects'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
-import { BackLink } from '@/components/ui/BackLink'
 import { FadeIn } from '@/components/animation/FadeIn'
 import { StaggerContainer } from '@/components/animation/StaggerContainer'
 import { StaggerItem } from '@/components/animation/StaggerItem'
@@ -31,13 +30,19 @@ export function ProjectDetail() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isLightboxOpen) return
       if (e.key === 'Escape') setLightboxIndex(null)
-      if (e.key === 'ArrowRight' && lightboxIndex !== null) {
-        setLightboxIndex((prev) => (prev! + 1) % allImages.length)
+      if (
+        e.key === 'ArrowRight' &&
+        lightboxIndex !== null &&
+        lightboxIndex < allImages.length - 1
+      ) {
+        setLightboxIndex((prev) => prev! + 1)
       }
-      if (e.key === 'ArrowLeft' && lightboxIndex !== null) {
-        setLightboxIndex(
-          (prev) => (prev! - 1 + allImages.length) % allImages.length
-        )
+      if (
+        e.key === 'ArrowLeft' &&
+        lightboxIndex !== null &&
+        lightboxIndex > 0
+      ) {
+        setLightboxIndex((prev) => prev! - 1)
       }
     }
     if (isLightboxOpen) {
@@ -107,14 +112,10 @@ export function ProjectDetail() {
   }
 
   return (
-    <article className="px-6 py-24">
+    <article className="px-6 pt-10 pb-24">
       <div className="mx-auto max-w-4xl">
-        <FadeIn direction="none">
-          <BackLink to="/#projects">Terug naar projecten</BackLink>
-        </FadeIn>
-
         <FadeIn delay={0.1}>
-          <header className="mt-8">
+          <header>
             <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
               {project.title}
             </h1>
@@ -168,15 +169,12 @@ export function ProjectDetail() {
               onClick={() => setLightboxIndex(null)}
             >
               {/* Previous button */}
-              {allImages.length > 1 && (
+              {lightboxIndex > 0 && (
                 <button
                   className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
                   onClick={(e) => {
                     e.stopPropagation()
-                    setLightboxIndex(
-                      (prev) =>
-                        (prev! - 1 + allImages.length) % allImages.length
-                    )
+                    setLightboxIndex((prev) => prev! - 1)
                   }}
                 >
                   <svg
@@ -199,20 +197,28 @@ export function ProjectDetail() {
                 key={lightboxIndex}
                 src={allImages[lightboxIndex]}
                 alt={`${project.title} screenshot ${lightboxIndex + 1}`}
-                className="max-h-[90vh] max-w-[90vw] cursor-zoom-out rounded-lg object-contain"
+                className="max-h-[90vh] max-w-[90vw] cursor-pointer rounded-lg object-contain"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  if (lightboxIndex < allImages.length - 1) {
+                    setLightboxIndex((prev) => prev! + 1)
+                  } else {
+                    setLightboxIndex(null)
+                  }
+                }}
               />
 
               {/* Next button */}
-              {allImages.length > 1 && (
+              {lightboxIndex < allImages.length - 1 && (
                 <button
                   className="absolute right-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
                   onClick={(e) => {
                     e.stopPropagation()
-                    setLightboxIndex((prev) => (prev! + 1) % allImages.length)
+                    setLightboxIndex((prev) => prev! + 1)
                   }}
                 >
                   <svg
@@ -247,7 +253,7 @@ export function ProjectDetail() {
             <StaggerItem>
               <button
                 onClick={() => setLightboxIndex(0)}
-                className="flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
+                className="flex cursor-pointer items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
               >
                 <svg
                   className="h-4 w-4"
@@ -311,19 +317,33 @@ export function ProjectDetail() {
           </StaggerItem>
 
           <StaggerItem>
-            <div className="flex flex-wrap gap-4">
-              {project.liveUrl && (
-                <Button href={project.liveUrl}>Bekijk live</Button>
-              )}
-              {project.githubUrl && (
-                <Button href={project.githubUrl} variant="secondary">
-                  GitHub
-                </Button>
-              )}
-            </div>
-
-            <div className="mt-8">
-              <BackLink to="/#projects">Terug naar projecten</BackLink>
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <Button to="/#projects" variant="secondary">
+                <span className="mr-2">←</span>
+                Terug naar projecten
+              </Button>
+              <div className="flex flex-wrap items-center gap-4">
+                {project.liveUrl && (
+                  <Button href={project.liveUrl}>Bekijk live</Button>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    className="inline-flex items-center justify-center rounded-lg border border-neutral-700 p-3 text-white transition-colors hover:border-neutral-500"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Bekijk op GitHub"
+                  >
+                    <svg
+                      className="h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
           </StaggerItem>
         </StaggerContainer>

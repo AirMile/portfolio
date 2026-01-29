@@ -26,7 +26,7 @@ export function ScrollToTop() {
           whileTap={{ scale: 0.9 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           onClick={scrollToTop}
-          className="fixed right-6 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-neutral-950 shadow-lg transition-colors hover:bg-neutral-200"
+          className="fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-600 bg-neutral-800 text-neutral-300 transition-colors hover:border-neutral-400 hover:text-white"
           aria-label="Scroll naar boven"
         >
           <svg
