@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { BASE_URL, DEFAULT_OG_IMAGE } from '@/lib/constants'
 
 interface SEOProps {
   title: string
@@ -8,14 +9,11 @@ interface SEOProps {
   type?: 'website' | 'article'
 }
 
-const BASE_URL = 'https://portfolio-sooty-xi-pbtugrdf2f.vercel.app'
-const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`
-
 export function useSEO({
   title,
   description,
   url = BASE_URL,
-  image = DEFAULT_IMAGE,
+  image = DEFAULT_OG_IMAGE,
   type = 'website',
 }: SEOProps) {
   useEffect(() => {

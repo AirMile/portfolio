@@ -2,6 +2,7 @@ import { useEffect, useRef, createContext, useContext, ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import Snap from 'lenis/snap'
+import { SECTIONS, MOBILE_BREAKPOINT } from '@/lib/constants'
 
 type LenisContextType = {
   lenis: Lenis | null
@@ -95,31 +96,20 @@ export function LenisProvider({ children }: LenisProviderProps) {
     snapRemoversRef.current = []
 
     // No snap on mobile
-    if (window.innerWidth < 768) return
+    if (window.innerWidth < MOBILE_BREAKPOINT) return
 
-    // Only add snap points on homepage
-    const aboutEl = document.getElementById('about')
-    if (!aboutEl) return
+    // Only add snap points on homepage (check if first snappable section exists)
+    if (!document.getElementById(SECTIONS[1])) return
 
     // Hero → About (viewport height)
     snapRemoversRef.current.push(snap.add(window.innerHeight))
 
-    // About → Projects
-    const projectsEl = document.getElementById('projects')
-    if (projectsEl) {
-      snapRemoversRef.current.push(snap.add(projectsEl.offsetTop))
-    }
-
-    // Projects → Skills
-    const skillsEl = document.getElementById('skills')
-    if (skillsEl) {
-      snapRemoversRef.current.push(snap.add(skillsEl.offsetTop))
-    }
-
-    // Skills → Contact
-    const contactEl = document.getElementById('contact')
-    if (contactEl) {
-      snapRemoversRef.current.push(snap.add(contactEl.offsetTop))
+    // Remaining sections: about → projects → skills → contact
+    for (const id of SECTIONS.slice(2)) {
+      const el = document.getElementById(id)
+      if (el) {
+        snapRemoversRef.current.push(snap.add(el.offsetTop))
+      }
     }
   }
 

@@ -6,6 +6,7 @@ import { Contact } from '@/components/sections/Contact'
 import { ScrollArrow } from '@/components/ui/ScrollArrow'
 import { useSEO } from '@/hooks/useSEO'
 import { useStructuredData } from '@/hooks/useStructuredData'
+import { BASE_URL } from '@/lib/constants'
 
 export function Home() {
   useSEO({
@@ -19,12 +20,12 @@ export function Home() {
       '@type': 'Person',
       name: 'Miles Zeilstra',
       jobTitle: 'Creative Developer',
-      url: 'https://portfolio-sooty-xi-pbtugrdf2f.vercel.app',
+      url: BASE_URL,
     },
     {
       '@type': 'WebSite',
       name: 'Miles Zeilstra Portfolio',
-      url: 'https://portfolio-sooty-xi-pbtugrdf2f.vercel.app',
+      url: BASE_URL,
     },
   ])
 

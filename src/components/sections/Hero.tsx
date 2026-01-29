@@ -7,7 +7,7 @@ export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const descriptionRef = useRef<HTMLParagraphElement>(null)
+  const descriptionRef = useRef<HTMLHeadingElement>(null)
 
   useGSAP(
     () => {
@@ -139,12 +139,12 @@ export function Hero() {
             </span>
           ))}
         </h1>
-        <p
+        <h2
           ref={descriptionRef}
-          className="mt-10 text-xl text-neutral-400 italic md:text-2xl"
+          className="mt-10 text-xl font-normal text-neutral-400 italic md:text-2xl"
         >
           Bringing ideas to life.
-        </p>
+        </h2>
       </div>
     </section>
   )

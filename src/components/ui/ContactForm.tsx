@@ -79,14 +79,16 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Honeypot field - hidden from users, bots will fill this */}
-      <input
-        type="text"
-        name="company_fax"
-        tabIndex={-1}
-        autoComplete="nope"
-        className="absolute -left-[9999px] opacity-0"
-        aria-hidden="true"
-      />
+      <div aria-hidden="true" className="absolute -left-[9999px]">
+        <label htmlFor="company_fax">Fax</label>
+        <input
+          type="text"
+          id="company_fax"
+          name="company_fax"
+          tabIndex={-1}
+          autoComplete="nope"
+        />
+      </div>
       <FormInput id="name" name="name" placeholder="Naam" required />
       <FormInput
         type="email"

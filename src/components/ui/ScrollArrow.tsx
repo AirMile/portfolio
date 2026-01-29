@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import { SECTIONS, MOBILE_BREAKPOINT } from '@/lib/constants'
 
-const SECTION_ORDER = ['hero', 'about', 'projects', 'skills', 'contact']
 const ARROW_BOTTOM = 144 // bottom-36 = 9rem = 144px
-const MOBILE_BREAKPOINT = 768
 
 // Visibility zones: arrow shows in the padding gap between sections
 // Per-transition zone offsets from the section boundary
@@ -27,8 +26,8 @@ export function ScrollArrow() {
 
       // Find which section is currently most visible
       let currentIndex = 0
-      for (let i = SECTION_ORDER.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTION_ORDER[i])
+      for (let i = SECTIONS.length - 1; i >= 0; i--) {
+        const el = document.getElementById(SECTIONS[i])
         if (el && el.offsetTop <= scrollY + viewportHeight * 0.5) {
           currentIndex = i
           break
@@ -37,8 +36,8 @@ export function ScrollArrow() {
 
       // Target is the next section
       const nextIndex = currentIndex + 1
-      if (nextIndex < SECTION_ORDER.length) {
-        setTargetId(SECTION_ORDER[nextIndex])
+      if (nextIndex < SECTIONS.length) {
+        setTargetId(SECTIONS[nextIndex])
         setVisible(true)
       } else {
         setVisible(false)
@@ -54,11 +53,11 @@ export function ScrollArrow() {
           // Only hero → about on mobile
           inZone = currentIndex === 0 && nextIndex === 1
         } else {
-          for (let i = 0; i < SECTION_ORDER.length - 1; i++) {
-            const nextEl = document.getElementById(SECTION_ORDER[i + 1])
+          for (let i = 0; i < SECTIONS.length - 1; i++) {
+            const nextEl = document.getElementById(SECTIONS[i + 1])
             if (!nextEl) continue
             const boundaryScreenY = nextEl.getBoundingClientRect().top
-            const key = `${SECTION_ORDER[i]}→${SECTION_ORDER[i + 1]}`
+            const key = `${SECTIONS[i]}→${SECTIONS[i + 1]}`
             const config = ZONE_CONFIG[key] ?? { above: 80, below: 200 }
             const start = boundaryScreenY - config.above
             const end = boundaryScreenY + config.below
@@ -84,6 +83,7 @@ export function ScrollArrow() {
     <a
       ref={ref}
       href={`#${targetId}`}
+      aria-label="Scroll naar volgende sectie"
       className="fixed bottom-36 left-1/2 z-20 -translate-x-1/2 pb-4"
     >
       <svg

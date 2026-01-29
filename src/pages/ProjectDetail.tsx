@@ -1,59 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { motion, AnimatePresence } from 'motion/react'
 import { projects } from '@/data/projects'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
+import { ImageLightbox } from '@/components/ui/ImageLightbox'
 import { FadeIn } from '@/components/animation/FadeIn'
 import { StaggerContainer } from '@/components/animation/StaggerContainer'
 import { StaggerItem } from '@/components/animation/StaggerItem'
 import { useSEO } from '@/hooks/useSEO'
 import { useStructuredData } from '@/hooks/useStructuredData'
-
-const BASE_URL = 'https://portfolio-sooty-xi-pbtugrdf2f.vercel.app'
+import { useImageLightbox } from '@/hooks/useImageLightbox'
+import { BASE_URL } from '@/lib/constants'
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
   const project = projects.find((p) => p.slug === slug)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageError, setImageError] = useState(false)
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-  // Combine thumbnail with additional images for lightbox
   const allImages = project
     ? [project.thumbnail, ...(project.images || [])]
     : []
-  const isLightboxOpen = lightboxIndex !== null
 
-  // Lightbox keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isLightboxOpen) return
-      if (e.key === 'Escape') setLightboxIndex(null)
-      if (
-        e.key === 'ArrowRight' &&
-        lightboxIndex !== null &&
-        lightboxIndex < allImages.length - 1
-      ) {
-        setLightboxIndex((prev) => prev! + 1)
-      }
-      if (
-        e.key === 'ArrowLeft' &&
-        lightboxIndex !== null &&
-        lightboxIndex > 0
-      ) {
-        setLightboxIndex((prev) => prev! - 1)
-      }
-    }
-    if (isLightboxOpen) {
-      document.addEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'hidden'
-    }
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
-    }
-  }, [isLightboxOpen, lightboxIndex, allImages.length])
+  const lightbox = useImageLightbox(allImages)
 
   useSEO(
     project
@@ -133,7 +102,7 @@ export function ProjectDetail() {
         <FadeIn delay={0.2}>
           <div
             className="relative mt-12 aspect-video cursor-zoom-in overflow-hidden rounded-2xl bg-neutral-800"
-            onClick={() => !imageError && setLightboxIndex(0)}
+            onClick={() => !imageError && lightbox.open(0)}
           >
             {!imageLoaded && !imageError && (
               <div className="absolute inset-0 animate-pulse bg-neutral-700" />
@@ -147,7 +116,7 @@ export function ProjectDetail() {
             ) : (
               <img
                 src={project.thumbnail}
-                alt={project.title}
+                alt={`Screenshot van ${project.title}`}
                 className={`h-full w-full object-cover brightness-[0.85] transition-opacity duration-500 ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -158,101 +127,23 @@ export function ProjectDetail() {
           </div>
         </FadeIn>
 
-        {/* Lightbox */}
-        <AnimatePresence>
-          {isLightboxOpen && lightboxIndex !== null && (
-            <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setLightboxIndex(null)}
-            >
-              {/* Previous button */}
-              {lightboxIndex > 0 && (
-                <button
-                  className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setLightboxIndex((prev) => prev! - 1)
-                  }}
-                >
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </button>
-              )}
-
-              <motion.img
-                key={lightboxIndex}
-                src={allImages[lightboxIndex]}
-                alt={`${project.title} screenshot ${lightboxIndex + 1}`}
-                className="max-h-[90vh] max-w-[90vw] cursor-pointer rounded-lg object-contain"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  if (lightboxIndex < allImages.length - 1) {
-                    setLightboxIndex((prev) => prev! + 1)
-                  } else {
-                    setLightboxIndex(null)
-                  }
-                }}
-              />
-
-              {/* Next button */}
-              {lightboxIndex < allImages.length - 1 && (
-                <button
-                  className="absolute right-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setLightboxIndex((prev) => prev! + 1)
-                  }}
-                >
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              )}
-
-              {/* Image counter */}
-              {allImages.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-4 py-2 text-sm text-white backdrop-blur-sm">
-                  {lightboxIndex + 1} / {allImages.length}
-                </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <ImageLightbox
+          images={allImages}
+          index={lightbox.lightboxIndex}
+          title={project.title}
+          onClose={lightbox.close}
+          onNext={lightbox.next}
+          onPrev={lightbox.prev}
+          hasNext={lightbox.hasNext}
+          hasPrev={lightbox.hasPrev}
+        />
 
         <StaggerContainer className="mt-8 space-y-12" staggerDelay={0.15}>
           {/* View all images button */}
           {project.images && project.images.length > 0 && (
             <StaggerItem>
               <button
-                onClick={() => setLightboxIndex(0)}
+                onClick={() => lightbox.open(0)}
                 className="flex cursor-pointer items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
               >
                 <svg
