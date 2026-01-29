@@ -1,21 +1,45 @@
+import type { ReactNode } from 'react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animation'
 
-const skillCategories = [
+const skillCategories: { title: string; description: ReactNode }[] = [
   {
-    title: 'Languages',
-    skills: ['TypeScript', 'JavaScript', 'PHP', 'GDScript'],
+    title: 'Gebruikerservaring',
+    description: (
+      <>
+        Ik denk vanuit de gebruiker. Hoe voelt iets aan, wat verwacht je op dit
+        moment, waar loop je vast? Dat kritisch bekijken en verbeteren is waar
+        ik goed in ben.
+      </>
+    ),
   },
   {
     title: 'Frontend',
-    skills: ['React', 'Tailwind CSS', 'GSAP', 'Motion', 'Lenis'],
+    description: (
+      <>
+        Een goede interface voel je. Ik bouw met aandacht voor hoe iets beweegt,
+        reageert en aanvoelt. Van layout tot animatie.
+      </>
+    ),
   },
   {
-    title: 'Backend',
-    skills: ['Laravel', 'Node.js', 'Express', 'MySQL'],
+    title: 'Van idee tot product',
+    description: (
+      <>
+        Ik neem een idee en bouw het uit tot iets compleets. Features toevoegen,
+        design aanscherpen, itereren tot het een product is waar ik trots op
+        ben.
+      </>
+    ),
   },
   {
-    title: 'Tools',
-    skills: ['Git', 'VS Code', 'PhpStorm', 'Figma', 'Canva', 'Godot'],
+    title: 'Full-stack',
+    description: (
+      <>
+        Ik bouw complete web applicaties en word steeds breder. Frontend is mijn
+        basis, maar ik werk net zo graag aan API's, databases en de rest van de
+        stack.
+      </>
+    ),
   },
 ]
 
@@ -33,19 +57,12 @@ export function Skills() {
         >
           {skillCategories.map((category) => (
             <StaggerItem key={category.title}>
-              <h3 className="mb-4 text-sm font-medium tracking-wider text-neutral-500 uppercase">
+              <h3 className="mb-3 text-sm font-medium tracking-wider text-neutral-500 uppercase">
                 {category.title}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-neutral-300 transition-colors hover:bg-white/10 hover:text-white"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              <p className="text-base leading-relaxed text-neutral-300 [&>strong]:font-medium [&>strong]:text-white">
+                {category.description}
+              </p>
             </StaggerItem>
           ))}
         </StaggerContainer>
