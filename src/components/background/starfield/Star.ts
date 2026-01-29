@@ -74,11 +74,15 @@ export class Star {
 
     // Wrap around when star goes off screen
     if (this.y < -10) {
-      this.y = viewportHeight + 10
-      this.baseY = this.y + parallaxOffset
+      // Star moved off top, wrap to bottom
+      const offset = viewportHeight + 20
+      this.baseY += offset
+      this.y += offset
     } else if (this.y > viewportHeight + 10) {
-      this.y = -10
-      this.baseY = this.y + parallaxOffset
+      // Star moved off bottom, wrap to top
+      const offset = -(viewportHeight + 20)
+      this.baseY += offset
+      this.y += offset
     }
   }
 
