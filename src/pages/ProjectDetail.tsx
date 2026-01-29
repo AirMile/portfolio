@@ -157,27 +157,6 @@ export function ProjectDetail() {
           </div>
         </FadeIn>
 
-        {/* Additional Screenshots */}
-        {project.images && project.images.length > 0 && (
-          <FadeIn delay={0.3}>
-            <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
-              {project.images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setLightboxIndex(index + 1)}
-                  className="relative aspect-video h-20 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-800 transition-all hover:ring-2 hover:ring-white/50"
-                >
-                  <img
-                    src={image}
-                    alt={`${project.title} screenshot ${index + 2}`}
-                    className="h-full w-full object-cover brightness-[0.85]"
-                  />
-                </button>
-              ))}
-            </div>
-          </FadeIn>
-        )}
-
         {/* Lightbox */}
         <AnimatePresence>
           {isLightboxOpen && lightboxIndex !== null && (
@@ -262,7 +241,32 @@ export function ProjectDetail() {
           )}
         </AnimatePresence>
 
-        <StaggerContainer className="mt-16 space-y-12" staggerDelay={0.15}>
+        <StaggerContainer className="mt-8 space-y-12" staggerDelay={0.15}>
+          {/* View all images button */}
+          {project.images && project.images.length > 0 && (
+            <StaggerItem>
+              <button
+                onClick={() => setLightboxIndex(0)}
+                className="flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-white"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                Bekijk alle afbeeldingen ({allImages.length})
+              </button>
+            </StaggerItem>
+          )}
+
           <StaggerItem>
             <section>
               <h2 className="text-2xl font-semibold text-white">Context</h2>

@@ -23,18 +23,18 @@ export function About() {
             <div className="flex flex-col justify-center">
               <p className="text-lg text-neutral-300">
                 Ik ben Miles, tweedejaars CMGT-student aan Hogeschool Rotterdam.
-                Wat mij drijft is de creatieve vrijheid die development biedt —
+                Wat mij drijft is de creatieve vrijheid die development biedt,
                 een idee bedenken en het zelf tot leven brengen.
               </p>
               <p className="mt-4 text-neutral-400">
-                Naast mijn studie ben ik constant bezig met side projects: van
-                games in Godot tot full-stack webapplicaties. Ik leer het liefst
-                door te bouwen.
+                Van fullstack webapplicaties tot games in Godot: ik ben buiten
+                de lessen net zo vaak aan het bouwen als ervoor. Ik leer het
+                liefst door te maken.
               </p>
               <p className="mt-4 text-neutral-400">
-                Ik zoek een stage bij een web of digital agency waar ik kan
-                groeien als creative developer en mee kan werken aan impactvolle
-                projecten.
+                Ik zoek een stage waar ik kan groeien tussen gedreven developers
+                die hun vak serieus nemen en openstaan voor nieuwe tools zoals
+                AI.
               </p>
             </div>
           </FadeIn>

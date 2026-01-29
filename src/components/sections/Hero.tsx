@@ -100,14 +100,13 @@ export function Hero() {
           ref={subtitleRef}
           className="mt-4 text-xl text-neutral-400 md:text-2xl"
         >
-          Creative Developer
+          Fullstack Developer
         </p>
         <p
           ref={descriptionRef}
           className="mx-auto mt-6 max-w-xl text-neutral-500"
         >
-          Ik bouw interactieve web experiences en games. Van idee tot werkend
-          product — altijd op zoek naar de creatieve oplossing.
+          Van idee tot werkend product. Web, games, en alles daartussenin.
         </p>
         <div
           ref={buttonsRef}

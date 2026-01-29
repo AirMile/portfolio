@@ -31,13 +31,15 @@ export const projects: Project[] = [
     tags: ['Laravel', 'PHP', 'Full Stack'],
     githubUrl: 'https://github.com/AirMile/getcooked',
     context:
-      'Solo schoolopdracht waarbij ik een complete recepten website moest bouwen. Gebruikers kunnen recepten bekijken, toevoegen, zoeken en filteren, met een volledig account systeem.',
+      'Solo schoolopdracht waarbij ik een complete recepten website moest bouwen. Gebruikers kunnen private recepten uploaden of submitten voor public review. Verified users kunnen direct public posten. Een admin panel beheert submissions en gebruikersrechten.',
     role: 'Volledige ontwikkeling van concept tot werkend product. Dit was mijn eerste grote Laravel project.',
     process: [
-      'Laravel framework leren en project opzetten',
-      'Database design voor recepten, ingrediënten en gebruikers',
-      'Authentication systeem implementeren',
-      'Zoek- en filterfunctionaliteit bouwen',
+      'ERD ontwerp en user stories uitwerken',
+      'Role-based authentication met admin panel',
+      'Recipe status workflow (private, pending, approved, rejected)',
+      'Verified users systeem en spam preventie',
+      'Zoek- en filtersysteem met query scopes',
+      'Notificatiesysteem voor status updates',
     ],
     result:
       'Een volledig werkende recepten applicatie. Door dit project heb ik Laravel onder de knie gekregen en ervaring opgedaan met MVC architectuur.',
@@ -53,20 +55,24 @@ export const projects: Project[] = [
     images: [
       '/images/natuurmoment-2.png',
       '/images/natuurmoment-3.png',
-      '/images/natuurmoment-4.png',
+      '/images/natuurmoment-5.png',
+      '/images/natuurmoment-6.png',
+      '/images/natuurmoment-7.png',
+      '/images/natuurmoment-8.png',
     ],
-    tags: ['Laravel', 'Livewire', 'Tailwind CSS', 'Team Project'],
+    tags: ['Laravel', 'Tailwind CSS', 'Figma', 'Team Project'],
     githubUrl: 'https://github.com/HenkHR/NatuurMoment',
     context:
       "Groepsproject voor een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
-    role: 'Full-stack development met focus op backend. Daarnaast verantwoordelijk voor de styleguide, groot deel van de wireframes en uitwerking van het concept.',
+    role: 'Full-stack development met focus op backend in een team van 5. Verantwoordelijk voor de styleguide, wireframes en conceptuitwerking. Bouwde het complete admin panel, organisator dashboard en kernfunctionaliteiten.',
     process: [
-      'Concept en idee uitwerking met het team',
-      'Styleguide en wireframes ontwerpen in Figma',
-      'Backend features implementeren in Laravel',
-      'Real-time functionaliteit met Livewire',
+      'Concept uitwerking en styleguide/wireframes ontwerpen in Figma',
+      'Role-based systeem: speler, organisator en admin',
+      'Quiz systeem met meerkeuzevragen en score berekening',
+      'Organisator dashboard: games aanmaken, spelers beheren, live monitoren',
+      'Admin panel met content beheer en statistieken (ratings, leeftijdsverdeling, trends)',
     ],
     result:
-      'Een volledig werkende game die live heeft gedraaid. Het team heeft succesvol samengewerkt met een moderne Laravel/Livewire stack.',
+      'Een volledig werkende game die live heeft gedraaid met echte gebruikers. Het statistieken dashboard toonde engagement metrics zoals gemiddelde ratings per locatie en leeftijdsverdeling.',
   },
 ]
