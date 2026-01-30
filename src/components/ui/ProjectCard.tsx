@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import type { Project } from '@/data/projects'
 import { DURATION_FAST, EASE_DEFAULT, SPRING_SOFT } from '@/lib/animation'
+import { useLocalePath } from '@/hooks/useLocalePath'
 import { Tag } from './Tag'
 
 interface ProjectCardProps {
@@ -9,6 +10,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const localePath = useLocalePath()
+
   return (
     <motion.div
       className="h-full"
@@ -16,7 +19,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       transition={SPRING_SOFT}
     >
       <Link
-        to={`/projects/${project.slug}`}
+        to={localePath(`/projects/${project.slug}`)}
         className="group flex h-full flex-col overflow-hidden rounded-xl bg-neutral-900"
       >
         <div className="aspect-video overflow-hidden bg-neutral-800">

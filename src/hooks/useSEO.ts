@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BASE_URL, DEFAULT_OG_IMAGE } from '@/lib/constants'
+import { BASE_URL, DEFAULT_OG_IMAGE, SUPPORTED_LOCALES } from '@/lib/constants'
 
 interface SEOProps {
   title: string
@@ -7,6 +7,7 @@ interface SEOProps {
   url?: string
   image?: string
   type?: 'website' | 'article'
+  locale?: string
 }
 
 export function useSEO({
@@ -15,6 +16,7 @@ export function useSEO({
   url = BASE_URL,
   image = DEFAULT_OG_IMAGE,
   type = 'website',
+  locale,
 }: SEOProps) {
   useEffect(() => {
     document.title = title
@@ -26,6 +28,7 @@ export function useSEO({
       'og:url': url,
       'og:image': image,
       'og:type': type,
+      'og:locale': locale === 'nl' ? 'nl_NL' : 'en_US',
       'twitter:title': title,
       'twitter:description': description,
       'twitter:image': image,
@@ -58,5 +61,27 @@ export function useSEO({
     if (canonical) {
       canonical.href = url
     }
-  }, [title, description, url, image, type])
+
+    // hreflang tags
+    document.querySelectorAll('link[hreflang]').forEach((el) => el.remove())
+
+    if (locale) {
+      for (const lng of SUPPORTED_LOCALES) {
+        const link = document.createElement('link')
+        link.rel = 'alternate'
+        link.hreflang = lng
+        link.href = locale
+          ? url.replace(`/${locale}`, `/${lng}`)
+          : `${BASE_URL}/${lng}`
+        document.head.appendChild(link)
+      }
+
+      // x-default points to English version
+      const xDefault = document.createElement('link')
+      xDefault.rel = 'alternate'
+      xDefault.hreflang = 'x-default'
+      xDefault.href = url.replace(`/${locale}`, '/en')
+      document.head.appendChild(xDefault)
+    }
+  }, [title, description, url, image, type, locale])
 }

@@ -6,6 +6,7 @@ interface ButtonProps {
   children: React.ReactNode
   href?: string
   to?: string
+  state?: object
   variant?: 'primary' | 'secondary'
   className?: string
   onClick?: () => void
@@ -23,6 +24,7 @@ export function Button({
   children,
   href,
   to,
+  state,
   variant = 'primary',
   className = '',
   onClick,
@@ -51,7 +53,7 @@ export function Button({
   if (to) {
     return (
       <motion.span {...motionProps} className="inline-block">
-        <Link to={to} className={styles}>
+        <Link to={to} state={state} className={styles}>
           {children}
         </Link>
       </motion.span>

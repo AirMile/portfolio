@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next'
 import { ContactForm } from '@/components/ui/ContactForm'
 import { SocialIconButton } from '@/components/ui/SocialIconButton'
 import { FadeIn } from '@/components/animation'
 
 export function Contact() {
+  const { t } = useTranslation()
+
   return (
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-xl">
@@ -10,10 +13,10 @@ export function Contact() {
           <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-12">
             <div className="mb-8 text-center">
               <h2 className="text-2xl font-bold text-white md:text-3xl">
-                Laten we samenwerken
+                {t('contact.heading')}
               </h2>
               <p className="mt-3 text-neutral-400">
-                Heb je een project in gedachten? Ik hoor graag van je.
+                {t('contact.description')}
               </p>
             </div>
             <ContactForm />
@@ -31,7 +34,7 @@ export function Contact() {
                 </svg>
               </SocialIconButton>
               <SocialIconButton
-                href="https://www.linkedin.com/in/miles-zeilstra-1a60ba248/"
+                href="https://www.linkedin.com/in/miles-zeilstra/"
                 label="LinkedIn"
               >
                 <svg

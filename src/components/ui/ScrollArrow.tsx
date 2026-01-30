@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { SECTIONS, MOBILE_BREAKPOINT } from '@/lib/constants'
 import { gsap, useGSAP } from '@/lib/gsap'
 
@@ -15,6 +16,7 @@ const ZONE_CONFIG: Record<string, { above: number; below: number }> = {
 }
 
 export function ScrollArrow() {
+  const { t } = useTranslation()
   const [targetId, setTargetId] = useState('about')
   const [visible, setVisible] = useState(true)
   const [bouncing, setBouncing] = useState(false)
@@ -124,7 +126,7 @@ export function ScrollArrow() {
     <a
       ref={ref}
       href={`#${targetId}`}
-      aria-label="Scroll naar volgende sectie"
+      aria-label={t('a11y.scrollToNextSection')}
       className="fixed bottom-36 left-1/2 z-20 -translate-x-1/2 pb-4"
     >
       <svg

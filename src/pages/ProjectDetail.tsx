@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { projects } from '@/data/projects'
+import { useTranslation } from 'react-i18next'
+import { useTranslatedProjects } from '@/hooks/useTranslatedProjects'
+import { useLocalePath } from '@/hooks/useLocalePath'
+import { useLocale } from '@/hooks/useLocale'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
 import { ImageLightbox } from '@/components/ui/ImageLightbox'
@@ -14,6 +17,10 @@ import { BASE_URL } from '@/lib/constants'
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
+  const { t } = useTranslation()
+  const projects = useTranslatedProjects()
+  const localePath = useLocalePath()
+  const locale = useLocale()
   const project = projects.find((p) => p.slug === slug)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageError, setImageError] = useState(false)
@@ -29,13 +36,15 @@ export function ProjectDetail() {
       ? {
           title: `${project.title} | Miles Zeilstra`,
           description: project.metaDescription,
-          url: `${BASE_URL}/projects/${project.slug}`,
+          url: `${BASE_URL}/${locale}/projects/${project.slug}`,
           image: `${BASE_URL}${project.thumbnail}`,
           type: 'article',
+          locale,
         }
       : {
-          title: 'Project niet gevonden | Miles Zeilstra',
-          description: 'Dit project bestaat niet of is verwijderd.',
+          title: t('seo.notFound.title'),
+          description: t('seo.notFound.description'),
+          locale,
         }
   )
 
@@ -45,9 +54,10 @@ export function ProjectDetail() {
           '@type': 'CreativeWork',
           name: project.title,
           description: project.metaDescription,
-          url: `${BASE_URL}/projects/${project.slug}`,
+          url: `${BASE_URL}/${locale}/projects/${project.slug}`,
           image: `${BASE_URL}${project.thumbnail}`,
           keywords: project.tags,
+          inLanguage: locale,
           author: {
             '@type': 'Person',
             name: 'Miles Zeilstra',
@@ -56,7 +66,8 @@ export function ProjectDetail() {
       : {
           '@type': 'WebSite',
           name: 'Miles Zeilstra Portfolio',
-          url: BASE_URL,
+          url: `${BASE_URL}/${locale}`,
+          inLanguage: locale,
         }
   )
 
@@ -66,13 +77,13 @@ export function ProjectDetail() {
         <FadeIn>
           <div className="text-center">
             <h1 className="text-4xl font-bold text-white">
-              Project niet gevonden
+              {t('projectDetail.notFound')}
             </h1>
             <p className="mt-4 text-neutral-400">
-              Dit project bestaat niet of is verwijderd.
+              {t('projectDetail.notFoundDescription')}
             </p>
-            <Button to="/" className="mt-8">
-              Terug naar home
+            <Button to={localePath('/')} className="mt-8">
+              {t('projectDetail.backToHome')}
             </Button>
           </div>
         </FadeIn>
@@ -110,13 +121,13 @@ export function ProjectDetail() {
             {imageError ? (
               <div className="flex h-full items-center justify-center">
                 <span className="text-neutral-500">
-                  Afbeelding niet beschikbaar
+                  {t('projectDetail.imageUnavailable')}
                 </span>
               </div>
             ) : (
               <img
                 src={project.thumbnail}
-                alt={`Screenshot van ${project.title}`}
+                alt={t('projectDetail.screenshotAlt', { title: project.title })}
                 className={`h-full w-full object-cover brightness-[0.85] transition-opacity duration-500 ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -159,14 +170,16 @@ export function ProjectDetail() {
                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                Bekijk alle afbeeldingen ({allImages.length})
+                {t('projectDetail.viewAllImages', { count: allImages.length })}
               </button>
             </StaggerItem>
           )}
 
           <StaggerItem>
             <section>
-              <h2 className="text-2xl font-semibold text-white">Context</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                {t('projectDetail.context')}
+              </h2>
               <p className="mt-4 leading-relaxed text-neutral-300">
                 {project.context}
               </p>
@@ -175,7 +188,9 @@ export function ProjectDetail() {
 
           <StaggerItem>
             <section>
-              <h2 className="text-2xl font-semibold text-white">Mijn rol</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                {t('projectDetail.role')}
+              </h2>
               <p className="mt-4 leading-relaxed text-neutral-300">
                 {project.role}
               </p>
@@ -184,7 +199,9 @@ export function ProjectDetail() {
 
           <StaggerItem>
             <section>
-              <h2 className="text-2xl font-semibold text-white">Proces</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                {t('projectDetail.process')}
+              </h2>
               <ul className="mt-4 space-y-3">
                 {project.process.map((step, index) => (
                   <li key={index} className="flex gap-4 text-neutral-300">
@@ -200,7 +217,9 @@ export function ProjectDetail() {
 
           <StaggerItem>
             <section>
-              <h2 className="text-2xl font-semibold text-white">Resultaat</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                {t('projectDetail.result')}
+              </h2>
               <p className="mt-4 leading-relaxed text-neutral-300">
                 {project.result}
               </p>
@@ -209,13 +228,19 @@ export function ProjectDetail() {
 
           <StaggerItem>
             <div className="flex flex-wrap items-center justify-between gap-4">
-              <Button to="/#projects" variant="secondary">
+              <Button
+                to={localePath('/')}
+                state={{ scrollTo: 'projects' }}
+                variant="secondary"
+              >
                 <span className="mr-2">←</span>
-                Terug naar projecten
+                {t('projectDetail.backToProjects')}
               </Button>
               <div className="flex flex-wrap items-center gap-4">
                 {project.liveUrl && (
-                  <Button href={project.liveUrl}>Bekijk live</Button>
+                  <Button href={project.liveUrl}>
+                    {t('projectDetail.viewLive')}
+                  </Button>
                 )}
                 {project.githubUrl && (
                   <a
@@ -223,7 +248,7 @@ export function ProjectDetail() {
                     className="inline-flex items-center justify-center rounded-lg border border-neutral-700 p-3 text-white transition-colors hover:border-neutral-500"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Bekijk op GitHub"
+                    aria-label={t('projectDetail.viewOnGitHub')}
                   >
                     <svg
                       className="h-5 w-5"

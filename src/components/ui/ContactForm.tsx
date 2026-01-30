@@ -1,10 +1,12 @@
 import { useState, type FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from './Button'
 import { FormInput } from './FormInput'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 export function ContactForm() {
+  const { t } = useTranslation()
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -31,7 +33,7 @@ export function ContactForm() {
 
       if (!response.ok) {
         const error = await response.json()
-        throw new Error(error.error || 'Er ging iets mis')
+        throw new Error(error.error || t('contact.form.error'))
       }
 
       setStatus('success')
@@ -39,7 +41,7 @@ export function ContactForm() {
     } catch (error) {
       setStatus('error')
       setErrorMessage(
-        error instanceof Error ? error.message : 'Er ging iets mis'
+        error instanceof Error ? error.message : t('contact.form.error')
       )
     }
   }
@@ -62,15 +64,15 @@ export function ContactForm() {
             />
           </svg>
         </div>
-        <p className="text-white">Bedankt voor je bericht!</p>
+        <p className="text-white">{t('contact.form.success')}</p>
         <p className="mt-2 text-sm text-neutral-400">
-          Ik neem zo snel mogelijk contact met je op.
+          {t('contact.form.successDetail')}
         </p>
         <button
           onClick={() => setStatus('idle')}
           className="mt-4 text-sm text-neutral-400 underline hover:text-white"
         >
-          Nog een bericht sturen
+          {t('contact.form.sendAnother')}
         </button>
       </div>
     )
@@ -89,19 +91,24 @@ export function ContactForm() {
           autoComplete="nope"
         />
       </div>
-      <FormInput id="name" name="name" placeholder="Naam" required />
+      <FormInput
+        id="name"
+        name="name"
+        placeholder={t('contact.form.name')}
+        required
+      />
       <FormInput
         type="email"
         id="email"
         name="email"
-        placeholder="Email"
+        placeholder={t('contact.form.email')}
         required
       />
       <FormInput
         as="textarea"
         id="message"
         name="message"
-        placeholder="Je bericht..."
+        placeholder={t('contact.form.message')}
         rows={4}
         required
       />
@@ -111,7 +118,9 @@ export function ContactForm() {
       )}
 
       <Button type="submit" className="w-full" disabled={status === 'loading'}>
-        {status === 'loading' ? 'Verzenden...' : 'Verstuur bericht'}
+        {status === 'loading'
+          ? t('contact.form.sending')
+          : t('contact.form.submit')}
       </Button>
     </form>
   )

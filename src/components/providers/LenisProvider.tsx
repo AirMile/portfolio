@@ -113,12 +113,12 @@ export function LenisProvider({ children }: LenisProviderProps) {
     }
   }
 
-  // Initialize snap points on first load
+  // Initialize snap points when route changes (including first load)
   useEffect(() => {
-    // Delay to ensure DOM is ready after initial render
-    const timer = setTimeout(updateSnapPoints, 100)
+    // Delay to ensure DOM is ready after lazy-loaded pages render
+    const timer = setTimeout(updateSnapPoints, 500)
     return () => clearTimeout(timer)
-  }, [])
+  }, [location.pathname])
 
   // Handle route changes: scroll to anchor or top, and update snap points
   useEffect(() => {

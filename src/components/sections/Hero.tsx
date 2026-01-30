@@ -1,9 +1,11 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { gsap, useGSAP, ScrollTrigger } from '@/lib/gsap'
 
 const TITLE = 'Miles Zeilstra'
 
 export function Hero() {
+  const { t } = useTranslation()
   const containerRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
@@ -123,7 +125,7 @@ export function Hero() {
           ref={subtitleRef}
           className="mb-6 text-sm font-medium tracking-widest text-neutral-500 uppercase md:text-base"
         >
-          Fullstack Developer
+          {t('hero.subtitle')}
         </p>
         <h1
           ref={titleRef}
@@ -143,7 +145,7 @@ export function Hero() {
           ref={descriptionRef}
           className="mt-10 text-xl font-normal text-neutral-400 italic md:text-2xl"
         >
-          Bringing ideas to life.
+          {t('hero.tagline')}
         </h2>
       </div>
     </section>

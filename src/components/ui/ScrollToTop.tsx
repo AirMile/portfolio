@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'motion/react'
 import { useLenis } from '@/components/providers/LenisProvider'
 
 export function ScrollToTop() {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
   const { scrollToTop } = useLenis()
 
@@ -27,7 +29,7 @@ export function ScrollToTop() {
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           onClick={scrollToTop}
           className="fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-600 bg-neutral-800 text-neutral-300 transition-colors hover:border-neutral-400 hover:text-white"
-          aria-label="Scroll naar boven"
+          aria-label={t('a11y.scrollToTop')}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

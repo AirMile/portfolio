@@ -1,0 +1,114 @@
+{
+  "seo": {
+    "home": {
+      "title": "Miles Zeilstra | Creative Developer",
+      "description": "Portfolio of Miles Zeilstra - Creative Developer specializing in React, TypeScript and interactive web experiences."
+    },
+    "notFound": {
+      "title": "Project not found | Miles Zeilstra",
+      "description": "This project does not exist or has been removed."
+    }
+  },
+  "hero": {
+    "subtitle": "Fullstack Developer",
+    "tagline": "Bringing ideas to life."
+  },
+  "about": {
+    "heading": "About me",
+    "profileAlt": "Profile photo",
+    "paragraph1": "I'm Miles, a second-year CMGT student at Rotterdam University of Applied Sciences. What drives me is the creative freedom that development offers, coming up with an idea and bringing it to life myself.",
+    "paragraph2": "From web applications to games in Godot: I'm always building, even outside of school. I learn best by making things.",
+    "paragraph3": "I'm looking for an internship where I can grow among driven developers who take their craft seriously and are open to new tools like AI."
+  },
+  "projects": {
+    "heading": "Projects",
+    "description": "A selection of my best work. Click a project for more details."
+  },
+  "skills": {
+    "heading": "Skills",
+    "ux": {
+      "title": "User Experience",
+      "description": "I think from the user's perspective. How does something feel, what do you expect at this moment, where do you get stuck? Critically examining and improving that is what I'm good at."
+    },
+    "frontend": {
+      "title": "Frontend",
+      "description": "A good interface is something you feel. I build with attention to how things move, respond and feel. From layout to animation."
+    },
+    "ideaToProduct": {
+      "title": "From idea to product",
+      "description": "I take an idea and build it into something complete. Adding features, refining design, iterating until it's a product I'm proud of."
+    },
+    "fullstack": {
+      "title": "Full-stack",
+      "description": "I build complete web applications and keep expanding. Frontend is my foundation, but I enjoy working on APIs, databases and the rest of the stack just as much."
+    }
+  },
+  "contact": {
+    "heading": "Let's work together",
+    "description": "Have a project in mind? I'd love to hear from you.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Your message...",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success": "Thanks for your message!",
+      "successDetail": "I'll get back to you as soon as possible.",
+      "sendAnother": "Send another message",
+      "error": "Something went wrong"
+    }
+  },
+  "footer": {
+    "copyright": "\u00a9 {{year}} Miles Zeilstra. All rights reserved."
+  },
+  "projectDetail": {
+    "notFound": "Project not found",
+    "notFoundDescription": "This project does not exist or has been removed.",
+    "backToHome": "Back to home",
+    "imageUnavailable": "Image unavailable",
+    "screenshotAlt": "Screenshot of {{title}}",
+    "viewAllImages": "View all images ({{count}})",
+    "context": "Context",
+    "role": "My role",
+    "process": "Process",
+    "result": "Result",
+    "backToProjects": "Back to projects",
+    "viewLive": "View live",
+    "viewOnGitHub": "View on GitHub"
+  },
+  "a11y": {
+    "scrollToNextSection": "Scroll to next section",
+    "scrollToTop": "Scroll to top"
+  },
+  "projectData": {
+    "getcooked": {
+      "description": "A recipe platform where users can browse, add and search recipes. Built with Laravel.",
+      "metaDescription": "GetCooked - A Laravel recipe platform with search, filtering and user accounts. Built by Miles Zeilstra.",
+      "context": "Solo school project where I had to build a complete recipe website. Users can upload private recipes or submit them for public review. Verified users can post publicly directly. An admin panel manages submissions and user permissions.",
+      "role": "Full development from concept to working product. This was my first major Laravel project.",
+      "process": [
+        "ERD design and user stories",
+        "Role-based authentication with admin panel",
+        "Recipe status workflow (private, pending, approved, rejected)",
+        "Verified users system and spam prevention",
+        "Search and filter system with query scopes",
+        "Notification system for status updates"
+      ],
+      "result": "A fully functional recipe application. Through this project I mastered Laravel and gained experience with MVC architecture."
+    },
+    "natuurmoment": {
+      "description": "An interactive group game that guides players through nature areas with photo bingo and quiz questions.",
+      "metaDescription": "NatuurMoment - An interactive nature game with photo bingo and quiz questions. Laravel/Livewire team project by Miles Zeilstra.",
+      "context": "Group project for an interactive nature game. Players complete bingo challenges by taking photos and answer multiple-choice questions about the location, while competing for the highest score.",
+      "role": "Full-stack development with a focus on backend in a team of 5. Responsible for the style guide, wireframes and concept development. Built the complete admin panel, organizer dashboard and core features.",
+      "process": [
+        "Concept development and style guide/wireframes design in Figma",
+        "Role-based system: player, organizer and admin",
+        "Quiz system with multiple-choice questions and score calculation",
+        "Organizer dashboard: create games, manage players, live monitoring",
+        "Admin panel with content management and statistics (ratings, age distribution, trends)"
+      ],
+      "result": "A fully functional game that ran live with real users. The statistics dashboard showed engagement metrics such as average ratings per location and age distribution."
+    }
+  }
+}

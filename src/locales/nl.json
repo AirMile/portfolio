@@ -1,0 +1,114 @@
+{
+  "seo": {
+    "home": {
+      "title": "Miles Zeilstra | Creative Developer",
+      "description": "Portfolio van Miles Zeilstra - Creative Developer gespecialiseerd in React, TypeScript en interactieve web ervaringen."
+    },
+    "notFound": {
+      "title": "Project niet gevonden | Miles Zeilstra",
+      "description": "Dit project bestaat niet of is verwijderd."
+    }
+  },
+  "hero": {
+    "subtitle": "Fullstack Developer",
+    "tagline": "Bringing ideas to life."
+  },
+  "about": {
+    "heading": "Over mij",
+    "profileAlt": "Profielfoto",
+    "paragraph1": "Ik ben Miles, tweedejaars CMGT-student aan Hogeschool Rotterdam. Wat mij drijft is de creatieve vrijheid die development biedt, een idee bedenken en het zelf tot leven brengen.",
+    "paragraph2": "Van webapplicaties tot games in Godot: ook buiten school ben ik aan het bouwen. Ik leer het liefst door te maken.",
+    "paragraph3": "Ik zoek een stage waar ik kan groeien tussen gedreven developers die hun vak serieus nemen en openstaan voor nieuwe tools zoals AI."
+  },
+  "projects": {
+    "heading": "Projecten",
+    "description": "Een selectie van mijn beste werk. Klik op een project voor meer details."
+  },
+  "skills": {
+    "heading": "Skills",
+    "ux": {
+      "title": "Gebruikerservaring",
+      "description": "Ik denk vanuit de gebruiker. Hoe voelt iets aan, wat verwacht je op dit moment, waar loop je vast? Dat kritisch bekijken en verbeteren is waar ik goed in ben."
+    },
+    "frontend": {
+      "title": "Frontend",
+      "description": "Een goede interface voel je. Ik bouw met aandacht voor hoe iets beweegt, reageert en aanvoelt. Van layout tot animatie."
+    },
+    "ideaToProduct": {
+      "title": "Van idee tot product",
+      "description": "Ik neem een idee en bouw het uit tot iets compleets. Features toevoegen, design aanscherpen, itereren tot het een product is waar ik trots op ben."
+    },
+    "fullstack": {
+      "title": "Full-stack",
+      "description": "Ik bouw complete web applicaties en word steeds breder. Frontend is mijn basis, maar ik werk net zo graag aan API's, databases en de rest van de stack."
+    }
+  },
+  "contact": {
+    "heading": "Laten we samenwerken",
+    "description": "Heb je een project in gedachten? Ik hoor graag van je.",
+    "form": {
+      "name": "Naam",
+      "email": "Email",
+      "message": "Je bericht...",
+      "submit": "Verstuur bericht",
+      "sending": "Verzenden...",
+      "success": "Bedankt voor je bericht!",
+      "successDetail": "Ik neem zo snel mogelijk contact met je op.",
+      "sendAnother": "Nog een bericht sturen",
+      "error": "Er ging iets mis"
+    }
+  },
+  "footer": {
+    "copyright": "\u00a9 {{year}} Miles Zeilstra. Alle rechten voorbehouden."
+  },
+  "projectDetail": {
+    "notFound": "Project niet gevonden",
+    "notFoundDescription": "Dit project bestaat niet of is verwijderd.",
+    "backToHome": "Terug naar home",
+    "imageUnavailable": "Afbeelding niet beschikbaar",
+    "screenshotAlt": "Screenshot van {{title}}",
+    "viewAllImages": "Bekijk alle afbeeldingen ({{count}})",
+    "context": "Context",
+    "role": "Mijn rol",
+    "process": "Proces",
+    "result": "Resultaat",
+    "backToProjects": "Terug naar projecten",
+    "viewLive": "Bekijk live",
+    "viewOnGitHub": "Bekijk op GitHub"
+  },
+  "a11y": {
+    "scrollToNextSection": "Scroll naar volgende sectie",
+    "scrollToTop": "Scroll naar boven"
+  },
+  "projectData": {
+    "getcooked": {
+      "description": "Een recepten platform waar gebruikers recepten kunnen bekijken, toevoegen en zoeken. Gebouwd met Laravel.",
+      "metaDescription": "GetCooked - Een Laravel recepten platform met zoeken, filteren en gebruikersaccounts. Gebouwd door Miles Zeilstra.",
+      "context": "Solo schoolopdracht waarbij ik een complete recepten website moest bouwen. Gebruikers kunnen private recepten uploaden of submitten voor public review. Verified users kunnen direct public posten. Een admin panel beheert submissions en gebruikersrechten.",
+      "role": "Volledige ontwikkeling van concept tot werkend product. Dit was mijn eerste grote Laravel project.",
+      "process": [
+        "ERD ontwerp en user stories uitwerken",
+        "Role-based authentication met admin panel",
+        "Recipe status workflow (private, pending, approved, rejected)",
+        "Verified users systeem en spam preventie",
+        "Zoek- en filtersysteem met query scopes",
+        "Notificatiesysteem voor status updates"
+      ],
+      "result": "Een volledig werkende recepten applicatie. Door dit project heb ik Laravel onder de knie gekregen en ervaring opgedaan met MVC architectuur."
+    },
+    "natuurmoment": {
+      "description": "Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.",
+      "metaDescription": "NatuurMoment - Een interactieve natuurgame met foto-bingo en quizvragen. Laravel/Livewire teamproject door Miles Zeilstra.",
+      "context": "Groepsproject voor een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
+      "role": "Full-stack development met focus op backend in een team van 5. Verantwoordelijk voor de styleguide, wireframes en conceptuitwerking. Bouwde het complete admin panel, organisator dashboard en kernfunctionaliteiten.",
+      "process": [
+        "Concept uitwerking en styleguide/wireframes ontwerpen in Figma",
+        "Role-based systeem: speler, organisator en admin",
+        "Quiz systeem met meerkeuzevragen en score berekening",
+        "Organisator dashboard: games aanmaken, spelers beheren, live monitoren",
+        "Admin panel met content beheer en statistieken (ratings, leeftijdsverdeling, trends)"
+      ],
+      "result": "Een volledig werkende game die live heeft gedraaid met echte gebruikers. Het statistieken dashboard toonde engagement metrics zoals gemiddelde ratings per locatie en leeftijdsverdeling."
+    }
+  }
+}
