@@ -141,7 +141,7 @@ function App() {
       <LenisProvider>
         <div className="min-h-screen bg-neutral-950 text-white">
           <Starfield />
-          <main className="relative z-10 overflow-x-hidden pt-16">
+          <main className="relative z-10 min-h-screen overflow-x-hidden pt-16">
             <Suspense fallback={<div className="min-h-screen" />}>
               <AnimatedRoutes />
             </Suspense>

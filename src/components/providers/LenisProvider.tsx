@@ -98,8 +98,9 @@ export function LenisProvider({ children }: LenisProviderProps) {
     // No snap on mobile
     if (window.innerWidth < MOBILE_BREAKPOINT) return
 
-    // Only add snap points on homepage (check if first snappable section exists)
-    if (!document.getElementById(SECTIONS[1])) return
+    // Only add snap points on homepage (locale-only path like /en or /nl)
+    const pathSegments = location.pathname.split('/').filter(Boolean)
+    if (pathSegments.length > 1) return
 
     // Hero → About (viewport height)
     snapRemoversRef.current.push(snap.add(window.innerHeight))
@@ -115,6 +116,10 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
   // Initialize snap points when route changes (including first load)
   useEffect(() => {
+    // Immediately clear snap points on route change
+    snapRemoversRef.current.forEach((remove) => remove())
+    snapRemoversRef.current = []
+
     // Delay to ensure DOM is ready after lazy-loaded pages render
     const timer = setTimeout(updateSnapPoints, 500)
     return () => clearTimeout(timer)
