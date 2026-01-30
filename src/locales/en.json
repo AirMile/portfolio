@@ -58,9 +58,6 @@
       "error": "Something went wrong"
     }
   },
-  "footer": {
-    "copyright": "\u00a9 {{year}} Miles Zeilstra. All rights reserved."
-  },
   "projectDetail": {
     "notFound": "Project not found",
     "notFoundDescription": "This project does not exist or has been removed.",

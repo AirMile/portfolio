@@ -13,7 +13,6 @@ import { useTranslation } from 'react-i18next'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
-import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { Starfield, triggerWarp } from '@/components/background'
 import { PageTransition } from '@/components/animation/PageTransition'
@@ -146,7 +145,6 @@ function App() {
               <AnimatedRoutes />
             </Suspense>
           </main>
-          <Footer />
           <ScrollToTop />
         </div>
       </LenisProvider>
