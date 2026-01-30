@@ -1,5 +1,5 @@
 // Site
-export const BASE_URL = 'https://portfolio-sooty-xi-pbtugrdf2f.vercel.app'
+export const BASE_URL = 'https://mileszeilstra.nl'
 export const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`
 
 // i18n
