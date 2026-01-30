@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/lib/constants'
+import { DEFAULT_LOCALE } from '@/lib/constants'
 import type { Locale } from '@/lib/constants'
 
 function detectLocale(): Locale {
