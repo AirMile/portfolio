@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
 import { Analytics } from '@vercel/analytics/react'
@@ -8,8 +8,12 @@ import { Footer } from '@/components/layout/Footer'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { Starfield, triggerWarp } from '@/components/background'
 import { PageTransition } from '@/components/animation/PageTransition'
-import { Home } from '@/pages/Home'
-import { ProjectDetail } from '@/pages/ProjectDetail'
+const Home = lazy(() =>
+  import('@/pages/Home').then((m) => ({ default: m.Home }))
+)
+const ProjectDetail = lazy(() =>
+  import('@/pages/ProjectDetail').then((m) => ({ default: m.ProjectDetail }))
+)
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -84,7 +88,9 @@ function App() {
         <div className="min-h-screen bg-neutral-950 text-white">
           <Starfield />
           <main className="relative z-10 overflow-x-hidden pt-16">
-            <AnimatedRoutes />
+            <Suspense fallback={<div className="min-h-screen" />}>
+              <AnimatedRoutes />
+            </Suspense>
           </main>
           <Footer />
           <ScrollToTop />

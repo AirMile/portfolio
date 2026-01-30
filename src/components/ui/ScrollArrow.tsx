@@ -38,8 +38,18 @@ export function ScrollArrow() {
     })
   })
 
+  // Cache DOM element references to avoid repeated queries during scroll
+  const elementsRef = useRef<Map<string, HTMLElement>>(new Map())
+  const rafRef = useRef(0)
+
   useEffect(() => {
-    const handleScroll = () => {
+    // Cache section elements once at mount
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) elementsRef.current.set(id, el)
+    })
+
+    const update = () => {
       const viewportHeight = window.innerHeight
       const scrollY = window.scrollY
       const arrowScreenY = viewportHeight - ARROW_BOTTOM
@@ -47,7 +57,7 @@ export function ScrollArrow() {
       // Find which section is currently most visible
       let currentIndex = 0
       for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTIONS[i])
+        const el = elementsRef.current.get(SECTIONS[i])
         if (el && el.offsetTop <= scrollY + viewportHeight * 0.5) {
           currentIndex = i
           break
@@ -74,7 +84,7 @@ export function ScrollArrow() {
           inZone = currentIndex === 0 && nextIndex === 1
         } else {
           for (let i = 0; i < SECTIONS.length - 1; i++) {
-            const nextEl = document.getElementById(SECTIONS[i + 1])
+            const nextEl = elementsRef.current.get(SECTIONS[i + 1])
             if (!nextEl) continue
             const boundaryScreenY = nextEl.getBoundingClientRect().top
             const key = `${SECTIONS[i]}→${SECTIONS[i + 1]}`
@@ -92,9 +102,20 @@ export function ScrollArrow() {
       }
     }
 
-    handleScroll()
+    const handleScroll = () => {
+      if (rafRef.current) return
+      rafRef.current = requestAnimationFrame(() => {
+        update()
+        rafRef.current = 0
+      })
+    }
+
+    update()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
   }, [])
 
   if (!visible) return null

@@ -13,8 +13,9 @@ export function About() {
           <FadeIn delay={0.1} direction="left">
             <div className="aspect-square overflow-hidden rounded-2xl bg-neutral-800">
               <img
-                src="/images/profile.jpg"
+                src="/images/profile.webp"
                 alt="Profielfoto"
+                loading="lazy"
                 className="h-full w-full object-cover brightness-[0.85]"
               />
             </div>
