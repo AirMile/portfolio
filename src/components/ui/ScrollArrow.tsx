@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { SECTIONS, MOBILE_BREAKPOINT } from '@/lib/constants'
+import { gsap, useGSAP } from '@/lib/gsap'
 
 const ARROW_BOTTOM = 144 // bottom-36 = 9rem = 144px
 
@@ -16,7 +17,26 @@ const ZONE_CONFIG: Record<string, { above: number; below: number }> = {
 export function ScrollArrow() {
   const [targetId, setTargetId] = useState('about')
   const [visible, setVisible] = useState(true)
+  const [bouncing, setBouncing] = useState(false)
   const ref = useRef<HTMLAnchorElement>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
+
+  // Intro animatie die aansluit bij de hero tekst timeline
+  useGSAP(() => {
+    if (!svgRef.current) return
+    gsap.set(svgRef.current, { opacity: 0, y: 20 })
+    gsap.to(svgRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 2.2,
+      ease: 'power3.out',
+      onComplete: () => {
+        gsap.set(svgRef.current!, { clearProps: 'all' })
+        setBouncing(true)
+      },
+    })
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,12 +107,13 @@ export function ScrollArrow() {
       className="fixed bottom-36 left-1/2 z-20 -translate-x-1/2 pb-4"
     >
       <svg
+        ref={svgRef}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth={1.5}
-        className="size-6 animate-bounce text-neutral-500 hover:text-neutral-300"
+        className={`size-6 text-neutral-500 hover:text-neutral-300 ${bouncing ? 'animate-bounce' : ''}`}
       >
         <path
           strokeLinecap="round"
