@@ -120,7 +120,7 @@ export function Hero() {
       ref={containerRef}
       className="flex h-[calc(100dvh-4rem)] items-center justify-center px-6"
     >
-      <div className="max-w-3xl pb-10 text-center">
+      <div className="max-w-3xl pb-12 text-center">
         <p
           ref={subtitleRef}
           className="mb-6 text-sm font-medium tracking-widest text-neutral-500 uppercase md:text-base"
