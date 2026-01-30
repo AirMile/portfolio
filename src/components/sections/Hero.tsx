@@ -118,9 +118,9 @@ export function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="flex h-dvh items-center justify-center px-6"
+      className="flex h-[calc(100dvh-4rem)] items-center justify-center px-6"
     >
-      <div className="-mt-16 max-w-3xl text-center">
+      <div className="max-w-3xl text-center">
         <p
           ref={subtitleRef}
           className="mb-6 text-sm font-medium tracking-widest text-neutral-500 uppercase md:text-base"
