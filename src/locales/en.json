@@ -55,7 +55,8 @@
       "success": "Thanks for your message!",
       "successDetail": "I'll get back to you as soon as possible.",
       "sendAnother": "Send another message",
-      "error": "Something went wrong"
+      "error": "Something went wrong",
+      "fallback": "You can also reach me directly at"
     }
   },
   "projectDetail": {

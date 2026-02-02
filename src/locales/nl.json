@@ -55,7 +55,8 @@
       "success": "Bedankt voor je bericht!",
       "successDetail": "Ik neem zo snel mogelijk contact met je op.",
       "sendAnother": "Nog een bericht sturen",
-      "error": "Er ging iets mis"
+      "error": "Er ging iets mis",
+      "fallback": "Je kan me ook direct bereiken via"
     }
   },
   "projectDetail": {

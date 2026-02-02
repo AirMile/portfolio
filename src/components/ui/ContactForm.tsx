@@ -32,8 +32,14 @@ export function ContactForm() {
       })
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || t('contact.form.error'))
+        let errorMsg = t('contact.form.error')
+        try {
+          const error = await response.json()
+          errorMsg = error.error || errorMsg
+        } catch {
+          // Server returned non-JSON (e.g. Vercel platform error)
+        }
+        throw new Error(errorMsg)
       }
 
       setStatus('success')
@@ -114,7 +120,18 @@ export function ContactForm() {
       />
 
       {status === 'error' && (
-        <p className="text-sm text-red-400">{errorMessage}</p>
+        <div className="text-sm text-red-400">
+          <p>{errorMessage}</p>
+          <p className="mt-1 text-neutral-400">
+            {t('contact.form.fallback')}{' '}
+            <a
+              href="mailto:zeilstramiles@gmail.com"
+              className="text-white underline hover:text-neutral-300"
+            >
+              zeilstramiles@gmail.com
+            </a>
+          </p>
+        </div>
       )}
 
       <Button type="submit" className="w-full" disabled={status === 'loading'}>

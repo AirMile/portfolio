@@ -1,8 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // Simple in-memory rate limiting (resets on cold start, acceptable for portfolio)
 const rateLimitMap = new Map<string, { count: number; timestamp: number }>()
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
@@ -30,6 +28,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not configured')
+    return res
+      .status(500)
+      .json({ error: 'Email service is niet geconfigureerd' })
+  }
+
   const { name, email, message, company_fax } = req.body
 
   // Honeypot check - if filled, it's a bot
@@ -52,6 +57,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY)
     await resend.emails.send({
       from: 'Portfolio <onboarding@resend.dev>',
       to: 'zeilstramiles@gmail.com',
