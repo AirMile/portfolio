@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ContactForm } from '@/components/ui/ContactForm'
 import { SocialIconButton } from '@/components/ui/SocialIconButton'
@@ -5,21 +6,26 @@ import { FadeIn } from '@/components/animation'
 
 export function Contact() {
   const { t } = useTranslation()
+  const [formSuccess, setFormSuccess] = useState(false)
 
   return (
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-xl">
         <FadeIn>
           <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-12">
-            <div className="mb-8 text-center">
-              <h2 className="text-2xl font-bold text-white md:text-3xl">
-                {t('contact.heading')}
-              </h2>
-              <p className="mt-3 text-neutral-400">
-                {t('contact.description')}
-              </p>
-            </div>
-            <ContactForm />
+            {!formSuccess && (
+              <div className="mb-8 text-center">
+                <h2 className="text-2xl font-bold text-white md:text-3xl">
+                  {t('contact.heading')}
+                </h2>
+                <p className="mt-3 text-neutral-400">
+                  {t('contact.description')}
+                </p>
+              </div>
+            )}
+            <ContactForm
+              onStatusChange={(s) => setFormSuccess(s === 'success')}
+            />
             <div className="mt-8 flex justify-center gap-4 border-t border-white/10 pt-8">
               <SocialIconButton
                 href="https://github.com/AirMile"

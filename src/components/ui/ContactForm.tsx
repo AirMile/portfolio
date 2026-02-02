@@ -5,14 +5,23 @@ import { FormInput } from './FormInput'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
-export function ContactForm() {
+export function ContactForm({
+  onStatusChange,
+}: {
+  onStatusChange?: (status: FormStatus) => void
+}) {
   const { t } = useTranslation()
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
+  function updateStatus(newStatus: FormStatus) {
+    setStatus(newStatus)
+    onStatusChange?.(newStatus)
+  }
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setStatus('loading')
+    updateStatus('loading')
     setErrorMessage('')
 
     const form = e.currentTarget
@@ -42,10 +51,10 @@ export function ContactForm() {
         throw new Error(errorMsg)
       }
 
-      setStatus('success')
+      updateStatus('success')
       form.reset()
     } catch (error) {
-      setStatus('error')
+      updateStatus('error')
       setErrorMessage(
         error instanceof Error ? error.message : t('contact.form.error')
       )
@@ -75,7 +84,7 @@ export function ContactForm() {
           {t('contact.form.successDetail')}
         </p>
         <button
-          onClick={() => setStatus('idle')}
+          onClick={() => updateStatus('idle')}
           className="mt-4 text-sm text-neutral-400 underline hover:text-white"
         >
           {t('contact.form.sendAnother')}
