@@ -12,7 +12,7 @@ export function Contact() {
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-xl">
         <FadeIn>
-          <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-12">
+          <div className="flex min-h-[28rem] flex-col rounded-2xl border border-white/10 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-12">
             {!formSuccess && (
               <div className="mb-8 text-center">
                 <h2 className="text-2xl font-bold text-white md:text-3xl">
@@ -26,7 +26,7 @@ export function Contact() {
             <ContactForm
               onStatusChange={(s) => setFormSuccess(s === 'success')}
             />
-            <div className="mt-8 flex justify-center gap-4 border-t border-white/10 pt-8">
+            <div className="mt-auto flex justify-center gap-4 border-t border-white/10 pt-8">
               <SocialIconButton
                 href="https://github.com/AirMile"
                 label="GitHub"

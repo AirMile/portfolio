@@ -63,7 +63,7 @@ export function ContactForm({
 
   if (status === 'success') {
     return (
-      <div className="text-center">
+      <div className="flex flex-1 flex-col items-center justify-center text-center">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20">
           <svg
             className="h-6 w-6 text-green-500"
