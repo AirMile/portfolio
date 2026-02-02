@@ -63,10 +63,10 @@ export function ContactForm({
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center py-8">
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20">
+      <div className="flex flex-col items-center py-20">
+        <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-green-500/20">
           <svg
-            className="h-8 w-8 text-green-500"
+            className="h-10 w-10 text-green-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
