@@ -63,10 +63,10 @@ export function ContactForm({
 
   if (status === 'success') {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20">
+      <div className="flex flex-col items-center py-8">
+        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20">
           <svg
-            className="h-6 w-6 text-green-500"
+            className="h-8 w-8 text-green-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -79,16 +79,9 @@ export function ContactForm({
             />
           </svg>
         </div>
-        <p className="text-white">{t('contact.form.success')}</p>
-        <p className="mt-2 text-sm text-neutral-400">
-          {t('contact.form.successDetail')}
-        </p>
-        <button
-          onClick={() => updateStatus('idle')}
-          className="mt-4 text-sm text-neutral-400 underline hover:text-white"
-        >
+        <Button onClick={() => updateStatus('idle')} className="w-full">
           {t('contact.form.sendAnother')}
-        </button>
+        </Button>
       </div>
     )
   }
