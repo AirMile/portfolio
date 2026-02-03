@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <!-- Home -->
   <url>
-    <loc>https://portfolio-sooty-xi-pbtugrdf2f.vercel.app/</loc>
+    <loc>https://mileszeilstra.nl/en</loc>
+    <lastmod>2026-02-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mileszeilstra.nl/en" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mileszeilstra.nl/nl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mileszeilstra.nl/en" />
   </url>
   <url>
-    <loc>https://portfolio-sooty-xi-pbtugrdf2f.vercel.app/projects/getcooked</loc>
+    <loc>https://mileszeilstra.nl/nl</loc>
+    <lastmod>2026-02-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mileszeilstra.nl/en" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mileszeilstra.nl/nl" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mileszeilstra.nl/en" />
+  </url>
+
+  <!-- GetCooked -->
+  <url>
+    <loc>https://mileszeilstra.nl/en/projects/getcooked</loc>
+    <lastmod>2026-02-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mileszeilstra.nl/en/projects/getcooked" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mileszeilstra.nl/nl/projects/getcooked" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mileszeilstra.nl/en/projects/getcooked" />
   </url>
   <url>
-    <loc>https://portfolio-sooty-xi-pbtugrdf2f.vercel.app/projects/natuurmoment</loc>
+    <loc>https://mileszeilstra.nl/nl/projects/getcooked</loc>
+    <lastmod>2026-02-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mileszeilstra.nl/en/projects/getcooked" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mileszeilstra.nl/nl/projects/getcooked" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mileszeilstra.nl/en/projects/getcooked" />
+  </url>
+
+  <!-- NatuurMoment -->
+  <url>
+    <loc>https://mileszeilstra.nl/en/projects/natuurmoment</loc>
+    <lastmod>2026-02-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mileszeilstra.nl/en/projects/natuurmoment" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mileszeilstra.nl/nl/projects/natuurmoment" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mileszeilstra.nl/en/projects/natuurmoment" />
+  </url>
+  <url>
+    <loc>https://mileszeilstra.nl/nl/projects/natuurmoment</loc>
+    <lastmod>2026-02-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mileszeilstra.nl/en/projects/natuurmoment" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://mileszeilstra.nl/nl/projects/natuurmoment" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mileszeilstra.nl/en/projects/natuurmoment" />
   </url>
 </urlset>

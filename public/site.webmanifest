@@ -1,0 +1,16 @@
+{
+  "name": "Miles Zeilstra | Creative Developer",
+  "short_name": "Miles Z.",
+  "description": "Portfolio of Miles Zeilstra - Creative Developer specializing in React, TypeScript and interactive web experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

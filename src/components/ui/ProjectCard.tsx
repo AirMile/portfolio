@@ -25,7 +25,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="aspect-video overflow-hidden bg-neutral-800">
           <motion.img
             src={project.thumbnail}
-            alt=""
+            alt={project.title}
             loading="lazy"
             className="h-full w-full object-cover brightness-[0.85]"
             whileHover={{ scale: 1.05 }}
