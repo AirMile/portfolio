@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { motion } from 'motion/react'
 import type { Project } from '@/data/projects'
 import { DURATION_FAST, EASE_DEFAULT, SPRING_SOFT } from '@/lib/animation'
@@ -10,6 +11,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useTranslation()
   const localePath = useLocalePath()
 
   return (
@@ -40,6 +42,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
               <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
+          <span className="mt-4 inline-flex items-center gap-1 text-sm text-neutral-500 md:hidden">
+            {t('projects.viewProject')}
+            <svg
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </span>
         </div>
       </Link>
     </motion.div>

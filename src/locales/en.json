@@ -22,7 +22,8 @@
   },
   "projects": {
     "heading": "Projects",
-    "description": "A selection of my best work. Click a project for more details."
+    "description": "A selection of my best work. Click a project for more details.",
+    "viewProject": "View project"
   },
   "skills": {
     "heading": "Skills",

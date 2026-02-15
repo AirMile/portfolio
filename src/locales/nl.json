@@ -22,7 +22,8 @@
   },
   "projects": {
     "heading": "Projecten",
-    "description": "Een selectie van mijn beste werk. Klik op een project voor meer details."
+    "description": "Een selectie van mijn beste werk. Klik op een project voor meer details.",
+    "viewProject": "Bekijk project"
   },
   "skills": {
     "heading": "Skills",
