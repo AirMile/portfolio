@@ -19,7 +19,7 @@ export function About() {
                 src="/images/profile.webp"
                 alt={t('about.profileAlt')}
                 loading="lazy"
-                className="h-full w-full object-cover brightness-[0.85]"
+                className="h-full w-full object-cover object-top brightness-[0.85]"
               />
             </div>
           </FadeIn>
