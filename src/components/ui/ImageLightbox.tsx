@@ -33,7 +33,7 @@ export function ImageLightbox({
         >
           {hasPrev && (
             <button
-              className="absolute left-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="absolute left-4 z-10 rounded-full border border-white/20 bg-black/50 p-3 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
               onClick={(e) => {
                 e.stopPropagation()
                 onPrev()
@@ -73,7 +73,7 @@ export function ImageLightbox({
 
           {hasNext && (
             <button
-              className="absolute right-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="absolute right-4 z-10 rounded-full border border-white/20 bg-black/50 p-3 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
               onClick={(e) => {
                 e.stopPropagation()
                 onNext()
