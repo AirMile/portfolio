@@ -1,4 +1,4 @@
-import { motion, type Variants } from 'motion/react'
+import { m, type Variants } from 'motion/react'
 import { type ReactNode } from 'react'
 import { DURATION_NORMAL, EASE_DEFAULT } from '@/lib/animation'
 
@@ -24,8 +24,8 @@ const itemVariants: Variants = {
 
 export function StaggerItem({ children, className }: StaggerItemProps) {
   return (
-    <motion.div className={className} variants={itemVariants}>
+    <m.div className={className} variants={itemVariants}>
       {children}
-    </motion.div>
+    </m.div>
   )
 }

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 
 interface TagProps {
   children: string
@@ -16,14 +16,14 @@ export function Tag({
 }: TagProps) {
   if (animated) {
     return (
-      <motion.span
+      <m.span
         className={tagStyles}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: animationDelay }}
       >
         {children}
-      </motion.span>
+      </m.span>
     )
   }
 

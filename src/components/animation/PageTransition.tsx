@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { ReactNode } from 'react'
 import { DURATION_FAST, EASE_DEFAULT } from '@/lib/animation'
 
@@ -37,7 +37,7 @@ export function PageTransition({
   skipInitial = false,
 }: PageTransitionProps) {
   return (
-    <motion.div
+    <m.div
       className={className}
       custom={direction}
       variants={pageVariants}
@@ -47,6 +47,6 @@ export function PageTransition({
       transition={pageTransition}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }

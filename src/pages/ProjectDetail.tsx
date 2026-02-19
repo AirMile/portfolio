@@ -113,7 +113,18 @@ export function ProjectDetail() {
         <FadeIn delay={0.2}>
           <div
             className="relative mt-12 aspect-video cursor-zoom-in overflow-hidden rounded-2xl bg-neutral-800"
+            role="button"
+            tabIndex={0}
+            aria-label={t('projectDetail.viewAllImages', {
+              count: allImages.length,
+            })}
             onClick={() => !imageError && lightbox.open(0)}
+            onKeyDown={(e) => {
+              if ((e.key === 'Enter' || e.key === ' ') && !imageError) {
+                e.preventDefault()
+                lightbox.open(0)
+              }
+            }}
           >
             {!imageLoaded && !imageError && (
               <div className="absolute inset-0 animate-pulse bg-neutral-700" />
@@ -204,7 +215,10 @@ export function ProjectDetail() {
               </h2>
               <ul className="mt-4 space-y-3">
                 {project.process.map((step, index) => (
-                  <li key={index} className="flex gap-4 text-neutral-300">
+                  <li
+                    key={`step-${index}`}
+                    className="flex gap-4 text-neutral-300"
+                  >
                     <span className="font-medium text-neutral-500">
                       {String(index + 1).padStart(2, '0')}
                     </span>

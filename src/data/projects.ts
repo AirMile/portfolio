@@ -1,4 +1,4 @@
-export interface ProjectBase {
+interface ProjectBase {
   slug: string
   title: string
   thumbnail: string

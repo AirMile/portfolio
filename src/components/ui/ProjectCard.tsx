@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import type { Project } from '@/data/projects'
 import { DURATION_FAST, EASE_DEFAULT, SPRING_SOFT } from '@/lib/animation'
 import { useLocalePath } from '@/hooks/useLocalePath'
@@ -15,17 +15,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const localePath = useLocalePath()
 
   return (
-    <motion.div
-      className="h-full"
-      whileHover={{ y: -8 }}
-      transition={SPRING_SOFT}
-    >
+    <m.div className="h-full" whileHover={{ y: -8 }} transition={SPRING_SOFT}>
       <Link
         to={localePath(`/projects/${project.slug}`)}
         className="group flex h-full flex-col overflow-hidden rounded-xl bg-neutral-900"
       >
         <div className="aspect-video overflow-hidden bg-neutral-800">
-          <motion.img
+          <m.img
             src={project.thumbnail}
             alt={project.title}
             loading="lazy"
@@ -60,6 +56,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </span>
         </div>
       </Link>
-    </motion.div>
+    </m.div>
   )
 }

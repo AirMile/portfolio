@@ -18,98 +18,110 @@ export function Hero() {
 
       const rest = [descriptionRef.current]
 
-      // Kill any existing ScrollTriggers on these elements
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.vars.trigger === containerRef.current) {
-          st.kill()
-        }
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        // Kill any existing ScrollTriggers on these elements
+        ScrollTrigger.getAll().forEach((st) => {
+          if (st.vars.trigger === containerRef.current) {
+            st.kill()
+          }
+        })
+
+        gsap.set(letters, {
+          opacity: 0,
+          y: 40,
+          x: 0,
+          willChange: 'transform, opacity',
+        })
+        gsap.set(subtitleRef.current, { opacity: 0, y: 30 })
+        gsap.set(rest, { opacity: 0, y: 30 })
+
+        // Intro animatie (delay voor page transition)
+        const tl = gsap.timeline({
+          delay: 0.4,
+          defaults: {
+            ease: 'power3.out',
+            duration: 0.8,
+          },
+          onComplete: () => {
+            // Clear transforms to prevent sub-pixel jitter
+            gsap.set(letters, { clearProps: 'transform,willChange' })
+
+            // Scroll lift-off animatie - alleen activeren NA intro animatie
+            gsap.fromTo(
+              letters,
+              { y: 0, opacity: 1 },
+              {
+                y: -150,
+                opacity: 0,
+                ease: 'power2.in',
+                stagger: 0.02,
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: containerRef.current,
+                  start: 'top top',
+                  end: '40% top',
+                  scrub: 1,
+                },
+              }
+            )
+
+            gsap.fromTo(
+              subtitleRef.current,
+              { y: 0, opacity: 1 },
+              {
+                y: -100,
+                opacity: 0,
+                ease: 'power2.in',
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: containerRef.current,
+                  start: 'top top',
+                  end: '35% top',
+                  scrub: 1,
+                },
+              }
+            )
+
+            gsap.fromTo(
+              descriptionRef.current,
+              { y: 0, opacity: 1 },
+              {
+                y: -100,
+                opacity: 0,
+                ease: 'power2.in',
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: containerRef.current,
+                  start: 'top top',
+                  end: '35% top',
+                  scrub: 1,
+                },
+              }
+            )
+          },
+        })
+
+        tl.to(letters, {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          duration: 1,
+          ease: 'power4.out',
+          stagger: 0.03,
+        })
+          .to(subtitleRef.current, { opacity: 1, y: 0 }, '-=0.5')
+          .to(rest, { opacity: 1, y: 0 }, '-=0.4')
       })
 
-      gsap.set(letters, {
-        opacity: 0,
-        y: 40,
-        x: 0,
-        willChange: 'transform, opacity',
-      })
-      gsap.set(subtitleRef.current, { opacity: 0, y: 30 })
-      gsap.set(rest, { opacity: 0, y: 30 })
-
-      // Intro animatie (delay voor page transition)
-      const tl = gsap.timeline({
-        delay: 0.4,
-        defaults: {
-          ease: 'power3.out',
-          duration: 0.8,
-        },
-        onComplete: () => {
-          // Clear transforms to prevent sub-pixel jitter
-          gsap.set(letters, { clearProps: 'transform,willChange' })
-
-          // Scroll lift-off animatie - alleen activeren NA intro animatie
-          gsap.fromTo(
-            letters,
-            { y: 0, opacity: 1 },
-            {
-              y: -150,
-              opacity: 0,
-              ease: 'power2.in',
-              stagger: 0.02,
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'top top',
-                end: '40% top',
-                scrub: 1,
-              },
-            }
-          )
-
-          gsap.fromTo(
-            subtitleRef.current,
-            { y: 0, opacity: 1 },
-            {
-              y: -100,
-              opacity: 0,
-              ease: 'power2.in',
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'top top',
-                end: '35% top',
-                scrub: 1,
-              },
-            }
-          )
-
-          gsap.fromTo(
-            descriptionRef.current,
-            { y: 0, opacity: 1 },
-            {
-              y: -100,
-              opacity: 0,
-              ease: 'power2.in',
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'top top',
-                end: '35% top',
-                scrub: 1,
-              },
-            }
-          )
-        },
+      mm.add('(prefers-reduced-motion: reduce)', () => {
+        gsap.set(letters, { opacity: 1, y: 0, x: 0 })
+        gsap.set(subtitleRef.current, { opacity: 1, y: 0 })
+        gsap.set(rest, { opacity: 1, y: 0 })
       })
 
-      tl.to(letters, {
-        opacity: 1,
-        y: 0,
-        x: 0,
-        duration: 1,
-        ease: 'power4.out',
-        stagger: 0.03,
-      })
-        .to(subtitleRef.current, { opacity: 1, y: 0 }, '-=0.5')
-        .to(rest, { opacity: 1, y: 0 }, '-=0.4')
+      return () => mm.revert()
     },
     { scope: containerRef }
   )
@@ -133,7 +145,7 @@ export function Hero() {
         >
           {TITLE.split('').map((char, i) => (
             <span
-              key={i}
+              key={`${i}-${char}`}
               className="hero-letter inline-block"
               style={{ whiteSpace: char === ' ' ? 'pre' : undefined }}
             >

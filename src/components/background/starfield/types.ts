@@ -7,15 +7,6 @@ export interface StarConfig {
   twinklePhase: number
 }
 
-export interface ShootingStarConfig {
-  startX: number
-  startY: number
-  angle: number
-  speed: number
-  length: number
-  lifetime: number
-}
-
 export interface StarfieldConfig {
   starCount: number
   minRadius: number

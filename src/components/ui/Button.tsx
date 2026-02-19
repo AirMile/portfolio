@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { m } from 'motion/react'
 import { SPRING_DEFAULT } from '@/lib/animation'
 
 interface ButtonProps {
@@ -44,24 +44,24 @@ export function Button({
 
   if (href) {
     return (
-      <motion.a href={href} className={styles} {...motionProps}>
+      <m.a href={href} className={styles} {...motionProps}>
         {children}
-      </motion.a>
+      </m.a>
     )
   }
 
   if (to) {
     return (
-      <motion.span {...motionProps} className="inline-block">
+      <m.span {...motionProps} className="inline-block">
         <Link to={to} state={state} className={styles}>
           {children}
         </Link>
-      </motion.span>
+      </m.span>
     )
   }
 
   return (
-    <motion.button
+    <m.button
       type={type}
       onClick={onClick}
       disabled={disabled}
@@ -69,6 +69,6 @@ export function Button({
       {...motionProps}
     >
       {children}
-    </motion.button>
+    </m.button>
   )
 }

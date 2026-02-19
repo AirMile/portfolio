@@ -31,6 +31,10 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
   // Initialize Lenis and Snap once
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -42,27 +46,31 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     lenisRef.current = lenis
 
-    // Track previous scroll position to detect direction at snap time
-    let prevScroll = 0
+    // Skip snap initialization when reduced motion is preferred
+    let snap: Snap | null = null
+    if (!prefersReducedMotion) {
+      // Track previous scroll position to detect direction at snap time
+      let prevScroll = 0
 
-    // Snap for section transitions (downward only)
-    const snap = new Snap(lenis, {
-      type: 'proximity',
-      onSnapStart: (snapItem) => {
-        // Only allow snap when coming from above (scrolling down into snap point)
-        // Cancel if already past the snap point (prevents snapping back up)
-        if (prevScroll >= snapItem.value) {
-          lenis.stop()
-          lenis.start()
-        }
-      },
-    })
-    snapRef.current = snap
+      // Snap for section transitions (downward only)
+      snap = new Snap(lenis, {
+        type: 'proximity',
+        onSnapStart: (snapItem) => {
+          // Only allow snap when coming from above (scrolling down into snap point)
+          // Cancel if already past the snap point (prevents snapping back up)
+          if (prevScroll >= snapItem.value) {
+            lenis.stop()
+            lenis.start()
+          }
+        },
+      })
+      snapRef.current = snap
 
-    // Track scroll position
-    lenis.on('scroll', () => {
-      prevScroll = lenis.scroll
-    })
+      // Track scroll position
+      lenis.on('scroll', () => {
+        prevScroll = lenis.scroll
+      })
+    }
 
     function raf(time: number) {
       lenis.raf(time)
@@ -79,7 +87,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     return () => {
       window.removeEventListener('resize', handleResize)
-      snap.destroy()
+      if (snap) snap.destroy()
       lenis.destroy()
       lenisRef.current = null
       snapRef.current = null

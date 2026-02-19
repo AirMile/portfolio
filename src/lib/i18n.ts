@@ -5,7 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import nl from '@/locales/nl.json'
 import en from '@/locales/en.json'
 
-export const resources = {
+const resources = {
   nl: { translation: nl },
   en: { translation: en },
 } as const

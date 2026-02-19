@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react'
+import { m, AnimatePresence } from 'motion/react'
 
 interface ImageLightboxProps {
   images: string[]
@@ -24,7 +24,7 @@ export function ImageLightbox({
   return (
     <AnimatePresence>
       {index !== null && (
-        <motion.div
+        <m.div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -55,8 +55,8 @@ export function ImageLightbox({
             </button>
           )}
 
-          <motion.img
-            key={index}
+          <m.img
+            key={images[index]}
             src={images[index]}
             alt={`${title} screenshot ${index + 1}`}
             className="max-h-[90vh] max-w-[90vw] cursor-pointer rounded-lg object-contain"
@@ -100,7 +100,7 @@ export function ImageLightbox({
               {index + 1} / {images.length}
             </div>
           )}
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

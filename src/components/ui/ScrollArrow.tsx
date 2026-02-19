@@ -26,18 +26,29 @@ export function ScrollArrow() {
   // Intro animatie die aansluit bij de hero tekst timeline
   useGSAP(() => {
     if (!svgRef.current) return
-    gsap.set(svgRef.current, { opacity: 0, y: 20 })
-    gsap.to(svgRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: 2.2,
-      ease: 'power3.out',
-      onComplete: () => {
-        gsap.set(svgRef.current!, { clearProps: 'all' })
-        setBouncing(true)
-      },
+
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.set(svgRef.current!, { opacity: 0, y: 20 })
+      gsap.to(svgRef.current!, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 2.2,
+        ease: 'power3.out',
+        onComplete: () => {
+          gsap.set(svgRef.current!, { clearProps: 'all' })
+          setBouncing(true)
+        },
+      })
     })
+
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(svgRef.current!, { opacity: 1, y: 0 })
+    })
+
+    return () => mm.revert()
   })
 
   // Cache DOM element references to avoid repeated queries during scroll

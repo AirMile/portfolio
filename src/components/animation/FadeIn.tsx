@@ -1,4 +1,4 @@
-import { motion, type Variants } from 'motion/react'
+import { m, type Variants } from 'motion/react'
 import { type ReactNode } from 'react'
 import { EASE_DEFAULT } from '@/lib/animation'
 
@@ -45,7 +45,7 @@ export function FadeIn({
   }
 
   return (
-    <motion.div
+    <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -53,6 +53,6 @@ export function FadeIn({
       variants={variants}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }

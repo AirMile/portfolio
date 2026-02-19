@@ -8,7 +8,12 @@ import {
   Navigate,
   Outlet,
 } from 'react-router-dom'
-import { AnimatePresence } from 'motion/react'
+import {
+  AnimatePresence,
+  MotionConfig,
+  LazyMotion,
+  domAnimation,
+} from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -137,17 +142,21 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <LenisProvider>
-        <div className="min-h-screen bg-neutral-950 text-white">
-          <Starfield />
-          <main className="relative z-10 min-h-screen overflow-x-hidden pt-16">
-            <Suspense fallback={<div className="min-h-screen" />}>
-              <AnimatedRoutes />
-            </Suspense>
-          </main>
-          <ScrollToTop />
-        </div>
-      </LenisProvider>
+      <MotionConfig reducedMotion="user">
+        <LazyMotion features={domAnimation}>
+          <LenisProvider>
+            <div className="min-h-screen bg-neutral-950 text-white">
+              <Starfield />
+              <main className="relative z-10 min-h-screen overflow-x-hidden pt-16">
+                <Suspense fallback={<div className="min-h-screen" />}>
+                  <AnimatedRoutes />
+                </Suspense>
+              </main>
+              <ScrollToTop />
+            </div>
+          </LenisProvider>
+        </LazyMotion>
+      </MotionConfig>
       <Analytics />
       <SpeedInsights />
     </BrowserRouter>
