@@ -1,10 +1,16 @@
-// --- State (restored from HMR data or fresh) ---
+// --- State (restored from HMR data or fresh) --- // v2: pin-mode + sibling-gap
 var inspectActive =
   (import.meta.hot &&
     import.meta.hot.data &&
     import.meta.hot.data.inspectActive) ||
   false;
 var hasDataAttrs = !!document.querySelector("[data-inspector-relative-path]");
+var pinnedElements =
+  (import.meta.hot &&
+    import.meta.hot.data &&
+    import.meta.hot.data.pinnedElements) ||
+  [];
+var MAX_PINS = 20;
 
 // --- Toggle button (bottom-right, touch-friendly) ---
 var btn = document.createElement("button");
@@ -23,7 +29,7 @@ document.body.appendChild(btn);
 var highlight = document.createElement("div");
 highlight.style.cssText =
   "position:fixed;pointer-events:none;z-index:99998;border:2px solid #4a90d9;" +
-  "display:none;transition:all 0.05s ease-out;border-radius:2px;";
+  "background:rgba(74,144,217,0.08);display:none;transition:all 0.05s ease-out;border-radius:2px;";
 document.body.appendChild(highlight);
 
 // --- Label ---
@@ -33,6 +39,23 @@ label.style.cssText =
   "font:11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;padding:2px 8px;" +
   "border-radius:3px;display:none;white-space:pre;max-width:90vw;overflow:hidden;";
 document.body.appendChild(label);
+
+// --- Pin bar (bottom bar for pin count + copy action) ---
+var pinBar = document.createElement("div");
+pinBar.style.cssText =
+  "position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1a1a2e;color:#fff;" +
+  "font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;padding:6px 16px;" +
+  "display:none;align-items:center;gap:12px;";
+var pinCountLabel = document.createElement("span");
+pinCountLabel.style.cssText = "opacity:0.8;";
+pinBar.appendChild(pinCountLabel);
+var pinCopyBtn = document.createElement("button");
+pinCopyBtn.textContent = "Copy All (Alt+C)";
+pinCopyBtn.style.cssText =
+  "background:#4a90d9;color:#fff;border:none;padding:3px 10px;border-radius:3px;" +
+  "font:11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;cursor:pointer;";
+pinBar.appendChild(pinCopyBtn);
+document.body.appendChild(pinBar);
 
 // --- Parent highlight (dashed border showing parent container) ---
 var parentHighlight = document.createElement("div");
@@ -90,6 +113,7 @@ function findInspectable(el) {
     return null;
   if (el.id === "__inspect-overlay" || el.closest("#__inspect-overlay"))
     return null;
+  if (el === pinBar || pinBar.contains(el)) return null;
   if (!hasDataAttrs) {
     hasDataAttrs = !!document.querySelector("[data-inspector-relative-path]");
   }
@@ -512,6 +536,65 @@ function showChildGaps(parentEl) {
   }
 }
 
+// --- Pin mode helpers ---
+function updatePinBar() {
+  if (pinnedElements.length === 0) {
+    pinBar.style.display = "none";
+    return;
+  }
+  pinBar.style.display = "flex";
+  pinCountLabel.textContent = pinnedElements.length + " pinned";
+}
+
+function isPinned(el) {
+  return pinnedElements.indexOf(el) !== -1;
+}
+
+function pinElement(el) {
+  if (isPinned(el) || pinnedElements.length >= MAX_PINS) return;
+  pinnedElements.push(el);
+  el.style.outline = "2px dashed #4a90d9";
+  el.style.outlineOffset = "-2px";
+  updatePinBar();
+}
+
+function unpinElement(el) {
+  var idx = pinnedElements.indexOf(el);
+  if (idx === -1) return;
+  pinnedElements.splice(idx, 1);
+  el.style.outline = "";
+  el.style.outlineOffset = "";
+  updatePinBar();
+}
+
+function clearPins() {
+  for (var i = 0; i < pinnedElements.length; i++) {
+    pinnedElements[i].style.outline = "";
+    pinnedElements[i].style.outlineOffset = "";
+  }
+  pinnedElements = [];
+  updatePinBar();
+}
+
+function copyAllPinned() {
+  if (pinnedElements.length === 0) return;
+  var items = pinnedElements.map(function (el) {
+    return buildClipboardText(el);
+  });
+  var text =
+    pinnedElements.length === 1 ? items[0] : formatMultiClipboard(items);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard
+      .writeText(text)
+      .then(function () {
+        showToast("Copied " + pinnedElements.length + " pinned");
+      })
+      .catch(function () {
+        showToast("Copy failed");
+      });
+  }
+}
+
 // --- Clipboard helpers ---
 function buildClassName(el) {
   var cn = el.className;
@@ -559,6 +642,10 @@ function onKeyDown(e) {
   if (e.altKey && (e.key === "i" || e.key === "I")) {
     e.preventDefault();
     toggleInspect();
+  }
+  if (e.altKey && (e.key === "c" || e.key === "C") && inspectActive) {
+    e.preventDefault();
+    copyAllPinned();
   }
 }
 
@@ -632,6 +719,18 @@ function onClick(e) {
   e.preventDefault();
   e.stopPropagation();
 
+  // Shift+Click: toggle pin
+  if (e.shiftKey) {
+    if (isPinned(el)) {
+      unpinElement(el);
+    } else {
+      pinElement(el);
+    }
+    return;
+  }
+
+  // Regular click: clear pins, copy single element
+  clearPins();
   var ref = buildRef(el);
   var clipText = buildClipboardText(el);
 
@@ -677,6 +776,10 @@ document.addEventListener("keydown", onKeyDown);
 document.addEventListener("mousemove", onMouseMove, true);
 document.addEventListener("click", onClick, true);
 document.addEventListener("touchend", onTouchEnd, true);
+pinCopyBtn.addEventListener("click", function (e) {
+  e.stopPropagation();
+  copyAllPinned();
+});
 
 // --- Restore visual state after HMR ---
 if (inspectActive) {
@@ -685,16 +788,35 @@ if (inspectActive) {
   btn.style.transform = "scale(1.1)";
 }
 
+// Restore pin state after HMR (filter removed elements)
+pinnedElements = pinnedElements.filter(function (el) {
+  return document.body.contains(el);
+});
+if (pinnedElements.length > 0) {
+  for (var i = 0; i < pinnedElements.length; i++) {
+    pinnedElements[i].style.outline = "2px dashed #4a90d9";
+    pinnedElements[i].style.outlineOffset = "-2px";
+  }
+  updatePinBar();
+}
+
 // --- HMR lifecycle ---
 if (import.meta.hot) {
   import.meta.hot.accept();
 
   import.meta.hot.dispose(function (data) {
     data.inspectActive = inspectActive;
+    data.pinnedElements = pinnedElements;
+    // Clear pin outlines before dispose (re-applied after HMR)
+    for (var i = 0; i < pinnedElements.length; i++) {
+      pinnedElements[i].style.outline = "";
+      pinnedElements[i].style.outlineOffset = "";
+    }
     btn.remove();
     highlight.remove();
     parentHighlight.remove();
     label.remove();
+    pinBar.remove();
     for (var i = 0; i < gapPool.length; i++) {
       gapPool[i].bar.remove();
     }
