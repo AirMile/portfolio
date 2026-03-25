@@ -32,7 +32,7 @@
       "description": "I think from the user's perspective. How does something feel, what do you expect at this moment, where do you get stuck? Critically examining and improving that is what I'm good at."
     },
     "frontend": {
-      "title": "Frontend",
+      "title": "Front-end",
       "description": "A good interface is something you feel. I build with attention to how things move, respond and feel. From layout to animation."
     },
     "ideaToProduct": {
@@ -40,8 +40,8 @@
       "description": "I take an idea and build it into something complete. Adding features, refining design, iterating until it's a product I'm proud of."
     },
     "fullstack": {
-      "title": "Full-stack",
-      "description": "I build complete web applications and keep expanding. Frontend is my foundation, but I enjoy working on APIs, databases and the rest of the stack just as much."
+      "title": "Fullstack",
+      "description": "I build complete web applications and keep expanding. Front-end is my foundation, but I enjoy working on APIs, databases and the rest of the stack just as much."
     }
   },
   "contact": {
@@ -99,7 +99,7 @@
       "description": "An interactive group game that guides players through nature areas with photo bingo and quiz questions.",
       "metaDescription": "NatuurMoment - An interactive nature game with photo bingo and quiz questions. Laravel/Livewire team project by Miles Zeilstra.",
       "context": "Group project for an interactive nature game. Players complete bingo challenges by taking photos and answer multiple-choice questions about the location, while competing for the highest score.",
-      "role": "Full-stack development with a focus on backend in a team of 5. Responsible for the style guide, wireframes and concept development. Built the complete admin panel, organizer dashboard and core features.",
+      "role": "Fullstack development with a focus on backend in a team of 5. Responsible for the style guide, wireframes and concept development. Built the complete admin panel, organizer dashboard and core features.",
       "process": [
         "Concept development and style guide/wireframes design in Figma",
         "Role-based system: player, organizer and admin",
@@ -108,6 +108,37 @@
         "Admin panel with content management and statistics (ratings, age distribution, trends)"
       ],
       "result": "A fully functional game that ran live with real users. The statistics dashboard showed engagement metrics such as average ratings per location and age distribution."
+    },
+    "sonarpoppy": {
+      "description": "A music recommendation API that generates personalized track suggestions using a hybrid scoring algorithm.",
+      "metaDescription": "SonarPoppy - A hybrid music recommendation engine with genre vectors, collaborative filtering and personalized scoring. Built by Miles Zeilstra.",
+      "context": "School project where I designed my own recommendation algorithm. The API serves two apps (SonarPop & Poppy) with personalized music recommendations based on three pillars: genre vectors, collaborative filtering and user feedback.",
+      "role": "Solo developer responsible for algorithm design, API architecture and the complete backend. Designed the hybrid scoring system, built all endpoints and wrote 70+ tests.",
+      "process": [
+        "Designed a 20-dimensional genre vector system with cosine similarity scoring",
+        "Built collaborative filtering using Last.fm track and artist similarity data",
+        "Created a 5-position dial system that controls recommendation adventurousness (bubble filter)",
+        "Implemented dual authentication: API keys for apps, JWT tokens for users",
+        "User feedback loop: likes, dislikes and play history influence future recommendations",
+        "Integrated Spotify and Deezer APIs for track metadata and audio previews",
+        "Wrote 70+ unit and integration tests with mongodb-memory-server"
+      ],
+      "result": "A fully functional recommendation engine that learns from user behavior. The hybrid scoring algorithm combines genre similarity with collaborative filtering, producing personalized results that improve over time."
+    },
+    "claude-config": {
+      "description": "A modular framework of 50+ skills and 20+ agents that automate development workflows through AI.",
+      "metaDescription": "Claude Config - An AI workflow automation framework with 50+ skills and 20+ specialized agents. Built by Miles Zeilstra.",
+      "context": "Personal project built over several months to streamline my development workflow. Instead of repeating the same prompts and processes, I created a modular system of reusable skills and specialized agents that handle everything from security audits to front-end iteration.",
+      "role": "Solo developer responsible for system architecture, prompt engineering and all skill/agent implementations. Designed the modular structure and cross-platform compatibility.",
+      "process": [
+        "Designed a modular skill architecture with shared modules and consistent conventions",
+        "Built 50+ skills across domains: development, front-end, game dev, security, project management",
+        "Created 20+ specialized agents including OWASP security scanners and code researchers",
+        "Built an interactive backlog dashboard with sorting, filtering and GitHub integration",
+        "Developed a visual front-end iteration tool using Playwright for screenshot-driven development",
+        "Ensured cross-platform support (Linux VPS and Windows local dev)"
+      ],
+      "result": "A framework I use daily across all my projects. From OWASP security scans to front-end iteration with live screenshots — it has fundamentally changed how I work as a developer."
     }
   }
 }

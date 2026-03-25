@@ -32,7 +32,7 @@
       "description": "Ik denk vanuit de gebruiker. Hoe voelt iets aan, wat verwacht je op dit moment, waar loop je vast? Dat kritisch bekijken en verbeteren is waar ik goed in ben."
     },
     "frontend": {
-      "title": "Frontend",
+      "title": "Front-end",
       "description": "Een goede interface voel je. Ik bouw met aandacht voor hoe iets beweegt, reageert en aanvoelt. Van layout tot animatie."
     },
     "ideaToProduct": {
@@ -40,8 +40,8 @@
       "description": "Ik neem een idee en bouw het uit tot iets compleets. Features toevoegen, design aanscherpen, itereren tot het een product is waar ik trots op ben."
     },
     "fullstack": {
-      "title": "Full-stack",
-      "description": "Ik bouw complete web applicaties en word steeds breder. Frontend is mijn basis, maar ik werk net zo graag aan API's, databases en de rest van de stack."
+      "title": "Fullstack",
+      "description": "Ik bouw complete web applicaties en word steeds breder. Front-end is mijn basis, maar ik werk net zo graag aan API's, databases en de rest van de stack."
     }
   },
   "contact": {
@@ -99,7 +99,7 @@
       "description": "Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.",
       "metaDescription": "NatuurMoment - Een interactieve natuurgame met foto-bingo en quizvragen. Laravel/Livewire teamproject door Miles Zeilstra.",
       "context": "Groepsproject voor een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
-      "role": "Full-stack development met focus op backend in een team van 5. Verantwoordelijk voor de styleguide, wireframes en conceptuitwerking. Bouwde het complete admin panel, organisator dashboard en kernfunctionaliteiten.",
+      "role": "Fullstack development met focus op backend in een team van 5. Verantwoordelijk voor de styleguide, wireframes en conceptuitwerking. Bouwde het complete admin panel, organisator dashboard en kernfunctionaliteiten.",
       "process": [
         "Concept uitwerking en styleguide/wireframes ontwerpen in Figma",
         "Role-based systeem: speler, organisator en admin",
@@ -108,6 +108,37 @@
         "Admin panel met content beheer en statistieken (ratings, leeftijdsverdeling, trends)"
       ],
       "result": "Een volledig werkende game die live heeft gedraaid met echte gebruikers. Het statistieken dashboard toonde engagement metrics zoals gemiddelde ratings per locatie en leeftijdsverdeling."
+    },
+    "sonarpoppy": {
+      "description": "Een muziek-aanbevelings API die gepersonaliseerde track suggesties genereert met een hybride scoring algoritme.",
+      "metaDescription": "SonarPoppy - Een hybride muziek-aanbevelingsengine met genre vectors, collaborative filtering en gepersonaliseerde scoring. Gebouwd door Miles Zeilstra.",
+      "context": "Schoolproject waarbij ik mijn eigen aanbevelingsalgoritme heb ontworpen. De API bedient twee apps (SonarPop & Poppy) met gepersonaliseerde muziekaanbevelingen op basis van drie pijlers: genre vectors, collaborative filtering en user feedback.",
+      "role": "Solo developer verantwoordelijk voor algoritme-ontwerp, API-architectuur en de complete backend. Ontwierp het hybride scoring systeem, bouwde alle endpoints en schreef 70+ tests.",
+      "process": [
+        "20-dimensionaal genre vector systeem ontworpen met cosine similarity scoring",
+        "Collaborative filtering gebouwd met Last.fm track- en artiest-similaritydata",
+        "5-standen dial systeem dat de avontuurlijkheid van aanbevelingen regelt (bubbel-filter)",
+        "Dual authenticatie: API keys voor apps, JWT tokens voor gebruikers",
+        "User feedback loop: likes, dislikes en luistergeschiedenis beïnvloeden toekomstige aanbevelingen",
+        "Spotify en Deezer API's geïntegreerd voor track metadata en audio previews",
+        "70+ unit- en integratietests geschreven met mongodb-memory-server"
+      ],
+      "result": "Een volledig werkende aanbevelingsengine die leert van gebruikersgedrag. Het hybride scoring algoritme combineert genre-similarity met collaborative filtering en produceert gepersonaliseerde resultaten die over tijd verbeteren."
+    },
+    "claude-config": {
+      "description": "Een modulair framework van 50+ skills en 20+ agents dat development workflows automatiseert via AI.",
+      "metaDescription": "Claude Config - Een AI workflow automation framework met 50+ skills en 20+ gespecialiseerde agents. Gebouwd door Miles Zeilstra.",
+      "context": "Personal project dat over meerdere maanden is opgebouwd om mijn development workflow te stroomlijnen. In plaats van steeds dezelfde prompts en processen te herhalen, heb ik een modulair systeem gebouwd van herbruikbare skills en gespecialiseerde agents die alles afhandelen van security audits tot front-end iteratie.",
+      "role": "Solo developer verantwoordelijk voor systeemarchitectuur, prompt engineering en alle skill/agent implementaties. Ontwierp de modulaire structuur en cross-platform compatibiliteit.",
+      "process": [
+        "Modulaire skill-architectuur ontworpen met shared modules en consistente conventies",
+        "50+ skills gebouwd over meerdere domeinen: development, front-end, game dev, security, projectmanagement",
+        "20+ gespecialiseerde agents gemaakt waaronder OWASP security scanners en code researchers",
+        "Interactief backlog dashboard gebouwd met sorteer-, filter- en GitHub-integratie",
+        "Visuele front-end iteratie tool ontwikkeld met Playwright voor screenshot-driven development",
+        "Cross-platform support voor Linux VPS en Windows lokale development"
+      ],
+      "result": "Een framework dat ik dagelijks gebruik in al mijn projecten. Van OWASP security scans tot front-end iteratie met live screenshots — het heeft fundamenteel veranderd hoe ik werk als developer."
     }
   }
 }
