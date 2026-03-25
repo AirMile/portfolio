@@ -18,7 +18,7 @@
     "profileAlt": "Profile photo",
     "paragraph1": "I'm Miles, a second-year CMGT student at Rotterdam University of Applied Sciences. What drives me is the creative freedom that development offers, coming up with an idea and bringing it to life myself.",
     "paragraph2": "From web applications to games in Godot: I'm always building, even outside of school. I learn best by making things.",
-    "paragraph3": "I'm looking for an internship where I can grow among driven developers who take their craft seriously and are open to new tools like AI."
+    "paragraph3": "I'm looking for an internship with a team that delivers quality, learns from each other and isn't afraid to use new tools like AI."
   },
   "projects": {
     "heading": "Projects",
@@ -32,21 +32,21 @@
       "description": "I think from the user's perspective. How does something feel, what do you expect at this moment, where do you get stuck? Critically examining and improving that is what I'm good at."
     },
     "frontend": {
-      "title": "Front-end",
+      "title": "Frontend",
       "description": "A good interface is something you feel. I build with attention to how things move, respond and feel. From layout to animation."
     },
     "ideaToProduct": {
-      "title": "From idea to product",
-      "description": "I take an idea and build it into something complete. Adding features, refining design, iterating until it's a product I'm proud of."
+      "title": "From concept to product",
+      "description": "I start with the fundamentals: what problem does it solve and for whom? Wireframes, user flows and a clear concept before writing code. Then iterating with an eye for detail. I strive for perfection in every part."
     },
     "fullstack": {
       "title": "Fullstack",
-      "description": "I build complete web applications and keep expanding. Front-end is my foundation, but I enjoy working on APIs, databases and the rest of the stack just as much."
+      "description": "I build complete web applications from frontend to backend. From React interfaces to Node.js APIs and databases. I feel at home on both sides."
     }
   },
   "contact": {
-    "heading": "Let's work together",
-    "description": "Have a project in mind? I'd love to hear from you.",
+    "heading": "Get in touch",
+    "description": "Interested in my work or looking for a motivated intern? Let me know.",
     "form": {
       "name": "Name",
       "email": "Email",
@@ -112,8 +112,8 @@
     "sonarpoppy": {
       "description": "A music recommendation API that generates personalized track suggestions using a hybrid scoring algorithm.",
       "metaDescription": "SonarPoppy - A hybrid music recommendation engine with genre vectors, collaborative filtering and personalized scoring. Built by Miles Zeilstra.",
-      "context": "School project where I designed my own recommendation algorithm. The API serves two apps (SonarPop & Poppy) with personalized music recommendations based on three pillars: genre vectors, collaborative filtering and user feedback.",
-      "role": "Solo developer responsible for algorithm design, API architecture and the complete backend. Designed the hybrid scoring system, built all endpoints and wrote 70+ tests.",
+      "context": "Team project for a music recommendation API that serves two apps (SonarPop & Poppy) with personalized suggestions. The system combines three pillars: genre vectors, collaborative filtering and user feedback.",
+      "role": "Responsible for the entire recommendation algorithm: the hybrid scoring system, genre vector matching, collaborative filtering and the feedback loop. Also built the API architecture with extensive endpoints for the frontend: filters, sorting options, an onboarding flow and genre sliders for personalization. Wrote 70+ tests.",
       "process": [
         "Designed a 20-dimensional genre vector system with cosine similarity scoring",
         "Built collaborative filtering using Last.fm track and artist similarity data",
@@ -128,17 +128,17 @@
     "claude-config": {
       "description": "A modular framework of 50+ skills and 20+ agents that automate development workflows through AI.",
       "metaDescription": "Claude Config - An AI workflow automation framework with 50+ skills and 20+ specialized agents. Built by Miles Zeilstra.",
-      "context": "Personal project built over several months to streamline my development workflow. Instead of repeating the same prompts and processes, I created a modular system of reusable skills and specialized agents that handle everything from security audits to front-end iteration.",
-      "role": "Solo developer responsible for system architecture, prompt engineering and all skill/agent implementations. Designed the modular structure and cross-platform compatibility.",
+      "context": "Personal project built over several months to streamline my development workflow. The core consists of two pipelines: a dev pipeline (define → build → test) that takes features from requirements to working code, and a frontend pipeline with a custom visual inspect tool that lets you click elements in the browser and edit them directly through AI.",
+      "role": "Solo developer responsible for the full setup: how skills, agents and pipelines work together, the prompt engineering behind each skill, and all implementations including the visual tooling.",
       "process": [
-        "Designed a modular skill architecture with shared modules and consistent conventions",
-        "Built 50+ skills across domains: development, front-end, game dev, security, project management",
+        "Built a dev pipeline: define (requirements gathering) → build (TDD or implementation-first per requirement) → test (hybrid verification with fix loops)",
+        "Developed a frontend iterate tool: a browser overlay that inspects elements (file location, classes, computed styles) and sends them via clipboard to AI for targeted edits with live HMR",
+        "Built an interactive backlog dashboard with kanban board, sorting/filtering and GitHub integration",
         "Created 20+ specialized agents including OWASP security scanners and code researchers",
-        "Built an interactive backlog dashboard with sorting, filtering and GitHub integration",
-        "Developed a visual front-end iteration tool using Playwright for screenshot-driven development",
-        "Ensured cross-platform support (Linux VPS and Windows local dev)"
+        "Built 50+ reusable skills across domains: development, frontend, game dev, security",
+        "Cross-platform support for Linux VPS and Windows local development"
       ],
-      "result": "A framework I use daily across all my projects. From OWASP security scans to front-end iteration with live screenshots — it has fundamentally changed how I work as a developer."
+      "result": "A framework I use daily across all my projects. The dev pipeline has taken dozens of features from requirements to production, and the frontend tool enables visual iteration without having to manually search for code. On top of that there are thinking skills for brainstorming, decision-making and analysis, debug skills, security scanners and more, together a complete toolkit for the entire development process."
     }
   }
 }

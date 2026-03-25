@@ -19,6 +19,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { LenisProvider, useLenis } from '@/components/providers/LenisProvider'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { Starfield, triggerWarp } from '@/components/background'
 import { PageTransition } from '@/components/animation/PageTransition'
 import { LanguageRedirect } from '@/components/routing/LanguageRedirect'
@@ -153,6 +154,7 @@ function App() {
                 </Suspense>
               </main>
               <ScrollToTop />
+              <LanguageSwitcher />
             </div>
           </LenisProvider>
         </LazyMotion>

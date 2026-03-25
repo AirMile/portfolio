@@ -18,7 +18,7 @@
     "profileAlt": "Profielfoto",
     "paragraph1": "Ik ben Miles, tweedejaars CMGT-student aan Hogeschool Rotterdam. Wat mij drijft is de creatieve vrijheid die development biedt, een idee bedenken en het zelf tot leven brengen.",
     "paragraph2": "Van webapplicaties tot games in Godot: ook buiten school ben ik aan het bouwen. Ik leer het liefst door te maken.",
-    "paragraph3": "Ik zoek een stage waar ik kan groeien tussen gedreven developers die hun vak serieus nemen en openstaan voor nieuwe tools zoals AI."
+    "paragraph3": "Ik zoek een stage bij een team dat kwaliteit levert, van elkaar leert en niet bang is om nieuwe tools zoals AI in te zetten."
   },
   "projects": {
     "heading": "Projecten",
@@ -32,21 +32,21 @@
       "description": "Ik denk vanuit de gebruiker. Hoe voelt iets aan, wat verwacht je op dit moment, waar loop je vast? Dat kritisch bekijken en verbeteren is waar ik goed in ben."
     },
     "frontend": {
-      "title": "Front-end",
+      "title": "Frontend",
       "description": "Een goede interface voel je. Ik bouw met aandacht voor hoe iets beweegt, reageert en aanvoelt. Van layout tot animatie."
     },
     "ideaToProduct": {
-      "title": "Van idee tot product",
-      "description": "Ik neem een idee en bouw het uit tot iets compleets. Features toevoegen, design aanscherpen, itereren tot het een product is waar ik trots op ben."
+      "title": "Van concept tot product",
+      "description": "Ik begin bij de basis: wat moet het oplossen en voor wie? Wireframes, user flows en een helder concept voordat ik code schrijf. Daarna itereren met oog voor detail, want ik streef naar perfectie in elk onderdeel."
     },
     "fullstack": {
       "title": "Fullstack",
-      "description": "Ik bouw complete web applicaties en word steeds breder. Front-end is mijn basis, maar ik werk net zo graag aan API's, databases en de rest van de stack."
+      "description": "Ik bouw complete web applicaties van frontend tot backend. Van React interfaces tot Node.js API's en databases. Ik voel me thuis in beide kanten."
     }
   },
   "contact": {
-    "heading": "Laten we samenwerken",
-    "description": "Heb je een project in gedachten? Ik hoor graag van je.",
+    "heading": "Neem contact op",
+    "description": "Interesse in mijn werk of op zoek naar een gemotiveerde stagiair? Laat het me weten.",
     "form": {
       "name": "Naam",
       "email": "Email",
@@ -112,8 +112,8 @@
     "sonarpoppy": {
       "description": "Een muziek-aanbevelings API die gepersonaliseerde track suggesties genereert met een hybride scoring algoritme.",
       "metaDescription": "SonarPoppy - Een hybride muziek-aanbevelingsengine met genre vectors, collaborative filtering en gepersonaliseerde scoring. Gebouwd door Miles Zeilstra.",
-      "context": "Schoolproject waarbij ik mijn eigen aanbevelingsalgoritme heb ontworpen. De API bedient twee apps (SonarPop & Poppy) met gepersonaliseerde muziekaanbevelingen op basis van drie pijlers: genre vectors, collaborative filtering en user feedback.",
-      "role": "Solo developer verantwoordelijk voor algoritme-ontwerp, API-architectuur en de complete backend. Ontwierp het hybride scoring systeem, bouwde alle endpoints en schreef 70+ tests.",
+      "context": "Teamproject voor een muziek-aanbevelings API die twee apps (SonarPop & Poppy) voedt met gepersonaliseerde suggesties. Het systeem combineert drie pijlers: genre vectors, collaborative filtering en user feedback.",
+      "role": "Verantwoordelijk voor het volledige aanbevelingsalgoritme: het hybride scoring systeem, genre vector matching, collaborative filtering en de feedback loop. Daarnaast de API-architectuur met uitgebreide endpoints voor de frontend: filters, sorteeropties, een onboarding flow en genre sliders voor personalisatie. 70+ tests geschreven.",
       "process": [
         "20-dimensionaal genre vector systeem ontworpen met cosine similarity scoring",
         "Collaborative filtering gebouwd met Last.fm track- en artiest-similaritydata",
@@ -128,17 +128,17 @@
     "claude-config": {
       "description": "Een modulair framework van 50+ skills en 20+ agents dat development workflows automatiseert via AI.",
       "metaDescription": "Claude Config - Een AI workflow automation framework met 50+ skills en 20+ gespecialiseerde agents. Gebouwd door Miles Zeilstra.",
-      "context": "Personal project dat over meerdere maanden is opgebouwd om mijn development workflow te stroomlijnen. In plaats van steeds dezelfde prompts en processen te herhalen, heb ik een modulair systeem gebouwd van herbruikbare skills en gespecialiseerde agents die alles afhandelen van security audits tot front-end iteratie.",
-      "role": "Solo developer verantwoordelijk voor systeemarchitectuur, prompt engineering en alle skill/agent implementaties. Ontwierp de modulaire structuur en cross-platform compatibiliteit.",
+      "context": "Persoonlijk project dat over meerdere maanden is opgebouwd om mijn development workflow te stroomlijnen. De kern bestaat uit twee pipelines: een dev pipeline (define → build → test) die features gestructureerd van requirements tot werkende code brengt, en een frontend pipeline met een zelfgebouwde visuele inspect tool waarmee je elementen in de browser aanklikt en direct kunt bewerken via AI.",
+      "role": "Solo developer verantwoordelijk voor de volledige opzet: hoe skills, agents en pipelines samenwerken, de prompt engineering achter elke skill, en alle implementaties inclusief de visuele tooling.",
       "process": [
-        "Modulaire skill-architectuur ontworpen met shared modules en consistente conventies",
-        "50+ skills gebouwd over meerdere domeinen: development, front-end, game dev, security, projectmanagement",
+        "Dev pipeline gebouwd: define (requirements gathering) → build (TDD of implementation-first per requirement) → test (hybrid verificatie met fix loops)",
+        "Frontend iterate tool ontwikkeld: een browser overlay die elementen inspecteert (bestandslocatie, classes, computed styles) en via clipboard naar AI stuurt voor targeted edits met live HMR",
+        "Interactief backlog dashboard gebouwd met kanban board, sorteer-/filteropties en GitHub-integratie",
         "20+ gespecialiseerde agents gemaakt waaronder OWASP security scanners en code researchers",
-        "Interactief backlog dashboard gebouwd met sorteer-, filter- en GitHub-integratie",
-        "Visuele front-end iteratie tool ontwikkeld met Playwright voor screenshot-driven development",
+        "50+ herbruikbare skills over meerdere domeinen: development, frontend, game dev, security",
         "Cross-platform support voor Linux VPS en Windows lokale development"
       ],
-      "result": "Een framework dat ik dagelijks gebruik in al mijn projecten. Van OWASP security scans tot front-end iteratie met live screenshots — het heeft fundamenteel veranderd hoe ik werk als developer."
+      "result": "Een framework dat ik dagelijks gebruik in al mijn projecten. De dev pipeline heeft tientallen features van requirements tot productie gebracht, en de frontend tool maakt visuele iteratie mogelijk zonder handmatig code te hoeven zoeken. Daarnaast zijn er thinking skills voor brainstormen, besluitvorming en analyse, debug skills, security scanners en meer, samen een compleet pakket voor het hele development proces."
     }
   }
 }
