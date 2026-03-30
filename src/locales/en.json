@@ -16,9 +16,9 @@
   "about": {
     "heading": "About me",
     "profileAlt": "Profile photo",
-    "paragraph1": "I'm Miles, a second-year CMGT student at Rotterdam University of Applied Sciences. What drives me is the creative freedom that development offers, coming up with an idea and bringing it to life myself.",
+    "paragraph1": "I'm Miles, a second-year CMGT student at Rotterdam University of Applied Sciences. What excites me about development is the creative freedom: coming up with an idea and bringing it to life myself.",
     "paragraph2": "From web applications to games in Godot: I'm always building, even outside of school. I learn best by making things.",
-    "paragraph3": "I'm looking for an internship with a team that delivers quality, learns from each other and isn't afraid to use new tools like AI."
+    "paragraph3": "Outside of my projects I'm always trying to improve. I read books, follow communities about development, design and AI, and apply that knowledge to how I work."
   },
   "projects": {
     "heading": "Projects",
@@ -41,7 +41,7 @@
     },
     "fullstack": {
       "title": "Fullstack",
-      "description": "I build complete web applications from frontend to backend. From React interfaces to Node.js APIs and databases. I feel at home on both sides."
+      "description": "I build complete web applications from frontend to backend. From React interfaces to Node.js APIs and databases. I feel just as at home in the frontend as in the backend."
     }
   },
   "contact": {
@@ -83,8 +83,8 @@
     "getcooked": {
       "description": "A recipe platform where users can browse, add and search recipes. Built with Laravel.",
       "metaDescription": "GetCooked - A Laravel recipe platform with search, filtering and user accounts. Built by Miles Zeilstra.",
-      "context": "Solo school project where I had to build a complete recipe website. Users can upload private recipes or submit them for public review. Verified users can post publicly directly. An admin panel manages submissions and user permissions.",
-      "role": "Full development from concept to working product. This was my first major Laravel project.",
+      "context": "I independently built a complete recipe platform as a school project. Users can upload private recipes or submit them for public review. Verified users can post publicly directly. An admin panel manages submissions and user permissions.",
+      "role": "Full development from concept to working product. This was my first major Laravel project, where I focused on setting up a complete MVC architecture.",
       "process": [
         "ERD design and user stories",
         "Role-based authentication with admin panel",
@@ -98,7 +98,7 @@
     "natuurmoment": {
       "description": "An interactive group game that guides players through nature areas with photo bingo and quiz questions.",
       "metaDescription": "NatuurMoment - An interactive nature game with photo bingo and quiz questions. Laravel/Livewire team project by Miles Zeilstra.",
-      "context": "Group project for an interactive nature game. Players complete bingo challenges by taking photos and answer multiple-choice questions about the location, while competing for the highest score.",
+      "context": "Together with a team I developed an interactive nature game. Players complete bingo challenges by taking photos and answer multiple-choice questions about the location, while competing for the highest score.",
       "role": "Fullstack development with a focus on backend in a team of 5. Responsible for the style guide, wireframes and concept development. Built the complete admin panel, organizer dashboard and core features.",
       "process": [
         "Concept development and style guide/wireframes design in Figma",
@@ -112,7 +112,7 @@
     "sonarpoppy": {
       "description": "A music recommendation API that generates personalized track suggestions using a hybrid scoring algorithm.",
       "metaDescription": "SonarPoppy - A hybrid music recommendation engine with genre vectors, collaborative filtering and personalized scoring. Built by Miles Zeilstra.",
-      "context": "Team project for a music recommendation API that serves two apps (SonarPop & Poppy) with personalized suggestions. The system combines three pillars: genre vectors, collaborative filtering and user feedback.",
+      "context": "In a team I built a music recommendation API that serves two apps (SonarPop & Poppy) with personalized suggestions. The system combines three pillars: genre vectors, collaborative filtering and user feedback.",
       "role": "Responsible for the entire recommendation algorithm: the hybrid scoring system, genre vector matching, collaborative filtering and the feedback loop. Also built the API architecture with extensive endpoints for the frontend: filters, sorting options, an onboarding flow and genre sliders for personalization. Wrote 70+ tests.",
       "process": [
         "Designed a 20-dimensional genre vector system with cosine similarity scoring",
@@ -128,7 +128,7 @@
     "claude-config": {
       "description": "A modular framework of 50+ skills and 20+ agents that automate development workflows through AI.",
       "metaDescription": "Claude Config - An AI workflow automation framework with 50+ skills and 20+ specialized agents. Built by Miles Zeilstra.",
-      "context": "Personal project built over several months to streamline my development workflow. The core consists of two pipelines: a dev pipeline (define → build → test) that takes features from requirements to working code, and a frontend pipeline with a custom visual inspect tool that lets you click elements in the browser and edit them directly through AI.",
+      "context": "I built this framework over several months to streamline my own development workflow. The core consists of two pipelines: a dev pipeline (define → build → test) that takes features from requirements to working code, and a frontend pipeline with a custom visual inspect tool that lets you click elements in the browser and edit them directly through AI.",
       "role": "Solo developer responsible for the full setup: how skills, agents and pipelines work together, the prompt engineering behind each skill, and all implementations including the visual tooling.",
       "process": [
         "Built a dev pipeline: define (requirements gathering) → build (TDD or implementation-first per requirement) → test (hybrid verification with fix loops)",

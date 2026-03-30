@@ -16,9 +16,9 @@
   "about": {
     "heading": "Over mij",
     "profileAlt": "Profielfoto",
-    "paragraph1": "Ik ben Miles, tweedejaars CMGT-student aan Hogeschool Rotterdam. Wat mij drijft is de creatieve vrijheid die development biedt, een idee bedenken en het zelf tot leven brengen.",
+    "paragraph1": "Ik ben Miles, tweedejaars CMGT-student aan Hogeschool Rotterdam. Wat mij enthousiast maakt aan development is de creatieve vrijheid: een idee bedenken en het zelf tot leven brengen.",
     "paragraph2": "Van webapplicaties tot games in Godot: ook buiten school ben ik aan het bouwen. Ik leer het liefst door te maken.",
-    "paragraph3": "Ik zoek een stage bij een team dat kwaliteit levert, van elkaar leert en niet bang is om nieuwe tools zoals AI in te zetten."
+    "paragraph3": "Buiten mijn projecten probeer ik mezelf continu te verbeteren. Ik lees boeken, volg communities over development, design en AI, en pas die kennis toe in hoe ik werk."
   },
   "projects": {
     "heading": "Projecten",
@@ -41,7 +41,7 @@
     },
     "fullstack": {
       "title": "Fullstack",
-      "description": "Ik bouw complete web applicaties van frontend tot backend. Van React interfaces tot Node.js API's en databases. Ik voel me thuis in beide kanten."
+      "description": "Ik bouw complete webapplicaties van frontend tot backend. Van React interfaces tot Node.js API's en databases. Ik voel me net zo thuis in de frontend als in de backend."
     }
   },
   "contact": {
@@ -83,8 +83,8 @@
     "getcooked": {
       "description": "Een recepten platform waar gebruikers recepten kunnen bekijken, toevoegen en zoeken. Gebouwd met Laravel.",
       "metaDescription": "GetCooked - Een Laravel recepten platform met zoeken, filteren en gebruikersaccounts. Gebouwd door Miles Zeilstra.",
-      "context": "Solo schoolopdracht waarbij ik een complete recepten website moest bouwen. Gebruikers kunnen private recepten uploaden of submitten voor public review. Verified users kunnen direct public posten. Een admin panel beheert submissions en gebruikersrechten.",
-      "role": "Volledige ontwikkeling van concept tot werkend product. Dit was mijn eerste grote Laravel project.",
+      "context": "Ik bouwde zelfstandig een compleet receptenplatform als schoolopdracht. Gebruikers kunnen private recepten uploaden of submitten voor public review. Verified users kunnen direct public posten. Een admin panel beheert submissions en gebruikersrechten.",
+      "role": "Volledige ontwikkeling van concept tot werkend product. Dit was mijn eerste grote Laravel-project, waarbij ik me focuste op het opzetten van een volledige MVC-architectuur.",
       "process": [
         "ERD ontwerp en user stories uitwerken",
         "Role-based authentication met admin panel",
@@ -98,7 +98,7 @@
     "natuurmoment": {
       "description": "Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.",
       "metaDescription": "NatuurMoment - Een interactieve natuurgame met foto-bingo en quizvragen. Laravel/Livewire teamproject door Miles Zeilstra.",
-      "context": "Groepsproject voor een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
+      "context": "Met een team ontwikkelde ik een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
       "role": "Fullstack development met focus op backend in een team van 5. Verantwoordelijk voor de styleguide, wireframes en conceptuitwerking. Bouwde het complete admin panel, organisator dashboard en kernfunctionaliteiten.",
       "process": [
         "Concept uitwerking en styleguide/wireframes ontwerpen in Figma",
@@ -112,7 +112,7 @@
     "sonarpoppy": {
       "description": "Een muziek-aanbevelings API die gepersonaliseerde track suggesties genereert met een hybride scoring algoritme.",
       "metaDescription": "SonarPoppy - Een hybride muziek-aanbevelingsengine met genre vectors, collaborative filtering en gepersonaliseerde scoring. Gebouwd door Miles Zeilstra.",
-      "context": "Teamproject voor een muziek-aanbevelings API die twee apps (SonarPop & Poppy) voedt met gepersonaliseerde suggesties. Het systeem combineert drie pijlers: genre vectors, collaborative filtering en user feedback.",
+      "context": "In een team bouwde ik een muziek-aanbevelings API die twee apps (SonarPop & Poppy) voedt met gepersonaliseerde suggesties. Het systeem combineert drie pijlers: genre vectors, collaborative filtering en user feedback.",
       "role": "Verantwoordelijk voor het volledige aanbevelingsalgoritme: het hybride scoring systeem, genre vector matching, collaborative filtering en de feedback loop. Daarnaast de API-architectuur met uitgebreide endpoints voor de frontend: filters, sorteeropties, een onboarding flow en genre sliders voor personalisatie. 70+ tests geschreven.",
       "process": [
         "20-dimensionaal genre vector systeem ontworpen met cosine similarity scoring",
@@ -128,7 +128,7 @@
     "claude-config": {
       "description": "Een modulair framework van 50+ skills en 20+ agents dat development workflows automatiseert via AI.",
       "metaDescription": "Claude Config - Een AI workflow automation framework met 50+ skills en 20+ gespecialiseerde agents. Gebouwd door Miles Zeilstra.",
-      "context": "Persoonlijk project dat over meerdere maanden is opgebouwd om mijn development workflow te stroomlijnen. De kern bestaat uit twee pipelines: een dev pipeline (define → build → test) die features gestructureerd van requirements tot werkende code brengt, en een frontend pipeline met een zelfgebouwde visuele inspect tool waarmee je elementen in de browser aanklikt en direct kunt bewerken via AI.",
+      "context": "Ik bouwde dit framework over meerdere maanden om mijn eigen development workflow te stroomlijnen. De kern bestaat uit twee pipelines: een dev pipeline (define → build → test) die features gestructureerd van requirements tot werkende code brengt, en een frontend pipeline met een zelfgebouwde visuele inspect tool waarmee je elementen in de browser aanklikt en direct kunt bewerken via AI.",
       "role": "Solo developer verantwoordelijk voor de volledige opzet: hoe skills, agents en pipelines samenwerken, de prompt engineering achter elke skill, en alle implementaties inclusief de visuele tooling.",
       "process": [
         "Dev pipeline gebouwd: define (requirements gathering) → build (TDD of implementation-first per requirement) → test (hybrid verificatie met fix loops)",
