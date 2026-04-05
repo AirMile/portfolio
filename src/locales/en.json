@@ -139,21 +139,6 @@
         "Wrote 70+ unit and integration tests with mongodb-memory-server"
       ],
       "result": "A fully functional recommendation engine that learns from user behavior. The hybrid scoring algorithm combines genre similarity with collaborative filtering, producing personalized results that improve over time."
-    },
-    "claude-config": {
-      "description": "A modular framework of 50+ skills and 20+ agents that automate development workflows through AI.",
-      "metaDescription": "Claude Config - An AI workflow automation framework with 50+ skills and 20+ specialized agents. Built by Miles Zeilstra.",
-      "context": "I built this framework over several months to streamline my own development workflow. The core consists of two pipelines: a dev pipeline (define → build → test) that takes features from requirements to working code, and a frontend pipeline with a custom visual inspect tool that lets you click elements in the browser and edit them directly through AI.",
-      "role": "Solo developer responsible for the full setup: how skills, agents and pipelines work together, the prompt engineering behind each skill, and all implementations including the visual tooling.",
-      "process": [
-        "Built a dev pipeline: define (requirements gathering) → build (TDD or implementation-first per requirement) → test (hybrid verification with fix loops)",
-        "Developed a frontend iterate tool: a browser overlay that inspects elements (file location, classes, computed styles) and sends them via clipboard to AI for targeted edits with live HMR",
-        "Built an interactive backlog dashboard with kanban board, sorting/filtering and GitHub integration",
-        "Created 20+ specialized agents including OWASP security scanners and code researchers",
-        "Built 50+ reusable skills across domains: development, frontend, game dev, security",
-        "Cross-platform support for Linux VPS and Windows local development"
-      ],
-      "result": "A framework I use daily across all my projects. The dev pipeline has taken dozens of features from requirements to production, and the frontend tool enables visual iteration without having to manually search for code. On top of that there are thinking skills for brainstorming, decision-making and analysis, debug skills, security scanners and more, together a complete toolkit for the entire development process."
     }
   }
 }

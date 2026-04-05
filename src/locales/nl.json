@@ -139,21 +139,6 @@
         "70+ unit- en integratietests geschreven met mongodb-memory-server"
       ],
       "result": "Een volledig werkende aanbevelingsengine die leert van gebruikersgedrag. Het hybride scoring algoritme combineert genre-similarity met collaborative filtering en produceert gepersonaliseerde resultaten die over tijd verbeteren."
-    },
-    "claude-config": {
-      "description": "Een modulair framework van 50+ skills en 20+ agents dat development workflows automatiseert via AI.",
-      "metaDescription": "Claude Config - Een AI workflow automation framework met 50+ skills en 20+ gespecialiseerde agents. Gebouwd door Miles Zeilstra.",
-      "context": "Ik bouwde dit framework over meerdere maanden om mijn eigen development workflow te stroomlijnen. De kern bestaat uit twee pipelines: een dev pipeline (define → build → test) die features gestructureerd van requirements tot werkende code brengt, en een frontend pipeline met een zelfgebouwde visuele inspect tool waarmee je elementen in de browser aanklikt en direct kunt bewerken via AI.",
-      "role": "Solo developer verantwoordelijk voor de volledige opzet: hoe skills, agents en pipelines samenwerken, de prompt engineering achter elke skill, en alle implementaties inclusief de visuele tooling.",
-      "process": [
-        "Dev pipeline gebouwd: define (requirements gathering) → build (TDD of implementation-first per requirement) → test (hybrid verificatie met fix loops)",
-        "Frontend iterate tool ontwikkeld: een browser overlay die elementen inspecteert (bestandslocatie, classes, computed styles) en via clipboard naar AI stuurt voor targeted edits met live HMR",
-        "Interactief backlog dashboard gebouwd met kanban board, sorteer-/filteropties en GitHub-integratie",
-        "20+ gespecialiseerde agents gemaakt waaronder OWASP security scanners en code researchers",
-        "50+ herbruikbare skills over meerdere domeinen: development, frontend, game dev, security",
-        "Cross-platform support voor Linux VPS en Windows lokale development"
-      ],
-      "result": "Een framework dat ik dagelijks gebruik in al mijn projecten. De dev pipeline heeft tientallen features van requirements tot productie gebracht, en de frontend tool maakt visuele iteratie mogelijk zonder handmatig code te hoeven zoeken. Daarnaast zijn er thinking skills voor brainstormen, besluitvorming en analyse, debug skills, security scanners en meer, samen een compleet pakket voor het hele development proces."
     }
   }
 }

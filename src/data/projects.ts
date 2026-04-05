@@ -67,16 +67,4 @@ export const projectsBase: ProjectBase[] = [
     tags: ['Node.js', 'Express', 'MongoDB', 'REST API', 'Algorithm'],
     githubUrl: 'https://github.com/Shav0nne/sonarpoppy',
   },
-  {
-    slug: 'claude-config',
-    title: 'Claude Config',
-    thumbnail: '/images/claude-config.webp',
-    images: [
-      '/images/claude-config-2.webp',
-      '/images/claude-config-3.webp',
-      '/images/claude-config-4.webp',
-    ],
-    tags: ['AI', 'Prompt Engineering', 'Automation', 'Developer Tools'],
-    githubUrl: 'https://github.com/AirMile/claude-config',
-  },
 ]
