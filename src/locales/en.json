@@ -80,6 +80,21 @@
     "scrollToTop": "Scroll to top"
   },
   "projectData": {
+    "draftgap": {
+      "description": "A champion pool optimizer for League of Legends — analyze matchups, find coverage gaps and get data-driven suggestions.",
+      "metaDescription": "DraftGap - A League of Legends champion pool optimizer with matchup analysis, coverage gaps and suggestions. Built by Miles Zeilstra.",
+      "context": "I built DraftGap to solve a common problem for League of Legends players: knowing which champions to pick against specific opponents. The app analyzes your champion pool against all matchups using real winrate data from U.GG, identifies coverage gaps, and suggests champions that would strengthen your pool.",
+      "role": "Solo developer — designed and built the entire application from data scraping to frontend.",
+      "process": [
+        "Scraped matchup data from U.GG for all roles and tiers",
+        "Built a matchup engine with bi-directional winrate lookups and gap detection",
+        "Designed a responsive dashboard with blind pick rankings, ban targets and pool grading",
+        "Added enemy lookup with champion profiles, counter picks and build recommendations",
+        "Implemented pool sharing via URL and a pool grade scoring system",
+        "Duo synergy analysis for bot/support roles"
+      ],
+      "result": "A polished, data-driven tool that helps players make better draft decisions. Features real-time matchup analysis, responsive mobile design, and shareable pool links."
+    },
     "getcooked": {
       "description": "A recipe platform where users can browse, add and search recipes. Built with Laravel.",
       "metaDescription": "GetCooked - A Laravel recipe platform with search, filtering and user accounts. Built by Miles Zeilstra.",

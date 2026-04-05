@@ -19,6 +19,19 @@ export interface Project extends ProjectBase {
 
 export const projectsBase: ProjectBase[] = [
   {
+    slug: 'draftgap',
+    title: 'DraftGap',
+    thumbnail: '/images/draftgap.webp',
+    images: [
+      '/images/draftgap-2.webp',
+      '/images/draftgap-3.webp',
+      '/images/draftgap-4.webp',
+      '/images/draftgap-5.webp',
+    ],
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React'],
+    githubUrl: 'https://github.com/AirMile/lol-pool-optimizer',
+  },
+  {
     slug: 'getcooked',
     title: 'GetCooked',
     thumbnail: '/images/getcooked.webp',
