@@ -252,7 +252,7 @@ export function ProjectDetail() {
               </Button>
               <div className="flex flex-wrap items-center gap-4">
                 {project.liveUrl && (
-                  <Button href={project.liveUrl}>
+                  <Button href={project.liveUrl} variant="secondary">
                     {t('projectDetail.viewLive')}
                   </Button>
                 )}
