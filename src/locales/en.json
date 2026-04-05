@@ -81,10 +81,10 @@
   },
   "projectData": {
     "draftgap": {
-      "description": "A champion pool optimizer for League of Legends — analyze matchups, find coverage gaps and get data-driven suggestions.",
-      "metaDescription": "DraftGap - A League of Legends champion pool optimizer with matchup analysis, coverage gaps and suggestions. Built by Miles Zeilstra.",
-      "context": "I built DraftGap to solve a common problem for League of Legends players: knowing which champions to pick against specific opponents. The app analyzes your champion pool against all matchups using real winrate data from U.GG, identifies coverage gaps, and suggests champions that would strengthen your pool.",
-      "role": "Solo developer — designed and built the entire application from data scraping to frontend.",
+      "description": "A champion pool optimizer for League of Legends. Analyze matchups, find bad matchups and get data-driven suggestions.",
+      "metaDescription": "DraftGap - A League of Legends champion pool optimizer with matchup analysis and suggestions. Built by Miles Zeilstra.",
+      "context": "I built DraftGap to solve a common problem for League of Legends players: knowing which champions to pick against specific opponents. The app analyzes your champion pool against all matchups using real winrate data from U.GG, finds your bad matchups, and suggests champions that would strengthen your pool.",
+      "role": "Full development from concept to deployment. Responsible for the data pipeline, matchup analysis engine, and the complete React frontend. Focused on turning raw winrate data into actionable draft advice.",
       "process": [
         "Scraped matchup data from U.GG for all roles and tiers",
         "Built a matchup engine with bi-directional winrate lookups and gap detection",

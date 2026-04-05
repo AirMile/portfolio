@@ -81,10 +81,10 @@
   },
   "projectData": {
     "draftgap": {
-      "description": "Een champion pool optimizer voor League of Legends — analyseer matchups, vind coverage gaps en krijg data-gedreven suggesties.",
-      "metaDescription": "DraftGap - Een League of Legends champion pool optimizer met matchup analyse, coverage gaps en suggesties. Gebouwd door Miles Zeilstra.",
-      "context": "Ik bouwde DraftGap om een veelvoorkomend probleem voor League of Legends spelers op te lossen: weten welke champion je moet kiezen tegen specifieke tegenstanders. De app analyseert je champion pool tegen alle matchups met echte winrate data van U.GG, identificeert coverage gaps en suggereert champions die je pool versterken.",
-      "role": "Solo developer — ontworpen en volledig gebouwd van data scraping tot frontend.",
+      "description": "Een champion pool optimizer voor League of Legends. Analyseer matchups, vind slechte matchups en krijg data-gedreven suggesties.",
+      "metaDescription": "DraftGap - Een League of Legends champion pool optimizer met matchup analyse en suggesties. Gebouwd door Miles Zeilstra.",
+      "context": "Ik bouwde DraftGap om een veelvoorkomend probleem voor League of Legends spelers op te lossen: weten welke champion je moet kiezen tegen specifieke tegenstanders. De app analyseert je champion pool tegen alle matchups met echte winrate data van U.GG, vindt je slechte matchups en suggereert champions die je pool versterken.",
+      "role": "Volledige ontwikkeling van concept tot deployment. Verantwoordelijk voor de data pipeline, matchup analyse engine en de complete React frontend. Gericht op het omzetten van ruwe winrate data naar bruikbaar draft advies.",
       "process": [
         "Matchup data gescrapet van U.GG voor alle rollen en tiers",
         "Matchup engine gebouwd met bi-directionele winrate lookups en gap detectie",
