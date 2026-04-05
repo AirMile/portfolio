@@ -29,6 +29,7 @@ export const projectsBase: ProjectBase[] = [
       '/images/draftgap-5.webp',
     ],
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React'],
+    liveUrl: 'https://draftgap-umber.vercel.app',
     githubUrl: 'https://github.com/AirMile/lol-pool-optimizer',
   },
   {
