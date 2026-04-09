@@ -81,25 +81,25 @@
   },
   "projectData": {
     "draftgap": {
-      "description": "A champion pool optimizer for League of Legends. Analyze matchups, find bad matchups and get data-driven suggestions.",
+      "description": "A champion pool optimizer for League of Legends. Analyze matchups, find weak spots and get suggestions to improve your pool.",
       "metaDescription": "DraftGap - A League of Legends champion pool optimizer with matchup analysis and suggestions. Built by Miles Zeilstra.",
-      "context": "I built DraftGap to solve a common problem for League of Legends players: knowing which champions to pick against specific opponents. The app analyzes your champion pool against all matchups using real winrate data from U.GG, finds your bad matchups, and suggests champions that would strengthen your pool.",
-      "role": "Full development from concept to deployment. Responsible for the data pipeline, matchup analysis engine, and the complete React frontend. Focused on turning raw winrate data into actionable draft advice.",
+      "context": "As a League of Legends player, you want to know which champion to pick against the enemy team. DraftGap analyzes your champion pool using winrate data from U.GG, shows where your weak matchups are and suggests champions that would improve your pool.",
+      "role": "Built everything myself: from scraping the data to the matchup engine and the full React frontend.",
       "process": [
         "Scraped matchup data from U.GG for all roles and tiers",
         "Built a matchup engine with bi-directional winrate lookups and gap detection",
-        "Designed a responsive dashboard with blind pick rankings, ban targets and pool grading",
-        "Added enemy lookup with champion profiles, counter picks and build recommendations",
-        "Implemented pool sharing via URL and a pool grade scoring system",
+        "Dashboard with blind pick rankings, ban targets and pool grading",
+        "Enemy lookup with champion profiles, counter picks and build recommendations",
+        "Pool sharing via URL and a pool grade scoring system",
         "Duo synergy analysis for bot/support roles"
       ],
-      "result": "A polished, data-driven tool that helps players make better draft decisions. Features real-time matchup analysis, responsive mobile design, and shareable pool links."
+      "result": "You add your pool, instantly see your weak spots and get suggestions to fix them. Works on mobile and you can share your pool via a link."
     },
     "getcooked": {
-      "description": "A recipe platform where users can browse, add and search recipes. Built with Laravel.",
+      "description": "A recipe platform where you can search, upload and manage recipes. Built with Laravel.",
       "metaDescription": "GetCooked - A Laravel recipe platform with search, filtering and user accounts. Built by Miles Zeilstra.",
-      "context": "I independently built a complete recipe platform as a school project. Users can upload private recipes or submit them for public review. Verified users can post publicly directly. An admin panel manages submissions and user permissions.",
-      "role": "Full development from concept to working product. This was my first major Laravel project, where I focused on setting up a complete MVC architecture.",
+      "context": "A recipe platform I built as a school project. Users can upload their own recipes or submit them for review. Verified users can post publicly right away. There's an admin panel behind it to manage everything.",
+      "role": "My first big Laravel project. Set up everything myself: database, authentication, the whole MVC pattern.",
       "process": [
         "ERD design and user stories",
         "Role-based authentication with admin panel",
@@ -108,13 +108,13 @@
         "Search and filter system with query scopes",
         "Notification system for status updates"
       ],
-      "result": "A fully functional recipe application. Through this project I mastered Laravel and gained experience with MVC architecture."
+      "result": "A working platform where you can search, upload and manage recipes."
     },
     "natuurmoment": {
-      "description": "An interactive group game that guides players through nature areas with photo bingo and quiz questions.",
+      "description": "An interactive group game in nature areas with photo bingo and quiz questions.",
       "metaDescription": "NatuurMoment - An interactive nature game with photo bingo and quiz questions. Laravel/Livewire team project by Miles Zeilstra.",
-      "context": "Together with a team I developed an interactive nature game. Players complete bingo challenges by taking photos and answer multiple-choice questions about the location, while competing for the highest score.",
-      "role": "Fullstack development with a focus on backend in a team of 5. Responsible for the style guide, wireframes and concept development. Built the complete admin panel, organizer dashboard and core features.",
+      "context": "An interactive group game set in nature areas. Players take photos for bingo challenges and answer quiz questions about the location, all while competing for the highest score.",
+      "role": "In a team of 5, I handled the backend, admin panel and organizer dashboard. Also designed the style guide and wireframes in Figma.",
       "process": [
         "Concept development and style guide/wireframes design in Figma",
         "Role-based system: player, organizer and admin",
@@ -122,13 +122,13 @@
         "Organizer dashboard: create games, manage players, live monitoring",
         "Admin panel with content management and statistics (ratings, age distribution, trends)"
       ],
-      "result": "A fully functional game that ran live with real users. The statistics dashboard showed engagement metrics such as average ratings per location and age distribution."
+      "result": "The game ran live with real users. The statistics dashboard showed average ratings per location and age distribution."
     },
     "sonarpoppy": {
-      "description": "A music recommendation API that generates personalized track suggestions using a hybrid scoring algorithm.",
+      "description": "A music recommendation API that suggests tracks based on genre matching, collaborative filtering and user feedback.",
       "metaDescription": "SonarPoppy - A hybrid music recommendation engine with genre vectors, collaborative filtering and personalized scoring. Built by Miles Zeilstra.",
-      "context": "In a team I built a music recommendation API that serves two apps (SonarPop & Poppy) with personalized suggestions. The system combines three pillars: genre vectors, collaborative filtering and user feedback.",
-      "role": "Responsible for the entire recommendation algorithm: the hybrid scoring system, genre vector matching, collaborative filtering and the feedback loop. Also built the API architecture with extensive endpoints for the frontend: filters, sorting options, an onboarding flow and genre sliders for personalization. Wrote 70+ tests.",
+      "context": "In a team I built a music recommendation API that feeds two apps (SonarPop & Poppy). The system combines genre vectors, collaborative filtering and user feedback to recommend tracks.",
+      "role": "I built the entire recommendation algorithm: scoring, genre matching, collaborative filtering and the feedback loop. Plus the API with filters, sorting, onboarding and genre sliders. Wrote 70+ tests.",
       "process": [
         "Designed a 20-dimensional genre vector system with cosine similarity scoring",
         "Built collaborative filtering using Last.fm track and artist similarity data",
@@ -138,7 +138,7 @@
         "Integrated Spotify and Deezer APIs for track metadata and audio previews",
         "Wrote 70+ unit and integration tests with mongodb-memory-server"
       ],
-      "result": "A fully functional recommendation engine that learns from user behavior. The hybrid scoring algorithm combines genre similarity with collaborative filtering, producing personalized results that improve over time."
+      "result": "A recommendation engine that learns from what you listen to. The more you use it, the better the suggestions get."
     }
   }
 }

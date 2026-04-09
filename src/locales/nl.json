@@ -81,25 +81,25 @@
   },
   "projectData": {
     "draftgap": {
-      "description": "Een champion pool optimizer voor League of Legends. Analyseer matchups, vind slechte matchups en krijg data-gedreven suggesties.",
+      "description": "Een champion pool optimizer voor League of Legends. Analyseer matchups, vind zwakke plekken en krijg suggesties om je pool te verbeteren.",
       "metaDescription": "DraftGap - Een League of Legends champion pool optimizer met matchup analyse en suggesties. Gebouwd door Miles Zeilstra.",
-      "context": "Ik bouwde DraftGap om een veelvoorkomend probleem voor League of Legends spelers op te lossen: weten welke champion je moet kiezen tegen specifieke tegenstanders. De app analyseert je champion pool tegen alle matchups met echte winrate data van U.GG, vindt je slechte matchups en suggereert champions die je pool versterken.",
-      "role": "Volledige ontwikkeling van concept tot deployment. Verantwoordelijk voor de data pipeline, matchup analyse engine en de complete React frontend. Gericht op het omzetten van ruwe winrate data naar bruikbaar draft advies.",
+      "context": "Als League of Legends speler wil je weten welke champion je moet kiezen tegen het enemy team. DraftGap analyseert je champion pool met winrate data van U.GG, laat zien waar je zwakke matchups zitten en stelt champions voor die je pool beter maken.",
+      "role": "Alles zelf gebouwd: van het scrapen van de data tot de matchup engine en de volledige React frontend.",
       "process": [
         "Matchup data gescrapet van U.GG voor alle rollen en tiers",
         "Matchup engine gebouwd met bi-directionele winrate lookups en gap detectie",
-        "Responsive dashboard ontworpen met blind pick rankings, ban targets en pool grading",
-        "Enemy lookup toegevoegd met champion profielen, counter picks en build aanbevelingen",
-        "Pool sharing via URL en een pool grade scoring systeem geïmplementeerd",
+        "Dashboard met blind pick rankings, ban targets en pool grading",
+        "Enemy lookup met champion profielen, counter picks en build aanbevelingen",
+        "Pool sharing via URL en een pool grade scoring systeem",
         "Duo synergy analyse voor bot/support rollen"
       ],
-      "result": "Een gepolijste, data-gedreven tool die spelers helpt betere draft beslissingen te maken. Met real-time matchup analyse, responsive mobiel design en deelbare pool links."
+      "result": "Je selecteert je pool, ziet direct je zwakke plekken en krijgt suggesties om ze op te lossen. Werkt op mobiel en je kunt je pool delen via een link."
     },
     "getcooked": {
-      "description": "Een recepten platform waar gebruikers recepten kunnen bekijken, toevoegen en zoeken. Gebouwd met Laravel.",
+      "description": "Een receptenplatform waar je recepten kunt zoeken, uploaden en beheren. Gebouwd met Laravel.",
       "metaDescription": "GetCooked - Een Laravel recepten platform met zoeken, filteren en gebruikersaccounts. Gebouwd door Miles Zeilstra.",
-      "context": "Ik bouwde zelfstandig een compleet receptenplatform als schoolopdracht. Gebruikers kunnen private recepten uploaden of submitten voor public review. Verified users kunnen direct public posten. Een admin panel beheert submissions en gebruikersrechten.",
-      "role": "Volledige ontwikkeling van concept tot werkend product. Dit was mijn eerste grote Laravel-project, waarbij ik me focuste op het opzetten van een volledige MVC-architectuur.",
+      "context": "Een receptenplatform dat ik als schoolopdracht heb gebouwd. Gebruikers kunnen hun eigen recepten uploaden of insturen voor review. Verified users mogen direct publiek posten. Er zit een admin panel achter om alles te beheren.",
+      "role": "Mijn eerste grote Laravel project. Alles zelf opgezet: database, authenticatie, het hele MVC patroon.",
       "process": [
         "ERD ontwerp en user stories uitwerken",
         "Role-based authentication met admin panel",
@@ -108,13 +108,13 @@
         "Zoek- en filtersysteem met query scopes",
         "Notificatiesysteem voor status updates"
       ],
-      "result": "Een volledig werkende recepten applicatie. Door dit project heb ik Laravel onder de knie gekregen en ervaring opgedaan met MVC architectuur."
+      "result": "Een werkend platform waar je recepten kunt zoeken, uploaden en beheren."
     },
     "natuurmoment": {
-      "description": "Een interactieve groepsgame die spelers door natuurgebieden leidt met foto-bingo en quizvragen.",
+      "description": "Een interactieve groepsspel in natuurgebieden met foto-bingo en quizvragen.",
       "metaDescription": "NatuurMoment - Een interactieve natuurgame met foto-bingo en quizvragen. Laravel/Livewire teamproject door Miles Zeilstra.",
-      "context": "Met een team ontwikkelde ik een interactieve natuurgame. Spelers voltooien bingo-challenges door foto's te maken en beantwoorden meerkeuzevragen over de locatie, terwijl ze strijden om de hoogste score.",
-      "role": "Fullstack development met focus op backend in een team van 5. Verantwoordelijk voor de styleguide, wireframes en conceptuitwerking. Bouwde het complete admin panel, organisator dashboard en kernfunctionaliteiten.",
+      "context": "Een interactieve groepsspel voor in natuurgebieden. Spelers maken foto's voor bingo-challenges en beantwoorden quizvragen over de locatie, terwijl ze strijden om de hoogste score.",
+      "role": "In een team van 5 was ik verantwoordelijk voor de backend, het admin panel en het organisator dashboard. Daarnaast de styleguide en wireframes in Figma.",
       "process": [
         "Concept uitwerking en styleguide/wireframes ontwerpen in Figma",
         "Role-based systeem: speler, organisator en admin",
@@ -122,13 +122,13 @@
         "Organisator dashboard: games aanmaken, spelers beheren, live monitoren",
         "Admin panel met content beheer en statistieken (ratings, leeftijdsverdeling, trends)"
       ],
-      "result": "Een volledig werkende game die live heeft gedraaid met echte gebruikers. Het statistieken dashboard toonde engagement metrics zoals gemiddelde ratings per locatie en leeftijdsverdeling."
+      "result": "De game heeft live gedraaid met echte gebruikers. Het statistieken dashboard liet gemiddelde ratings per locatie en leeftijdsverdeling zien."
     },
     "sonarpoppy": {
-      "description": "Een muziek-aanbevelings API die gepersonaliseerde track suggesties genereert met een hybride scoring algoritme.",
+      "description": "Een muziek-aanbevelings API die tracks suggereert op basis van genre matching, collaborative filtering en user feedback.",
       "metaDescription": "SonarPoppy - Een hybride muziek-aanbevelingsengine met genre vectors, collaborative filtering en gepersonaliseerde scoring. Gebouwd door Miles Zeilstra.",
-      "context": "In een team bouwde ik een muziek-aanbevelings API die twee apps (SonarPop & Poppy) voedt met gepersonaliseerde suggesties. Het systeem combineert drie pijlers: genre vectors, collaborative filtering en user feedback.",
-      "role": "Verantwoordelijk voor het volledige aanbevelingsalgoritme: het hybride scoring systeem, genre vector matching, collaborative filtering en de feedback loop. Daarnaast de API-architectuur met uitgebreide endpoints voor de frontend: filters, sorteeropties, een onboarding flow en genre sliders voor personalisatie. 70+ tests geschreven.",
+      "context": "In teamverband heb ik een muziek-aanbevelings API gebouwd die twee apps (SonarPop & Poppy) voedt. Het systeem combineert genre vectors, collaborative filtering en user feedback om tracks aan te bevelen.",
+      "role": "Ik heb het volledige aanbevelingsalgoritme gebouwd: de scoring, genre matching, collaborative filtering en feedback loop. Daarnaast de API met filters, sorteeropties, onboarding en genre sliders. 70+ tests geschreven.",
       "process": [
         "20-dimensionaal genre vector systeem ontworpen met cosine similarity scoring",
         "Collaborative filtering gebouwd met Last.fm track- en artiest-similaritydata",
@@ -138,7 +138,7 @@
         "Spotify en Deezer API's geïntegreerd voor track metadata en audio previews",
         "70+ unit- en integratietests geschreven met mongodb-memory-server"
       ],
-      "result": "Een volledig werkende aanbevelingsengine die leert van gebruikersgedrag. Het hybride scoring algoritme combineert genre-similarity met collaborative filtering en produceert gepersonaliseerde resultaten die over tijd verbeteren."
+      "result": "Een aanbevelingsengine die leert van wat je luistert. Hoe meer je het gebruikt, hoe beter de suggesties worden."
     }
   }
 }
