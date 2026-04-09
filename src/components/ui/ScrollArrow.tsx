@@ -7,11 +7,11 @@ const ARROW_BOTTOM = 144 // bottom-36 = 9rem = 144px
 
 // Visibility zones: arrow shows in the padding gap between sections
 // Per-transition zone offsets from the section boundary
+// Transitions without a config entry hide the arrow entirely
 // On mobile, sections are much taller so zones are skipped (always visible)
 const ZONE_CONFIG: Record<string, { above: number; below: number }> = {
   'hero→about': { above: 350, below: 200 },
   'about→projects': { above: 80, below: 200 },
-  'projects→skills': { above: 80, below: 200 },
   'skills→contact': { above: 80, below: 120 },
 }
 
@@ -96,19 +96,21 @@ export function ScrollArrow() {
           // Only hero → about on mobile
           inZone = currentIndex === 0 && nextIndex === 1
         } else if (nextIndex < SECTIONS.length) {
-          const nextEl = elementsRef.current.get(SECTIONS[nextIndex])
-          if (nextEl) {
-            const nextTop = nextEl.getBoundingClientRect().top
-            if (nextTop > arrowScreenY) {
-              // Next section still below arrow → show
-              inZone = true
-            } else {
-              // Boundary near/past arrow → zone transition
-              const key = `${SECTIONS[currentIndex]}→${SECTIONS[nextIndex]}`
-              const config = ZONE_CONFIG[key] ?? { above: 80, below: 200 }
-              const start = nextTop - config.above
-              const end = nextTop + config.below
-              inZone = arrowScreenY >= start && arrowScreenY <= end
+          const key = `${SECTIONS[currentIndex]}→${SECTIONS[nextIndex]}`
+          const config = ZONE_CONFIG[key]
+          if (config) {
+            const nextEl = elementsRef.current.get(SECTIONS[nextIndex])
+            if (nextEl) {
+              const nextTop = nextEl.getBoundingClientRect().top
+              if (nextTop > arrowScreenY) {
+                // Next section still below arrow → show
+                inZone = true
+              } else {
+                // Boundary near/past arrow → zone transition
+                const start = nextTop - config.above
+                const end = nextTop + config.below
+                inZone = arrowScreenY >= start && arrowScreenY <= end
+              }
             }
           }
         }
