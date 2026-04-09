@@ -95,18 +95,20 @@ export function ScrollArrow() {
         if (isMobile) {
           // Only hero → about on mobile
           inZone = currentIndex === 0 && nextIndex === 1
-        } else {
-          for (let i = 0; i < SECTIONS.length - 1; i++) {
-            const nextEl = elementsRef.current.get(SECTIONS[i + 1])
-            if (!nextEl) continue
-            const boundaryScreenY = nextEl.getBoundingClientRect().top
-            const key = `${SECTIONS[i]}→${SECTIONS[i + 1]}`
-            const config = ZONE_CONFIG[key] ?? { above: 80, below: 200 }
-            const start = boundaryScreenY - config.above
-            const end = boundaryScreenY + config.below
-            if (arrowScreenY >= start && arrowScreenY <= end) {
+        } else if (nextIndex < SECTIONS.length) {
+          const nextEl = elementsRef.current.get(SECTIONS[nextIndex])
+          if (nextEl) {
+            const nextTop = nextEl.getBoundingClientRect().top
+            if (nextTop > arrowScreenY) {
+              // Next section still below arrow → show
               inZone = true
-              break
+            } else {
+              // Boundary near/past arrow → zone transition
+              const key = `${SECTIONS[currentIndex]}→${SECTIONS[nextIndex]}`
+              const config = ZONE_CONFIG[key] ?? { above: 80, below: 200 }
+              const start = nextTop - config.above
+              const end = nextTop + config.below
+              inZone = arrowScreenY >= start && arrowScreenY <= end
             }
           }
         }

@@ -7,7 +7,7 @@ export function Skills() {
   const { t } = useTranslation()
 
   return (
-    <section id="skills" className="px-6 py-24">
+    <section id="skills" className="min-h-screen px-6 py-24">
       <div className="mx-auto max-w-4xl">
         <FadeIn>
           <h2 className="text-3xl font-bold text-white md:text-4xl">
