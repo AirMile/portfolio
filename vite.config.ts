@@ -1,10 +1,24 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { inspectOverlay } from './inspect-overlay.vite'
 import { resolve } from 'path'
+import { existsSync } from 'fs'
 
-export default defineConfig({
+// The inspect overlay is a local-only dev plugin: gitignored and synced
+// per-machine (see .gitignore). It is absent in CI/prod builds, so load it
+// only when present and fall back to a no-op otherwise.
+async function inspectOverlayPlugin(): Promise<PluginOption> {
+  const overlayPath = resolve(__dirname, 'inspect-overlay.vite.ts')
+  if (!existsSync(overlayPath)) return false
+  try {
+    const mod = await import(/* @vite-ignore */ overlayPath)
+    return mod.inspectOverlay()
+  } catch {
+    return false
+  }
+}
+
+export default defineConfig(async () => ({
   plugins: [
     react({
       babel: {
@@ -12,7 +26,7 @@ export default defineConfig({
       },
     }),
     tailwindcss(),
-    inspectOverlay(),
+    await inspectOverlayPlugin(),
   ],
   server: {
     allowedHosts: ['.trycloudflare.com'],
@@ -22,4 +36,4 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
-})
+}))
