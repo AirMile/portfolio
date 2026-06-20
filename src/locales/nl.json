@@ -95,6 +95,21 @@
       ],
       "result": "Je selecteert je pool, ziet direct je zwakke plekken en krijgt suggesties om ze op te lossen. Werkt op mobiel en je kunt je pool delen via een link."
     },
+    "impakt": {
+      "description": "Een visuele nieuws-app voor jongeren in Nederland. Een persoonlijke feed op basis van je thema's, een humor-feed met memes en een Happy feed met goed nieuws — plus reageren, stemmen, opslaan en delen.",
+      "metaDescription": "Impakt - Een visuele nieuws-app voor jongeren, gebouwd met React Native en Expo. Teamproject door Miles Zeilstra.",
+      "context": "Jongeren scrollen anders door nieuws dan de gemiddelde nieuwssite verwacht. Impakt brengt het nieuws op een manier die daarbij past: beeldgedreven, persoonlijk en met ruimte voor humor en goed nieuws. De app draait op een live Laravel backend voor content, reacties en polls.",
+      "role": "Van prototype tot implementatie. In een team van 5 ontwierpen we de schermen in Figma; daaruit bouwde ik een interactief prototype en werkte ik de volledige UI/UX en een design system zelf verder uit. Daarna heb ik samen met een teamgenoot de React Native app gebouwd, waarin ik de feeds, de reactie-, opslag- en deel-functies en de koppeling met de Laravel API voor mijn rekening nam.",
+      "process": [
+        "Van de Figma-schermen een interactief prototype gebouwd en de volledige UI/UX en een design system zelf uitgewerkt",
+        "Feeds gebouwd voor nieuws, humor en happy met een gedeelde thema-filter op basis van je interesses",
+        "Meme-feed met custom swipe-snap via native PagerView en een artikel-link per meme",
+        "Emoji-reacties per artikel met live percentages en optimistische updates, gesynct met de Laravel API",
+        "Artikelen en memes opslaan via een herbruikbare hook, plus delen via de native share sheet met deep links",
+        "Performance (React.memo, Reanimated 4, always-mounted tabs) en toegankelijkheid (WCAG 2.1 AA)"
+      ],
+      "result": "Jongeren krijgen een persoonlijke, beeldgedreven nieuws-app waarin ze kunnen reageren, stemmen, opslaan en delen. Draait native op iOS en Android via Expo en als web-build op dezelfde Laravel server."
+    },
     "getcooked": {
       "description": "Een receptenplatform waar je recepten kunt zoeken, uploaden en beheren. Gebouwd met Laravel.",
       "metaDescription": "GetCooked - Een Laravel recepten platform met zoeken, filteren en gebruikersaccounts. Gebouwd door Miles Zeilstra.",

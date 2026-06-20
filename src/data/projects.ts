@@ -33,16 +33,17 @@ export const projectsBase: ProjectBase[] = [
     githubUrl: 'https://github.com/AirMile/lol-pool-optimizer',
   },
   {
-    slug: 'getcooked',
-    title: 'GetCooked',
-    thumbnail: '/images/getcooked.webp',
+    slug: 'impakt',
+    title: 'Impakt',
+    thumbnail: '/images/impakt.webp',
     images: [
-      '/images/getcooked-2.webp',
-      '/images/getcooked-3.webp',
-      '/images/getcooked-4.webp',
+      '/images/impakt-2.webp',
+      '/images/impakt-3.webp',
+      '/images/impakt-4.webp',
+      '/images/impakt-5.webp',
     ],
-    tags: ['Laravel', 'PHP', 'Full Stack'],
-    githubUrl: 'https://github.com/AirMile/getcooked',
+    tags: ['React Native', 'Expo', 'JavaScript', 'Laravel', 'Team Project'],
+    githubUrl: 'https://github.com/AirMile/impakt',
   },
   {
     slug: 'natuurmoment',
@@ -66,5 +67,17 @@ export const projectsBase: ProjectBase[] = [
     images: ['/images/sonarpoppy-2.webp'],
     tags: ['Node.js', 'Express', 'MongoDB', 'REST API', 'Algorithm'],
     githubUrl: 'https://github.com/Shav0nne/sonarpoppy',
+  },
+  {
+    slug: 'getcooked',
+    title: 'GetCooked',
+    thumbnail: '/images/getcooked.webp',
+    images: [
+      '/images/getcooked-2.webp',
+      '/images/getcooked-3.webp',
+      '/images/getcooked-4.webp',
+    ],
+    tags: ['Laravel', 'PHP', 'Full Stack'],
+    githubUrl: 'https://github.com/AirMile/getcooked',
   },
 ]

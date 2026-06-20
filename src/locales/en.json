@@ -95,6 +95,21 @@
       ],
       "result": "You add your pool, instantly see your weak spots and get suggestions to fix them. Works on mobile and you can share your pool via a link."
     },
+    "impakt": {
+      "description": "A visual news app for young people in the Netherlands. A personal feed based on your themes, a humor feed with memes and a Happy feed with good news — plus reacting, voting, saving and sharing.",
+      "metaDescription": "Impakt - A visual news app for young people, built with React Native and Expo. Team project by Miles Zeilstra.",
+      "context": "Young people scroll through news differently than the average news site expects. Impakt presents the news in a way that fits: image-driven, personal, and with room for humor and good news. The app runs on a live Laravel backend for content, reactions and polls.",
+      "role": "From prototype to implementation. In a team of 5 we designed the screens in Figma; from there I built an interactive prototype and developed the full UI/UX and a design system myself. I then built the React Native app together with a teammate, owning the feeds, the reaction, save and share features and the integration with the Laravel API.",
+      "process": [
+        "Turned the Figma screens into an interactive prototype and developed the full UI/UX and a design system myself",
+        "Built the news, humor and happy feeds with a shared theme filter based on your interests",
+        "Meme feed with custom swipe-snap via native PagerView and an article link per meme",
+        "Emoji reactions per article with live percentages and optimistic updates, synced with the Laravel API",
+        "Saving articles and memes via a reusable hook, plus sharing through the native share sheet with deep links",
+        "Performance (React.memo, Reanimated 4, always-mounted tabs) and accessibility (WCAG 2.1 AA)"
+      ],
+      "result": "Young people get a personal, image-driven news app where they can react, vote, save and share. Runs natively on iOS and Android via Expo and as a web build on the same Laravel server."
+    },
     "getcooked": {
       "description": "A recipe platform where you can search, upload and manage recipes. Built with Laravel.",
       "metaDescription": "GetCooked - A Laravel recipe platform with search, filtering and user accounts. Built by Miles Zeilstra.",
