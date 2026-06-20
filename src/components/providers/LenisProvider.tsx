@@ -1,8 +1,6 @@
 import { useEffect, useRef, createContext, useContext, ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
-import Snap from 'lenis/snap'
-import { SECTIONS, MOBILE_BREAKPOINT } from '@/lib/constants'
 
 type LenisContextType = {
   lenis: Lenis | null
@@ -24,17 +22,11 @@ type LenisProviderProps = {
 
 export function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null)
-  const snapRef = useRef<Snap | null>(null)
-  const snapRemoversRef = useRef<(() => void)[]>([])
   const location = useLocation()
   const prevPathRef = useRef(location.pathname)
 
-  // Initialize Lenis and Snap once
+  // Initialize Lenis once
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches
-
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -46,32 +38,6 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     lenisRef.current = lenis
 
-    // Skip snap initialization when reduced motion is preferred
-    let snap: Snap | null = null
-    if (!prefersReducedMotion) {
-      // Track previous scroll position to detect direction at snap time
-      let prevScroll = 0
-
-      // Snap for section transitions (downward only)
-      snap = new Snap(lenis, {
-        type: 'proximity',
-        onSnapStart: (snapItem) => {
-          // Only allow snap when coming from above (scrolling down into snap point)
-          // Cancel if already past the snap point (prevents snapping back up)
-          if (prevScroll >= snapItem.value) {
-            lenis.stop()
-            lenis.start()
-          }
-        },
-      })
-      snapRef.current = snap
-
-      // Track scroll position
-      lenis.on('scroll', () => {
-        prevScroll = lenis.scroll
-      })
-    }
-
     function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -79,61 +45,13 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     requestAnimationFrame(raf)
 
-    // Update snap points on resize
-    const handleResize = () => {
-      updateSnapPoints()
-    }
-    window.addEventListener('resize', handleResize)
-
     return () => {
-      window.removeEventListener('resize', handleResize)
-      if (snap) snap.destroy()
       lenis.destroy()
       lenisRef.current = null
-      snapRef.current = null
     }
   }, [])
 
-  // Update snap points function
-  const updateSnapPoints = () => {
-    const snap = snapRef.current
-    if (!snap) return
-
-    // Clear existing snap points
-    snapRemoversRef.current.forEach((remove) => remove())
-    snapRemoversRef.current = []
-
-    // No snap on mobile
-    if (window.innerWidth < MOBILE_BREAKPOINT) return
-
-    // Only add snap points on homepage (locale-only path like /en or /nl)
-    const pathSegments = location.pathname.split('/').filter(Boolean)
-    if (pathSegments.length > 1) return
-
-    // Hero → About (viewport height)
-    snapRemoversRef.current.push(snap.add(window.innerHeight))
-
-    // Remaining sections: about → projects → skills → contact
-    for (const id of SECTIONS.slice(2)) {
-      const el = document.getElementById(id)
-      if (el) {
-        snapRemoversRef.current.push(snap.add(el.offsetTop))
-      }
-    }
-  }
-
-  // Initialize snap points when route changes (including first load)
-  useEffect(() => {
-    // Immediately clear snap points on route change
-    snapRemoversRef.current.forEach((remove) => remove())
-    snapRemoversRef.current = []
-
-    // Delay to ensure DOM is ready after lazy-loaded pages render
-    const timer = setTimeout(updateSnapPoints, 500)
-    return () => clearTimeout(timer)
-  }, [location.pathname])
-
-  // Handle route changes: scroll to anchor or top, and update snap points
+  // Handle route changes: scroll to anchor or top
   useEffect(() => {
     const lenis = lenisRef.current
     if (!lenis) return
@@ -144,10 +62,6 @@ export function LenisProvider({ children }: LenisProviderProps) {
     prevPathRef.current = location.pathname
 
     if (hash && pathChanged) {
-      // Clear snap points to prevent interference with hash scroll
-      snapRemoversRef.current.forEach((remove) => remove())
-      snapRemoversRef.current = []
-
       // Stop Lenis temporarily
       lenis.stop()
 
@@ -156,54 +70,28 @@ export function LenisProvider({ children }: LenisProviderProps) {
         if (element) {
           // Use native scrollIntoView for reliability
           element.scrollIntoView({ behavior: 'instant' })
-          // Restart Lenis and restore snap points
           lenis.start()
-          requestAnimationFrame(updateSnapPoints)
         } else if (attempts < 20) {
           // Retry if element not found yet
           setTimeout(() => scrollToHash(attempts + 1), 50)
         } else {
           // Give up, restart Lenis
           lenis.start()
-          requestAnimationFrame(updateSnapPoints)
         }
       }
 
       // Wait for React to render the new page
       setTimeout(scrollToHash, 50)
-    } else if (pathChanged) {
-      // Don't scroll here - let AnimatePresence handle scroll timing
-      // Update snap points after DOM is ready
-      setTimeout(updateSnapPoints, 500)
     }
   }, [location.pathname, location.hash])
 
-  // Scroll to top function that bypasses snap
+  // Scroll to top function
   const scrollToTop = () => {
     const lenis = lenisRef.current
     if (lenis) {
-      // Clear snap points temporarily to prevent interference
-      snapRemoversRef.current.forEach((remove) => remove())
-      snapRemoversRef.current = []
-
-      // Track if snap points have been restored
-      let restored = false
-      const restoreSnapPoints = () => {
-        if (restored) return
-        restored = true
-        requestAnimationFrame(updateSnapPoints)
-      }
-
-      // Stop current animation and scroll smoothly
-      lenis.stop()
-      lenis.start()
       lenis.scrollTo(0, {
         duration: 1.2,
-        onComplete: restoreSnapPoints,
       })
-
-      // Backup: restore snap points after duration + buffer
-      setTimeout(restoreSnapPoints, 1500)
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
