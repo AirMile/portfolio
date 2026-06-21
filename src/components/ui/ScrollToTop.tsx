@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { m, AnimatePresence } from 'motion/react'
 import { useLenis } from '@/components/providers/LenisProvider'
 
 export function ScrollToTop() {
   const { t } = useTranslation()
+  const location = useLocation()
   const [isVisible, setIsVisible] = useState(false)
   const { scrollToTop } = useLenis()
 
@@ -16,6 +18,11 @@ export function ScrollToTop() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // The detail page is short; back-to-top is only useful on the long,
+  // multi-section home page.
+  const isProjectDetail = /^\/[^/]+\/projects\/[^/]+/.test(location.pathname)
+  if (isProjectDetail) return null
 
   return (
     <AnimatePresence>
