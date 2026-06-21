@@ -1,27 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SECTIONS, MOBILE_BREAKPOINT } from '@/lib/constants'
+import { SECTIONS } from '@/lib/constants'
 import { gsap, useGSAP } from '@/lib/gsap'
 
-const ARROW_BOTTOM = 144 // bottom-36 = 9rem = 144px
-
-// Visibility zones: arrow shows in the padding gap between sections
-// Per-transition zone offsets from the section boundary
-// Transitions without a config entry hide the arrow entirely
-// On mobile, sections are much taller so zones are skipped (always visible)
-const ZONE_CONFIG: Record<string, { above: number; below: number }> = {
-  'hero→about': { above: 350, below: 200 },
-  'about→projects': { above: 80, below: 200 },
-  'skills→contact': { above: 80, below: 120 },
-}
+// The arrow is a "scroll to begin" hint on the hero only.
+// It fades out once the user scrolls away from the top.
+const HIDE_AFTER = 80 // px scrolled before the hint fades out
 
 export function ScrollArrow() {
   const { t } = useTranslation()
-  const [targetId, setTargetId] = useState('about')
-  const [visible, setVisible] = useState(true)
+  const [hidden, setHidden] = useState(false)
   const [bouncing, setBouncing] = useState(false)
-  const ref = useRef<HTMLAnchorElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+
+  // First real section after the hero — order-independent.
+  const targetId = SECTIONS[1]
 
   // Intro animatie die aansluit bij de hero tekst timeline
   useGSAP(() => {
@@ -51,98 +44,30 @@ export function ScrollArrow() {
     return () => mm.revert()
   })
 
-  // Cache DOM element references to avoid repeated queries during scroll
-  const elementsRef = useRef<Map<string, HTMLElement>>(new Map())
-  const rafRef = useRef(0)
-
+  // Fade the hint out as soon as the user scrolls past the hero
   useEffect(() => {
-    // Cache section elements once at mount
-    SECTIONS.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) elementsRef.current.set(id, el)
-    })
-
-    const update = () => {
-      const viewportHeight = window.innerHeight
-      const scrollY = window.scrollY
-      const arrowScreenY = viewportHeight - ARROW_BOTTOM
-
-      // Find which section is currently most visible
-      let currentIndex = 0
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const el = elementsRef.current.get(SECTIONS[i])
-        if (el && el.offsetTop <= scrollY + viewportHeight * 0.5) {
-          currentIndex = i
-          break
-        }
-      }
-
-      // Target is the next section
-      const nextIndex = currentIndex + 1
-      if (nextIndex < SECTIONS.length) {
-        setTargetId(SECTIONS[nextIndex])
-        setVisible(true)
-      } else {
-        setVisible(false)
-      }
-
-      // Check if arrow is inside any visibility zone
-      // On mobile, only show between hero → about
-      if (ref.current) {
-        const isMobile = window.innerWidth < MOBILE_BREAKPOINT
-        let inZone = false
-
-        if (isMobile) {
-          // Only hero → about on mobile
-          inZone = currentIndex === 0 && nextIndex === 1
-        } else if (nextIndex < SECTIONS.length) {
-          const key = `${SECTIONS[currentIndex]}→${SECTIONS[nextIndex]}`
-          const config = ZONE_CONFIG[key]
-          if (config) {
-            const nextEl = elementsRef.current.get(SECTIONS[nextIndex])
-            if (nextEl) {
-              const nextTop = nextEl.getBoundingClientRect().top
-              if (nextTop > arrowScreenY) {
-                // Next section still below arrow → show
-                inZone = true
-              } else {
-                // Boundary near/past arrow → zone transition
-                const start = nextTop - config.above
-                const end = nextTop + config.below
-                inZone = arrowScreenY >= start && arrowScreenY <= end
-              }
-            }
-          }
-        }
-        ref.current.style.opacity = inZone ? '1' : '0'
-        ref.current.style.pointerEvents = inZone ? 'auto' : 'none'
-      }
-    }
-
+    const update = () => setHidden(window.scrollY > HIDE_AFTER)
+    let raf = 0
     const handleScroll = () => {
-      if (rafRef.current) return
-      rafRef.current = requestAnimationFrame(() => {
+      if (raf) return
+      raf = requestAnimationFrame(() => {
         update()
-        rafRef.current = 0
+        raf = 0
       })
     }
-
     update()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      if (raf) cancelAnimationFrame(raf)
     }
   }, [])
 
-  if (!visible) return null
-
   return (
     <a
-      ref={ref}
       href={`#${targetId}`}
       aria-label={t('a11y.scrollToNextSection')}
-      className="fixed bottom-36 left-1/2 z-20 -translate-x-1/2 pb-4"
+      className={`fixed bottom-36 left-1/2 z-20 -translate-x-1/2 pb-4 transition-opacity duration-500 ${hidden ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
     >
       <svg
         ref={svgRef}

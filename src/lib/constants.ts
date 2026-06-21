@@ -10,11 +10,8 @@ export const DEFAULT_LOCALE: Locale = 'en'
 // Section order used by scroll arrow, snap points, and navigation
 export const SECTIONS = [
   'hero',
-  'about',
   'projects',
+  'about',
   'skills',
   'contact',
 ] as const
-
-// Responsive breakpoints (matches Tailwind md)
-export const MOBILE_BREAKPOINT = 768

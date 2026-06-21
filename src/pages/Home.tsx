@@ -52,8 +52,8 @@ export function Home() {
   return (
     <>
       <Hero />
-      <About />
       <Projects />
+      <About />
       <Skills />
       <Contact />
       <ScrollArrow />
