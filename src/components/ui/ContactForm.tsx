@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import { m } from 'motion/react'
+import { SPRING_DEFAULT, DURATION_FAST, EASE_DEFAULT } from '@/lib/animation'
 import { Button } from './Button'
 import { FormInput } from './FormInput'
 
@@ -63,25 +65,59 @@ export function ContactForm({
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center pt-20 pb-4">
-        <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-green-500/20">
-          <svg
-            className="h-10 w-10 text-green-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      <div className="flex flex-col items-center gap-8 py-10">
+        <div className="relative flex h-20 w-20 items-center justify-center">
+          {/* One-shot pulse ring radiating from the check */}
+          <m.span
+            className="absolute inset-0 rounded-full border border-green-500/50"
+            initial={{ scale: 0.6, opacity: 0.6 }}
+            animate={{ scale: 1.6, opacity: 0 }}
+            transition={{ duration: 0.9, ease: 'easeOut', delay: 0.15 }}
+          />
+          {/* Glowing disc pops in */}
+          <m.div
+            className="flex h-20 w-20 items-center justify-center rounded-full bg-green-500/20 shadow-[0_0_30px_-4px_rgba(34,197,94,0.6)]"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={SPRING_DEFAULT}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+            <svg
+              className="h-10 w-10 text-green-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {/* Check draws itself in */}
+              <m.path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.35, ease: 'easeOut', delay: 0.2 }}
+              />
+            </svg>
+          </m.div>
         </div>
-        <Button onClick={() => updateStatus('idle')} className="w-full">
-          {t('contact.form.sendAnother')}
-        </Button>
+        <m.div
+          className="w-full"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: DURATION_FAST,
+            ease: EASE_DEFAULT,
+            delay: 0.35,
+          }}
+        >
+          <Button
+            variant="secondary"
+            onClick={() => updateStatus('idle')}
+            className="w-full"
+          >
+            {t('contact.form.sendAnother')}
+          </Button>
+        </m.div>
       </div>
     )
   }
