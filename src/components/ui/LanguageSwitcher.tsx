@@ -16,6 +16,11 @@ export function LanguageSwitcher() {
   const locale = getLocaleFromPath(location.pathname)
   if (!locale) return null
 
+  // Hide on project detail pages: language is already chosen on the home page
+  // and is part of the URL, and the switcher would overlap the image lightbox.
+  const isProjectDetail = /^\/[^/]+\/projects\/[^/]+/.test(location.pathname)
+  if (isProjectDetail) return null
+
   const otherLocale = SUPPORTED_LOCALES.find((l) => l !== locale)!
 
   const switchLocale = () => {

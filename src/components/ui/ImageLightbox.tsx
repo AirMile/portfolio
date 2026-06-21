@@ -31,6 +31,29 @@ export function ImageLightbox({
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
+          <button
+            className="absolute top-4 right-4 z-10 rounded-full border border-white/20 bg-black/50 p-3 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+            onClick={(e) => {
+              e.stopPropagation()
+              onClose()
+            }}
+            aria-label="Close"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
           {hasPrev && (
             <button
               className="absolute left-4 z-10 rounded-full border border-white/20 bg-black/50 p-3 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
