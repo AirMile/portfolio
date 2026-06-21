@@ -77,7 +77,8 @@
   },
   "a11y": {
     "scrollToNextSection": "Scroll naar volgende sectie",
-    "scrollToTop": "Scroll naar boven"
+    "scrollToTop": "Scroll naar boven",
+    "scrollToProjects": "Scroll naar projecten"
   },
   "projectData": {
     "draftgap": {

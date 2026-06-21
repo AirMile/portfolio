@@ -77,7 +77,8 @@
   },
   "a11y": {
     "scrollToNextSection": "Scroll to next section",
-    "scrollToTop": "Scroll to top"
+    "scrollToTop": "Scroll to top",
+    "scrollToProjects": "Scroll to projects"
   },
   "projectData": {
     "draftgap": {

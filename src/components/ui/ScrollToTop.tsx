@@ -8,21 +8,40 @@ export function ScrollToTop() {
   const { t } = useTranslation()
   const location = useLocation()
   const [isVisible, setIsVisible] = useState(false)
-  const { scrollToTop } = useLenis()
+  const { lenis } = useLenis()
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 400)
+      // Show once the user has scrolled past the projects section. The hero is
+      // just a name splash, so projects is the most useful place to jump back to.
+      const projects = document.getElementById('projects')
+      if (projects) {
+        const projectsBottom = projects.offsetTop + projects.offsetHeight
+        setIsVisible(window.scrollY > projectsBottom - window.innerHeight * 0.5)
+      } else {
+        setIsVisible(window.scrollY > 400)
+      }
     }
 
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // The detail page is short; back-to-top is only useful on the long,
-  // multi-section home page.
+  // The detail page is short; this jump-to-projects button is only useful on the
+  // long, multi-section home page.
   const isProjectDetail = /^\/[^/]+\/projects\/[^/]+/.test(location.pathname)
   if (isProjectDetail) return null
+
+  const scrollToProjects = () => {
+    if (lenis) {
+      lenis.scrollTo('#projects', { duration: 1.2 })
+    } else {
+      document
+        .getElementById('projects')
+        ?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -34,9 +53,9 @@ export function ScrollToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-          onClick={scrollToTop}
+          onClick={scrollToProjects}
           className="fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-600 bg-neutral-800 text-neutral-300 transition-colors hover:border-neutral-400 hover:text-white"
-          aria-label={t('a11y.scrollToTop')}
+          aria-label={t('a11y.scrollToProjects')}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
