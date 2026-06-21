@@ -65,7 +65,7 @@ export function ContactForm({
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center gap-8 py-10">
+      <div className="flex flex-col items-center gap-10 pt-10 pb-2">
         <div className="relative flex h-20 w-20 items-center justify-center">
           {/* One-shot pulse ring radiating from the check */}
           <m.span
