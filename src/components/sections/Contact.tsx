@@ -9,8 +9,11 @@ export function Contact() {
   const [formSuccess, setFormSuccess] = useState(false)
 
   return (
-    <section id="contact" className="px-6 py-24">
-      <div className="mx-auto max-w-xl">
+    <section
+      id="contact"
+      className="flex min-h-screen items-center justify-center px-6 py-24"
+    >
+      <div className="w-full max-w-xl">
         <FadeIn>
           <div className="rounded-2xl border border-white/10 bg-neutral-900/50 p-8 backdrop-blur-sm md:p-12">
             <div className="mb-8 text-center">
